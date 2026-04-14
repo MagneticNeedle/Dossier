@@ -1,8 +1,8 @@
 # Dossier
 
-> Your work history, automatically turned into professional documents.
+> My work history, automatically turned into professional documents.
 
-Dossier collects your git commits, code diffs, and Linear tasks to automatically generate a brag document, a one-page resume, and a multi-page CV — then publishes them to the web via GitHub Pages.
+Dossier collects my git commits, code diffs, and Linear tasks to automatically generate a brag document, a one-page resume, and a multi-page CV — then publishes them to the web via GitHub Pages.
 
 ---
 
@@ -19,10 +19,10 @@ Linear tasks        ──┘                                                   
                                                                      GitHub Pages (pdf.js)
 ```
 
-1. **Collect** — Walks every repository in your `/projects` directory, pulling commit messages and diffs. Simultaneously fetches all Linear issues you worked on via the Linear API.
+1. **Collect** — Walks every repository in my `/projects` directory, pulling commit messages and diffs. Simultaneously fetches all Linear issues I worked on via the Linear API.
 2. **Synthesize** — Combines the raw data into structured context: what you shipped, what problems you solved, who you collaborated with.
 3. **Generate** — Produces three documents using that context:
-   - **Brag document** — 5–10 pages covering goals, projects, collaboration, mentorship, design/documentation contributions, company building, learning, and outside-of-work highlights.
+   - **Brag document** — 5–10 pages covering my goals, projects, collaboration, mentorship, design/documentation contributions, company building, learning, and outside-of-work highlights.
    - **Resume** — One page, generated with [RenderCV](https://github.com/sinaatalay/rendercv).
    - **CV** — Multi-page, generated with [RenderCV](https://github.com/sinaatalay/rendercv).
 4. **Publish** — A CI/CD pipeline builds the PDFs and deploys them to GitHub Pages, rendered in the browser via [pdf.js](https://mozilla.github.io/pdf.js/).
@@ -33,16 +33,16 @@ Linear tasks        ──┘                                                   
 
 ### Brag Document
 A structured self-review covering:
-- Goals for this year and next
-- Projects shipped
+- My goals for this year and next
+- Projects I shipped
 - Collaboration & mentorship
 - Design & documentation
 - Company building contributions
-- What you learned
+- What I learned
 - Outside of work
 
 ### Resume (1 page)
-Concise and ATS-friendly. Pulls the most impactful highlights from your brag document and git/Linear history.
+Concise and ATS-friendly. Pulls the most impactful highlights from my brag document and git/Linear history.
 
 ### CV (multi-page)
 Full career record with detailed project descriptions, technologies used, and measurable outcomes.
@@ -53,8 +53,8 @@ Full career record with detailed project descriptions, technologies used, and me
 
 | Source | What it provides |
 |--------|-----------------|
-| Git repositories (`/projects/**`) | Commit messages, diffs, project names, activity timeline |
-| Linear API | Tasks worked on, issue titles, cycle/project context |
+| Git repositories (`/projects/**`) | My commit messages, diffs, project names, activity timeline |
+| Linear API | Tasks I worked on, issue titles, cycle/project context |
 | Generated brag document | Narrative context fed into resume and CV generation |
 
 ---
