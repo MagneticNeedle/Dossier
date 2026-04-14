@@ -8,16 +8,7 @@ Dossier collects my git commits, code diffs, and Linear tasks to automatically g
 
 ## How it works
 
-```
-Git commits + diffs  ──┐
-                        ├──▶  Data collector  ──▶  AI synthesizer  ──▶  Document generator
-Linear tasks        ──┘                                                       │
-                                                                               ▼
-                                                              Brag doc / Resume / CV (PDF)
-                                                                               │
-                                                                               ▼
-                                                                     GitHub Pages (pdf.js)
-```
+![How it works](static/artifact_pipeline_diagram.svg)
 
 1. **Collect** — Walks every repository in my `/projects` directory, pulling commit messages and diffs. Simultaneously fetches all Linear issues I worked on via the Linear API.
 2. **Synthesize** — Combines the raw data into structured context: what you shipped, what problems you solved, who you collaborated with.
