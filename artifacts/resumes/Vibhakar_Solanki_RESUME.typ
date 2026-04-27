@@ -1,0 +1,260 @@
+// Import the rendercv function and all the refactored components
+#import "@preview/rendercv:0.3.0": *
+
+// Apply the rendercv template with custom configuration
+#show: rendercv.with(
+  name: "Vibhakar Solanki",
+  title: "Vibhakar Solanki - Resume",
+  footer: context { [#emph[Vibhakar Solanki -- #str(here().page())\/#str(counter(page).final().first())]] },
+  top-note: [ #emph[Last updated in Apr 2026] ],
+  locale-catalog-language: "en",
+  text-direction: ltr,
+  page-size: "us-letter",
+  page-top-margin: 0.15in,
+  page-bottom-margin: 0.15in,
+  page-left-margin: 0.15in,
+  page-right-margin: 0.15in,
+  page-show-footer: false,
+  page-show-top-note: true,
+  colors-body: rgb(16, 23, 32),
+  colors-name: rgb(0, 0, 0),
+  colors-headline: rgb(0, 0, 0),
+  colors-connections: rgb(0, 0, 0),
+  colors-section-titles: rgb(0, 0, 0),
+  colors-links: rgb(0, 0, 0),
+  colors-footer: rgb(128, 128, 128),
+  colors-top-note: rgb(128, 128, 128),
+  typography-line-spacing: 0.8em,
+  typography-alignment: "justified",
+  typography-date-and-location-column-alignment: right,
+  typography-font-family-body: "Iosevka",
+  typography-font-family-name: "Iosevka",
+  typography-font-family-headline: "Iosevka",
+  typography-font-family-connections: "Iosevka",
+  typography-font-family-section-titles: "Iosevka",
+  typography-font-size-body: 10pt,
+  typography-font-size-name: 20pt,
+  typography-font-size-headline: 5pt,
+  typography-font-size-connections: 10pt,
+  typography-font-size-section-titles: 1.2em,
+  typography-small-caps-name: false,
+  typography-small-caps-headline: false,
+  typography-small-caps-connections: false,
+  typography-small-caps-section-titles: false,
+  typography-bold-name: true,
+  typography-bold-headline: false,
+  typography-bold-connections: false,
+  typography-bold-section-titles: true,
+  links-underline: true,
+  links-show-external-link-icon: true,
+  header-alignment: center,
+  header-photo-width: 3.5cm,
+  header-space-below-name: 0.7cm,
+  header-space-below-headline: 0.7cm,
+  header-space-below-connections: 0.7cm,
+  header-connections-hyperlink: true,
+  header-connections-show-icons: false,
+  header-connections-display-urls-instead-of-usernames: true,
+  header-connections-separator: "•",
+  header-connections-space-between-connections: 0.5cm,
+  section-titles-type: "with_full_line",
+  section-titles-line-thickness: 0.5pt,
+  section-titles-space-above: 0.5cm,
+  section-titles-space-below: 0.3cm,
+  sections-allow-page-break: true,
+  sections-space-between-text-based-entries: 0.3em,
+  sections-space-between-regular-entries: 0.7em,
+  entries-date-and-location-width: 4.15cm,
+  entries-side-space: 0.2cm,
+  entries-space-between-columns: 0.1cm,
+  entries-allow-page-break: false,
+  entries-short-second-row: false,
+  entries-degree-width: 1cm,
+  entries-summary-space-left: 0cm,
+  entries-summary-space-above: 0cm,
+  entries-highlights-bullet:  "◦" ,
+  entries-highlights-nested-bullet:  "◦" ,
+  entries-highlights-space-left: 0.15cm,
+  entries-highlights-space-above: 0cm,
+  entries-highlights-space-between-items: 0cm,
+  entries-highlights-space-between-bullet-and-text: 0.5em,
+  date: datetime(
+    year: 2026,
+    month: 4,
+    day: 27,
+  ),
+)
+
+
+= Vibhakar Solanki
+
+#connections(
+  [#link("mailto:mail@vibhakar.com", icon: false, if-underline: false, if-color: false)[mail\@vibhakar.com]],
+  [#link("https://vibhakar.dev/", icon: false, if-underline: false, if-color: false)[vibhakar.dev]],
+  [#link("https://linkedin.com/in/solankivibhakar", icon: false, if-underline: false, if-color: false)[linkedin.com\/in\/solankivibhakar]],
+  [#link("https://github.com/MagneticNeedle", icon: false, if-underline: false, if-color: false)[github.com\/MagneticNeedle]],
+)
+
+
+== Experience
+
+#regular-entry(
+  [
+    #strong[SDE 2]
+
+    #emph[VideoVerse]
+
+  ],
+  [
+    #emph[Remote]
+
+    #emph[Jan 2026 – present]
+
+  ],
+  main-column-second-row: [
+    - Built the SmartThumbnails service from scratch, a FastAPI app using PySceneDetect for scene segmentation, Laplacian sharpness scoring for frame filtering, and Google Gemini via DSPy for AI-driven thumbnail selection.
+
+    - Automated clip enrichment at scale via an event-driven pipeline, making every clip searchable and tagged the moment it's ingested.
+
+    - Added multi-language, EPG metadata, and AI tagging support to the export pipeline, letting broadcast clients localize content without manual work
+
+    - Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and SLA breaches by 25\%.
+
+    -  Shipped an API that unified a broadcast client's scheduling data into a single queryable source, replacing fragmented manual imports.
+
+    - Migrated from Datadog to OpenTelemetry, giving the team vendor-neutral structured observability and faster production debugging.
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[SDE 1]
+
+    #emph[VideoVerse]
+
+  ],
+  [
+    #emph[Remote]
+
+    #emph[Nov 2024 – Jan 2026]
+
+  ],
+  main-column-second-row: [
+    - Built an internal LLM evaluation pipeline using Langfuse and DSPy Evaluate, improving model output accuracy from 68\% to 92\%.
+
+    - Applied automated prompt optimization using DSPy's MIPRO\/COPRO optimizers and GEPA, lifting task-level accuracy from 30\% to 87\%.
+
+    - Developed a centralized API Gateway for managing and routing all internal and external LLM requests.
+
+    - Engineered an LLM-powered video clip ratings pipeline using DSPy, enabling automated content analysis and quality feedback.
+
+    - Established monitoring and alerting workflows using Langfuse and OTEL to enforce SLA compliance.
+
+    - Led migration of entire AWS infrastructure to Terraform, improving infrastructure-as-code practices.
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[Software Engineer Intern]
+
+    #emph[VideoVerse]
+
+  ],
+  [
+    #emph[Remote]
+
+    #emph[June 2024 – Nov 2024]
+
+  ],
+  main-column-second-row: [
+    - Designed and implemented an ETL pipeline with sub-100ms latency to optimise data processing.
+
+    - Built a service hydration layer to enrich Amazon SNS notifications with additional contextual data.
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[Backend Intern]
+
+    #emph[DiveAI]
+
+  ],
+  [
+    #emph[Remote]
+
+    #emph[Nov 2023 – Apr 2024]
+
+  ],
+  main-column-second-row: [
+    - Resolved critical production issues in notification and Google Calendar integrations.
+
+    - Upgraded backend from Python 3.9 to 3.11.
+
+  ],
+)
+
+== Projects
+
+#regular-entry(
+  [
+    #strong[Battlefield Portal Library | #link("https://bfportal.gg/")[bfportal.gg] | #link("https://github.com/battlefield-portal-community/bfportal.gg/")[https:\/\/gh.bfportal.gg]]
+
+  ],
+  [
+    #emph[Jan 2022 – present]
+
+  ],
+  main-column-second-row: [
+    - Built a Django-based CMS platform serving over 17,000 users with a personalised content and user system.
+
+    - Containerised with Docker and automated deployments via GitHub Actions.
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[Gametools Network | #link("https://gametools.network/")[gametools.network] | #link("https://github.com/community-network")[github.com\/community-network]]
+
+  ],
+  [
+    #emph[May 2022 – present]
+
+  ],
+  main-column-second-row: [
+    - Developed and maintain an open-source Stats API serving 3 million players, handling over 2 million daily requests via Envoy proxy and Cloudflare caching.
+
+  ],
+)
+
+== Skills
+
+#strong[AI \/ ML:] DSPy, GEPA, Langfuse, MLflow, Vertex AI, Gemini, DSPy Evaluate
+
+#strong[Languages:] Python, Go, TypeScript
+
+#strong[Backend:] FastAPI, Django, PostgreSQL, MongoDB, Redis
+
+#strong[Infrastructure:] AWS, Terraform, Docker, OpenTelemetry, Nginx, Envoy, Grafana, Datadog
+
+== Education
+
+#education-entry(
+  [
+    #strong[MIET]
+
+  ],
+  [
+    #emph[Jan 2020 – Jan 2024]
+
+  ],
+  main-column-second-row: [
+    #emph[B.Tech] #emph[in] #emph[Computer Science Engineering, Minor in Data Science]
+
+  ],
+)
