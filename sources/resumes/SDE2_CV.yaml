@@ -8,7 +8,6 @@ cv:
       username: solankivibhakar
     - network: GitHub
       username: MagneticNeedle 
-  custom_connections:
   sections:
     experience:
       - company: "VideoVerse"
@@ -66,13 +65,11 @@ cv:
             Cloudflare caching."
     skills:
       - label: "AI / ML"
-        details: "DSPy, GEPA, Langfuse, VertexAI"
-      - label: "Languages"
-        details: "Python, Go, TypeScript"
+        details: "DSPy, MIPRO/COPRO, GEPA, Langfuse, Google Gemini, VertexAI, Prompt Engineering, LLM Evaluation & Optimization"
       - label: "Backend"
-        details: "FastAPI, Django, PostgreSQL, MongoDB, Redis"
+        details: "Python, Go, TypeScript, FastAPI, Django, PostgreSQL, MongoDB, Redis"
       - label: "Infrastructure"
-        details: "AWS, Terraform, Docker, OpenTelemetry, Nginx, Grafana"
+        details: "AWS, Terraform, Docker, OpenTelemetry, Grafana, Nginx, GitHub Actions, Envoy"
     education:
       - institution: "MIET"
         location: Meerut, Uttar Pradesh
@@ -85,8 +82,8 @@ design:
   theme: sb2nov
   page:
     size: us-letter
-    top_margin: 0.15in
-    bottom_margin: 0.15in
+    top_margin: 0.5cm
+    bottom_margin: 0.1cm
     left_margin: 0.15in
     right_margin: 0.15in
     show_footer: false
@@ -106,7 +103,7 @@ design:
     date_and_location_column_alignment: right
     font_family: Iosevka
     font_size:
-      body: 9.1pt
+      body: 9.5pt
       name: 20pt
       headline: 5pt
       connections: 10pt
@@ -126,20 +123,15 @@ design:
     show_external_link_icon: true 
   header:
     alignment: center
-    photo_width: 3.5cm
-    photo_position: left
-    photo_space_left: 0.4cm
-    photo_space_right: 0.4cm
-    space_below_name: 0.7cm
-    space_below_headline: 0.7cm
-    space_below_connections: 0.7cm
+    space_below_name: 0.5cm
+    space_below_connections: 0.3cm
     connections:
       phone_number_format: national
       hyperlink: true
-      show_icons: false
+      show_icons: true 
       display_urls_instead_of_usernames: true
-      separator: •
-      space_between_connections: 0.5cm
+      separator: ┃
+      space_between_connections: 0.3cm
   section_titles:
     type: with_full_line
     line_thickness: 0.5pt
@@ -147,7 +139,7 @@ design:
     space_below: 0.3cm
   sections:
     allow_page_break: true
-    space_between_regular_entries: 0.7em
+    space_between_regular_entries: 0.5em
     space_between_text_based_entries: 0.3em
     show_time_spans_in: []
   entries:
@@ -228,5 +220,5 @@ settings:
     dont_generate_typst: false 
     dont_generate_pdf: false
     dont_generate_png: true 
-  bold_keywords: []
+  bold_keywords: ["DSPy", "Python"]
   pdf_title: NAME - Resume

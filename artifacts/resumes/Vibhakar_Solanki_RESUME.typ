@@ -10,8 +10,8 @@
   locale-catalog-language: "en",
   text-direction: ltr,
   page-size: "us-letter",
-  page-top-margin: 0.15in,
-  page-bottom-margin: 0.15in,
+  page-top-margin: 0.5cm,
+  page-bottom-margin: 0.1cm,
   page-left-margin: 0.15in,
   page-right-margin: 0.15in,
   page-show-footer: false,
@@ -32,7 +32,7 @@
   typography-font-family-headline: "Iosevka",
   typography-font-family-connections: "Iosevka",
   typography-font-family-section-titles: "Iosevka",
-  typography-font-size-body: 9.1pt,
+  typography-font-size-body: 9.5pt,
   typography-font-size-name: 20pt,
   typography-font-size-headline: 5pt,
   typography-font-size-connections: 10pt,
@@ -49,21 +49,21 @@
   links-show-external-link-icon: true,
   header-alignment: center,
   header-photo-width: 3.5cm,
-  header-space-below-name: 0.7cm,
+  header-space-below-name: 0.5cm,
   header-space-below-headline: 0.7cm,
-  header-space-below-connections: 0.7cm,
+  header-space-below-connections: 0.3cm,
   header-connections-hyperlink: true,
-  header-connections-show-icons: false,
+  header-connections-show-icons: true,
   header-connections-display-urls-instead-of-usernames: true,
-  header-connections-separator: "•",
-  header-connections-space-between-connections: 0.5cm,
+  header-connections-separator: "┃",
+  header-connections-space-between-connections: 0.3cm,
   section-titles-type: "with_full_line",
   section-titles-line-thickness: 0.5pt,
   section-titles-space-above: 0.5cm,
   section-titles-space-below: 0.3cm,
   sections-allow-page-break: true,
   sections-space-between-text-based-entries: 0.3em,
-  sections-space-between-regular-entries: 0.7em,
+  sections-space-between-regular-entries: 0.5em,
   entries-date-and-location-width: 4.15cm,
   entries-side-space: 0.2cm,
   entries-space-between-columns: 0.1cm,
@@ -89,10 +89,10 @@
 = Vibhakar Solanki
 
 #connections(
-  [#link("mailto:mail@vibhakar.com", icon: false, if-underline: false, if-color: false)[mail\@vibhakar.com]],
-  [#link("https://vibhakar.dev/", icon: false, if-underline: false, if-color: false)[vibhakar.dev]],
-  [#link("https://linkedin.com/in/solankivibhakar", icon: false, if-underline: false, if-color: false)[linkedin.com\/in\/solankivibhakar]],
-  [#link("https://github.com/MagneticNeedle", icon: false, if-underline: false, if-color: false)[github.com\/MagneticNeedle]],
+  [#link("mailto:mail@vibhakar.com", icon: false, if-underline: false, if-color: false)[#connection-with-icon("envelope")[mail\@vibhakar.com]]],
+  [#link("https://vibhakar.dev/", icon: false, if-underline: false, if-color: false)[#connection-with-icon("link")[vibhakar.dev]]],
+  [#link("https://linkedin.com/in/solankivibhakar", icon: false, if-underline: false, if-color: false)[#connection-with-icon("linkedin")[linkedin.com\/in\/solankivibhakar]]],
+  [#link("https://github.com/MagneticNeedle", icon: false, if-underline: false, if-color: false)[#connection-with-icon("github")[github.com\/MagneticNeedle]]],
 )
 
 
@@ -114,7 +114,7 @@
   main-column-second-row: [
     - Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed 4,500+ clips in its first month with a 99.2\% client acceptance rate, effectively eliminating manual thumbnail curation from broadcast workflows.
 
-    - Engineered the service using FastAPI, PySceneDetect for scene segmentation, Laplacian sharpness scoring for frame quality filtering, and Google Gemini via DSPy for AI-driven final selection
+    - Engineered the service using FastAPI, PySceneDetect for scene segmentation, Laplacian sharpness scoring for frame quality filtering, and Google Gemini via #strong[DSPy] for AI-driven final selection
 
     - Automated clip enrichment at scale via an event-driven pipeline, making every clip searchable and tagged the moment it's ingested.
 
@@ -143,13 +143,13 @@
 
   ],
   main-column-second-row: [
-    - Built an internal LLM evaluation pipeline using Langfuse and DSPy Evaluate, improving model output accuracy from 68\% to 92\%.
+    - Built an internal LLM evaluation pipeline using Langfuse and #strong[DSPy] Evaluate, improving model output accuracy from 68\% to 92\%.
 
-    - Applied automated prompt optimization using DSPy's MIPRO\/COPRO optimizers and GEPA, lifting task-level accuracy from 30\% to 87\%.
+    - Applied automated prompt optimization using #strong[DSPy]'s MIPRO\/COPRO optimizers and GEPA, lifting task-level accuracy from 30\% to 87\%.
 
     - Built a centralized AI Gateway handling auth, request tracking, and auto-retriggers across 5 backend AI services, processing 50,000+ clips and 300+ streams monthly
 
-    - Engineered an LLM-powered video clip ratings pipeline using DSPy, handling over 500k clips per month
+    - Engineered an LLM-powered video clip ratings pipeline using #strong[DSPy], handling over 500k clips per month
 
     - Established monitoring and alerting workflows using Langfuse and OTEL to enforce SLA compliance.
 
@@ -215,13 +215,11 @@
 
 == Skills
 
-#strong[AI \/ ML:] DSPy, GEPA, Langfuse, VertexAI
+#strong[AI \/ ML:] #strong[DSPy], MIPRO\/COPRO, GEPA, Langfuse, Google Gemini, VertexAI, Prompt Engineering, LLM Evaluation & Optimization
 
-#strong[Languages:] Python, Go, TypeScript
+#strong[Backend:] #strong[Python], Go, TypeScript, FastAPI, Django, PostgreSQL, MongoDB, Redis
 
-#strong[Backend:] FastAPI, Django, PostgreSQL, MongoDB, Redis
-
-#strong[Infrastructure:] AWS, Terraform, Docker, OpenTelemetry, Nginx, Grafana
+#strong[Infrastructure:] AWS, Terraform, Docker, OpenTelemetry, Grafana, Nginx, GitHub Actions, Envoy
 
 == Education
 
