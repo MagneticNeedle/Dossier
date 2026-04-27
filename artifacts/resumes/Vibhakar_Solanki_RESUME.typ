@@ -24,7 +24,7 @@
   colors-links: rgb(0, 0, 0),
   colors-footer: rgb(128, 128, 128),
   colors-top-note: rgb(128, 128, 128),
-  typography-line-spacing: 0.8em,
+  typography-line-spacing: 0.7em,
   typography-alignment: "justified",
   typography-date-and-location-column-alignment: right,
   typography-font-family-body: "Iosevka",
@@ -32,7 +32,7 @@
   typography-font-family-headline: "Iosevka",
   typography-font-family-connections: "Iosevka",
   typography-font-family-section-titles: "Iosevka",
-  typography-font-size-body: 10pt,
+  typography-font-size-body: 9.1pt,
   typography-font-size-name: 20pt,
   typography-font-size-headline: 5pt,
   typography-font-size-connections: 10pt,
@@ -112,15 +112,17 @@
 
   ],
   main-column-second-row: [
-    - Built the SmartThumbnails service from scratch, a FastAPI app using PySceneDetect for scene segmentation, Laplacian sharpness scoring for frame filtering, and Google Gemini via DSPy for AI-driven thumbnail selection.
+    - Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed 4,500+ clips in its first month with a 99.2\% client acceptance rate, effectively eliminating manual thumbnail curation from broadcast workflows.
+
+    - Engineered the service using FastAPI, PySceneDetect for scene segmentation, Laplacian sharpness scoring for frame quality filtering, and Google Gemini via DSPy for AI-driven final selection
 
     - Automated clip enrichment at scale via an event-driven pipeline, making every clip searchable and tagged the moment it's ingested.
 
-    - Added multi-language, EPG metadata, and AI tagging support to the export pipeline, letting broadcast clients localize content without manual work
+    - Added multi-language, EPG metadata, and AI tagging support to the export pipeline, processing 11,000+ clips monthly and letting broadcast clients localize content without manual work.
 
     - Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and SLA breaches by 25\%.
 
-    -  Shipped an API that unified a broadcast client's scheduling data into a single queryable source, replacing fragmented manual imports.
+    - Shipped an API that unified a broadcast client's scheduling data into a single queryable source, replacing fragmented manual imports
 
     - Migrated from Datadog to OpenTelemetry, giving the team vendor-neutral structured observability and faster production debugging.
 
@@ -145,13 +147,13 @@
 
     - Applied automated prompt optimization using DSPy's MIPRO\/COPRO optimizers and GEPA, lifting task-level accuracy from 30\% to 87\%.
 
-    - Developed a centralized API Gateway for managing and routing all internal and external LLM requests.
+    - Built a centralized AI Gateway handling auth, request tracking, and auto-retriggers across 5 backend AI services, processing 50,000+ clips and 300+ streams monthly
 
-    - Engineered an LLM-powered video clip ratings pipeline using DSPy, enabling automated content analysis and quality feedback.
+    - Engineered an LLM-powered video clip ratings pipeline using DSPy, handling over 500k clips per month
 
     - Established monitoring and alerting workflows using Langfuse and OTEL to enforce SLA compliance.
 
-    - Led migration of entire AWS infrastructure to Terraform, improving infrastructure-as-code practices.
+    - Co-led migration of entire AWS infrastructure to Terraform, improving infrastructure-as-code practices.
 
   ],
 )
@@ -172,28 +174,7 @@
   main-column-second-row: [
     - Designed and implemented an ETL pipeline with sub-100ms latency to optimise data processing.
 
-    - Built a service hydration layer to enrich Amazon SNS notifications with additional contextual data.
-
-  ],
-)
-
-#regular-entry(
-  [
-    #strong[Backend Intern]
-
-    #emph[DiveAI]
-
-  ],
-  [
-    #emph[Remote]
-
-    #emph[Nov 2023 – Apr 2024]
-
-  ],
-  main-column-second-row: [
-    - Resolved critical production issues in notification and Google Calendar integrations.
-
-    - Upgraded backend from Python 3.9 to 3.11.
+    - Improved an existing thumbnail service by migrating from SQLite to PostgreSQL, adding auto-retries, and enhancing face-embedding data collection for better selection accuracy
 
   ],
 )
@@ -210,7 +191,7 @@
 
   ],
   main-column-second-row: [
-    - Built a Django-based CMS platform serving over 17,000 users with a personalised content and user system.
+    - Built a Django-based CMS serving 17,000+ users, with a full frontend built on Jinja templates — currently migrating to HTMX for faster, dynamic interactions without a JavaScript framework.
 
     - Containerised with Docker and automated deployments via GitHub Actions.
 
@@ -234,13 +215,13 @@
 
 == Skills
 
-#strong[AI \/ ML:] DSPy, GEPA, Langfuse, MLflow, Vertex AI, Gemini, DSPy Evaluate
+#strong[AI \/ ML:] DSPy, GEPA, Langfuse, VertexAI
 
 #strong[Languages:] Python, Go, TypeScript
 
 #strong[Backend:] FastAPI, Django, PostgreSQL, MongoDB, Redis
 
-#strong[Infrastructure:] AWS, Terraform, Docker, OpenTelemetry, Nginx, Envoy, Grafana, Datadog
+#strong[Infrastructure:] AWS, Terraform, Docker, OpenTelemetry, Nginx, Grafana
 
 == Education
 
@@ -248,13 +229,15 @@
   [
     #strong[MIET]
 
+    #emph[B.Tech] #emph[in] #emph[Computer Science Engineering, Minor in Data Science]
+
   ],
   [
+    #emph[Meerut, Uttar Pradesh]
+
     #emph[Jan 2020 – Jan 2024]
 
   ],
   main-column-second-row: [
-    #emph[B.Tech] #emph[in] #emph[Computer Science Engineering, Minor in Data Science]
-
   ],
 )

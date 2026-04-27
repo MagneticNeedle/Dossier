@@ -23,7 +23,9 @@ cv:
             making every clip searchable and tagged the moment it's ingested."
           - "Added multi-language, EPG metadata, and AI tagging support to the export pipeline, processing 11,000+ clips monthly and letting broadcast clients localize content without manual work."
           - "Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and SLA breaches by 25%."
+          - "Shipped an API that unified a broadcast client's scheduling data into a single queryable source, replacing fragmented manual imports"
           - "Migrated from Datadog to OpenTelemetry, giving the team vendor-neutral structured observability and faster production debugging."
+
       - company: "VideoVerse"
         location: Remote
         position: SDE 1
@@ -37,7 +39,7 @@ cv:
           - "Built a centralized AI Gateway handling auth, request tracking, and auto-retriggers across 5 backend AI services, processing 50,000+ clips and 300+ streams monthly"
           - "Engineered an LLM-powered video clip ratings pipeline using DSPy, handling over 500k clips per month"
           - "Established monitoring and alerting workflows using Langfuse and OTEL to enforce SLA compliance."
-          - "helped in migration of entire AWS infrastructure to Terraform, improving infrastructure-as-code practices."
+          - "Co-led migration of entire AWS infrastructure to Terraform, improving infrastructure-as-code practices."
       - company: "VideoVerse"
         location: Remote
         position: "Software Engineer Intern"
@@ -46,11 +48,7 @@ cv:
         highlights:
           - "Designed and implemented an ETL pipeline with sub-100ms latency to
             optimise data processing."
-      - company: "DiveAI"
-        location: Remote
-        position: "Backend Intern"
-        start_date: "2023-11"
-        end_date: "2024-04"
+          - "Improved an existing thumbnail service by migrating from SQLite to PostgreSQL, adding auto-retries, and enhancing face-embedding data collection for better selection accuracy"
     projects:
       - name: Battlefield Portal Library | [bfportal.gg](https://bfportal.gg/) | [https://gh.bfportal.gg](https://github.com/battlefield-portal-community/bfportal.gg/)
         start_date: "2022-01"
@@ -68,15 +66,16 @@ cv:
             Cloudflare caching."
     skills:
       - label: "AI / ML"
-        details: "DSPy, GEPA, Langfuse, MLflow, Vertex AI, Gemini, DSPy Evaluate"
+        details: "DSPy, GEPA, Langfuse, VertexAI"
       - label: "Languages"
         details: "Python, Go, TypeScript"
       - label: "Backend"
         details: "FastAPI, Django, PostgreSQL, MongoDB, Redis"
       - label: "Infrastructure"
-        details: "AWS, Terraform, Docker, OpenTelemetry, Nginx, Envoy, Grafana, Datadog"
+        details: "AWS, Terraform, Docker, OpenTelemetry, Nginx, Grafana"
     education:
       - institution: "MIET"
+        location: Meerut, Uttar Pradesh
         area: "Computer Science Engineering, Minor in Data Science"
         degree: "B.Tech"
         start_date: "2020"
@@ -107,7 +106,7 @@ design:
     date_and_location_column_alignment: right
     font_family: Iosevka
     font_size:
-      body: 9.35pt
+      body: 9.1pt
       name: 20pt
       headline: 5pt
       connections: 10pt
