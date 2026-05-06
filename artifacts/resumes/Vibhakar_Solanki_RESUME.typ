@@ -6,7 +6,7 @@
   name: "Vibhakar Solanki",
   title: "Vibhakar Solanki - Resume",
   footer: context { [#emph[Vibhakar Solanki -- #str(here().page())\/#str(counter(page).final().first())]] },
-  top-note: [ #emph[Last updated in Apr 2026] ],
+  top-note: [ #emph[Last updated in May 2026] ],
   locale-catalog-language: "en",
   text-direction: ltr,
   page-size: "us-letter",
@@ -27,11 +27,11 @@
   typography-line-spacing: 0.7em,
   typography-alignment: "justified",
   typography-date-and-location-column-alignment: right,
-  typography-font-family-body: "Iosevka",
-  typography-font-family-name: "Iosevka",
-  typography-font-family-headline: "Iosevka",
-  typography-font-family-connections: "Iosevka",
-  typography-font-family-section-titles: "Iosevka",
+  typography-font-family-body: "Helvetica",
+  typography-font-family-name: "Helvetica",
+  typography-font-family-headline: "Helvetica",
+  typography-font-family-connections: "Helvetica",
+  typography-font-family-section-titles: "Helvetica",
   typography-font-size-body: 9.5pt,
   typography-font-size-name: 20pt,
   typography-font-size-headline: 5pt,
@@ -80,8 +80,8 @@
   entries-highlights-space-between-bullet-and-text: 0.5em,
   date: datetime(
     year: 2026,
-    month: 4,
-    day: 27,
+    month: 5,
+    day: 7,
   ),
 )
 
@@ -112,19 +112,19 @@
 
   ],
   main-column-second-row: [
-    - Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed 4,500+ clips in its first month with a 99.2\% client acceptance rate, effectively eliminating manual thumbnail curation from broadcast workflows.
+    - Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed #strong[4,500+ clips in its first month with a 99.2\% client acceptance rate], effectively eliminating manual thumbnail curation from broadcast workflows.
 
-    - Engineered the service using FastAPI, PySceneDetect for scene segmentation, Laplacian sharpness scoring for frame quality filtering, and Google Gemini via #strong[DSPy] for AI-driven final selection
+    - Engineered the service using #strong[FastAPI, PySceneDetect] for scene segmentation, Laplacian sharpness scoring for frame quality filtering, and Google Gemini via #strong[DSPy] for AI-driven final selection
 
     - Automated clip enrichment at scale via an event-driven pipeline, making every clip searchable and tagged the moment it's ingested.
 
-    - Added multi-language, EPG metadata, and AI tagging support to the export pipeline, processing 11,000+ clips monthly and letting broadcast clients localize content without manual work.
+    - Added multi-language, EPG metadata, and AI tagging support to the export pipeline, #strong[processing 11,000+ clips monthly] and letting broadcast clients localize content without manual work.
 
-    - Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and SLA breaches by 25\%.
+    - Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and #strong[SLA breaches by 25\%].
 
     - Shipped an API that unified a broadcast client's scheduling data into a single queryable source, replacing fragmented manual imports
 
-    - Migrated from Datadog to OpenTelemetry, giving the team vendor-neutral structured observability and faster production debugging.
+    - Migrated from #strong[Datadog to OpenTelemetry], giving the team vendor-neutral structured observability and faster production debugging.
 
   ],
 )
@@ -143,17 +143,17 @@
 
   ],
   main-column-second-row: [
-    - Built an internal LLM evaluation pipeline using Langfuse and #strong[DSPy] Evaluate, improving model output accuracy from 68\% to 92\%.
+    - Built an internal LLM evaluation pipeline using Langfuse and #strong[DSPy] Evaluate, improving model output accuracy #strong[from 68\% to 92\%].
 
-    - Applied automated prompt optimization using #strong[DSPy]'s MIPRO\/COPRO optimizers and GEPA, lifting task-level accuracy from 30\% to 87\%.
+    - Applied automated prompt optimization using #strong[DSPy]'s #strong[MIPRO\/COPRO] optimizers and #strong[GEPA], lifting task-level accuracy #strong[from 30\% to 87\%].
 
-    - Built a centralized AI Gateway handling auth, request tracking, and auto-retriggers across 5 backend AI services, processing 50,000+ clips and 300+ streams monthly
+    - Built a centralized #strong[AI Gateway] handling auth, request tracking, and auto-retriggers across 5 backend AI services, processing #strong[50,000+ clips and 300+ streams monthly]
 
-    - Engineered an LLM-powered video clip ratings pipeline using #strong[DSPy], handling over 500k clips per month
+    - Engineered an LLM-powered video clip ratings pipeline using #strong[DSPy], handling over #strong[500k clips per month]
 
     - Established monitoring and alerting workflows using Langfuse and OTEL to enforce SLA compliance.
 
-    - Co-led migration of entire AWS infrastructure to Terraform, improving infrastructure-as-code practices.
+    - Co-led migration of entire #strong[AWS infrastructure to Terraform], improving infrastructure-as-code practices.
 
   ],
 )
@@ -172,9 +172,9 @@
 
   ],
   main-column-second-row: [
-    - Designed and implemented an ETL pipeline with sub-100ms latency to optimise data processing.
+    - Designed and implemented an ETL pipeline with #strong[sub-100ms latency] to optimise data processing.
 
-    - Improved an existing thumbnail service by migrating from SQLite to PostgreSQL, adding auto-retries, and enhancing face-embedding data collection for better selection accuracy
+    - Improved an existing thumbnail service by migrating from #strong[SQLite to PostgreSQL], adding auto-retries, and enhancing face-embedding data collection for better selection accuracy
 
   ],
 )
@@ -191,7 +191,7 @@
 
   ],
   main-column-second-row: [
-    - Built a Django-based CMS serving 17,000+ users, with a full frontend built on Jinja templates — currently migrating to HTMX for faster, dynamic interactions without a JavaScript framework.
+    - Built a Django-based CMS serving #strong[17,000+ users], with a full frontend built on Jinja templates — currently migrating to #strong[HTMX] for faster, dynamic interactions without a JavaScript framework.
 
     - Containerised with Docker and automated deployments via GitHub Actions.
 
@@ -208,7 +208,7 @@
 
   ],
   main-column-second-row: [
-    - Developed and maintain an open-source Stats API serving 3 million players, handling over 2 million daily requests via Envoy proxy and Cloudflare caching.
+    - Developed and maintain an open-source Stats API serving #strong[3 million players], handling over #strong[2 million daily requests] via Envoy proxy and Cloudflare caching.
 
   ],
 )
