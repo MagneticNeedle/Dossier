@@ -1,7 +1,7 @@
 """Build pipeline for the dossier repo.
 
-Run via `uv run build.py` to execute every stage in order, or
-`uv run build.py <stage> [<stage> ...]` to run a subset.
+Run via `uv run dossier.py` to execute every stage in order, or
+`uv run dossier.py <stage> [<stage> ...]` to run a subset.
 
 Add a new stage by writing a function and decorating it with `@stage("name")`.
 Stages run in registration order when no argument is passed.
@@ -24,7 +24,8 @@ RESUMES_DIR = REPO_ROOT / "sources" / "resumes"
 RESUME_YAML = RESUMES_DIR / "SDE2_CV.yaml"
 ANON_YAML = RESUMES_DIR / "SDE2_CV.anon.generated.yaml"
 RENDERED_PDF = REPO_ROOT / "artifacts" / "resumes" / "Vibhakar_Solanki_RESUME.pdf"
-PUBLISHED_PDF = REPO_ROOT / "deployments" / "cf-workers" / "public" / "resume.pdf"
+CF_WORKER_DIR = REPO_ROOT / "deployments" / "cf-workers"
+PUBLISHED_PDF = CF_WORKER_DIR / "public" / "resume.pdf"
 
 ANON_HEADER_OVERRIDES = {
     "name": "Software Engineer",
@@ -88,6 +89,12 @@ def _render_anon() -> None:
 def _og_image() -> None:
     """Build the 1200x630 og:image PNG from the rendercv PNG output."""
     run(["uv", "run", str(REPO_ROOT / "deployments" / "scripts" / "build_og_image.py")])
+
+
+@stage("deploy-worker")
+def _deploy_worker() -> None:
+    """Deploy the Cloudflare Worker (publishes public/ assets to resume.vibhakar.{dev,in})."""
+    run(["npx", "wrangler", "deploy"], cwd=CF_WORKER_DIR)
 
 
 def main(argv: list[str] | None = None) -> int:
