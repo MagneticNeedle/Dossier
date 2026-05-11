@@ -59,23 +59,45 @@ Full career record with detailed project descriptions, technologies used, and me
 
 ---
 
+## Build stages
+
+The pipeline lives in [`build.py`](build.py). Run everything with `uv run build.py`, or pick a subset with `uv run build.py <stage> [<stage> ...]`. List stages with `uv run build.py --list`.
+
+| Stage         | What it does |
+|---------------|--------------|
+| `render`      | Renders `sources/resumes/SDE2_CV.yaml` to PDF + PNG via RenderCV, into `artifacts/resumes/`. |
+| `publish-pdf` | Copies the rendered PDF into `deployments/cf-workers/public/resume.pdf` for the Worker to serve. |
+| `render-anon` | Writes `SDE2_CV.anon.generated.yaml` with header + socials redacted, then renders it. |
+| `og-image`    | Builds a 1200×630 `og-image.png` via `deployments/scripts/build_og_image.py`. |
+
+---
+
 ## Project structure
 
 ```
 dossier/
-├── collectors/
-│   ├── git.py          # Walk /projects, extract commits and diffs
-│   └── linear.py       # Fetch Linear tasks via API
-├── generators/
-│   ├── brag.py         # Generate brag document
-│   ├── resume.py       # Generate one-page resume (RenderCV)
-│   └── cv.py           # Generate multi-page CV (RenderCV)
-├── web/                # GitHub Pages site (pdf.js viewer)
-├── .github/
-│   └── workflows/
-│       └── generate.yml  # CI/CD pipeline
-├── config.yaml         # Linear token, projects path, output settings
-└── README.md
+├── build.py                              # Pipeline entrypoint (render, publish-pdf, render-anon, og-image)
+├── pyproject.toml
+├── uv.lock
+├── sources/
+│   └── resumes/
+│       ├── SDE2_CV.yaml                  # Source of truth for the resume
+│       ├── SDE2_CV.anon.generated.yaml   # Written by `render-anon`
+│       └── fonts/
+├── artifacts/
+│   └── resumes/                          # RenderCV output (PDF, PNG, Typst)
+├── deployments/
+│   ├── cf-workers/
+│   │   ├── worker.js                     # Cloudflare Worker (SEO, OG tags, viewer routing)
+│   │   ├── wrangler.toml
+│   │   └── public/
+│   │       ├── resume.pdf                # Published by `publish-pdf`
+│   │       ├── og-image.png              # Built by `og-image`
+│   │       └── pdfjs/                    # Vendored pdf.js viewer
+│   └── scripts/
+│       └── build_og_image.py
+└── static/
+    └── artifact_pipeline_diagram.svg
 ```
 
 ---
@@ -85,10 +107,25 @@ dossier/
 ```bash
 git clone https://github.com/your-username/dossier
 cd dossier
-pip install -r requirements.txt
-cp config.example.yaml config.yaml
-# Add your Linear API token and projects path to config.yaml
-python run.py
+uv sync
+```
+
+Run the full build pipeline:
+
+```bash
+uv run build.py
+```
+
+Run a subset of stages (e.g. re-render and publish after a YAML edit):
+
+```bash
+uv run build.py render publish-pdf
+```
+
+List available stages:
+
+```bash
+uv run build.py --list
 ```
 
 ---
