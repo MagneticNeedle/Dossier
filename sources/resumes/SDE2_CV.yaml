@@ -221,5 +221,5 @@ settings:
     dont_generate_typst: false 
     dont_generate_pdf: false
     dont_generate_png: false
-  bold_keywords: ["DSPy", "Python"]
+  bold_keywords: []
   pdf_title: NAME - Resume
