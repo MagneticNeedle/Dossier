@@ -8,7 +8,8 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-const RESUME_FILE_ID = "1NkpwiLwOf_wiNVeSPaKFKsBzwj80DA3N";
+const RESUME_PDF = "/resume.pdf";
+const RESUME_VIEWER = `/pdfjs/web/viewer?file=${encodeURIComponent(RESUME_PDF)}#zoom=page-width`;
 const RESUME_URL = "https://vibhakar.dev";
 const PREVIEW_IMAGE = "https://resume.vibhakar.dev/og-image.png";
 const TITLE = "Vibhakar Solanki | SDE 2 @ VideoVerse | AI Video Pipelines";
@@ -98,15 +99,11 @@ export default {
       overflow: hidden;
       margin: 0;
     }
-    .ndfHFb-c4YZDc-q77wGc {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <iframe
-    src="https://drive.google.com/file/d/${RESUME_FILE_ID}/preview"
-    allow="autoplay"
+    src="${RESUME_VIEWER}"
     height="100%"
     width="100%"
     style="border: none;">
