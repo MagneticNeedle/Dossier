@@ -13,3 +13,6 @@ __pycache__/
 
 # Generated intermediates for resume variants
 sources/resumes/*.generated.yaml
+
+# Local scratch / working notes
+temp/
