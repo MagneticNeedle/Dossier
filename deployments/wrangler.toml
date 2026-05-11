@@ -7,3 +7,6 @@ routes = [
   { pattern = "resume.vibhakar.dev/*", zone_name = "vibhakar.dev" },
   { pattern = "resume.vibhakar.in/*",  zone_name = "vibhakar.in"  },
 ]
+
+[assets]
+directory = "./public"

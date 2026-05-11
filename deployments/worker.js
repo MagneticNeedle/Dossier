@@ -10,7 +10,7 @@
 
 const RESUME_FILE_ID = "1NkpwiLwOf_wiNVeSPaKFKsBzwj80DA3N";
 const RESUME_URL = "https://vibhakar.dev";
-const PREVIEW_IMAGE = `https://drive.google.com/thumbnail?id=${RESUME_FILE_ID}&sz=w1200`;
+const PREVIEW_IMAGE = "https://resume.vibhakar.dev/og-image.png";
 const TITLE = "Vibhakar Solanki | SDE 2 @ VideoVerse | AI Video Pipelines";
 const DESCRIPTION =
   "SDE 2 at VideoVerse building AI-powered video pipelines with FastAPI, DSPy, and OpenTelemetry. Python, Go, AWS, Terraform.";
