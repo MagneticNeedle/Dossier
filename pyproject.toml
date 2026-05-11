@@ -10,6 +10,7 @@ dependencies = [
 
 [project.scripts]
 dossier = "dossier:main"
+app = "dossier:main"
 
 [build-system]
 requires = ["hatchling"]
