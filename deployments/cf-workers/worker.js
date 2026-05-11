@@ -9,7 +9,7 @@
  */
 
 const RESUME_PDF = "/resume.pdf";
-const RESUME_VIEWER = `/pdfjs/web/viewer?file=${encodeURIComponent(RESUME_PDF)}#zoom=page-fit`;
+const RESUME_VIEWER = `/pdfjs/web/viewer?file=${encodeURIComponent(RESUME_PDF)}#zoom=125`;
 const RESUME_URL = "https://vibhakar.dev";
 const PREVIEW_IMAGE = "https://resume.vibhakar.dev/og-image.png";
 const TITLE = "Vibhakar Solanki | SDE 2 @ VideoVerse | AI Video Pipelines";
