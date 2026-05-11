@@ -7,3 +7,13 @@ requires-python = ">=3.14"
 dependencies = [
     "rendercv[full]>=2.3",
 ]
+
+[project.scripts]
+build = "build:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["build.py"]
