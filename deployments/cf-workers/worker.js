@@ -16,57 +16,63 @@ const TITLE = "Vibhakar Solanki | SDE 2 @ VideoVerse | AI Video Pipelines";
 const DESCRIPTION =
   "SDE 2 at VideoVerse building AI-powered video pipelines with FastAPI, DSPy, and OpenTelemetry. Python, Go, AWS, Terraform.";
 
-const PERSON_SCHEMA = {
+const PROFILE_PAGE_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Vibhakar Solanki",
-  givenName: "Vibhakar",
-  familyName: "Solanki",
-  email: "mailto:mail@vibhakar.com",
-  url: RESUME_URL,
-  jobTitle: "SDE 2",
-  worksFor: {
-    "@type": "Organization",
-    name: "VideoVerse",
-    url: "https://videoverse.com",
+  "@type": "ProfilePage",
+  dateCreated: "2026-05-11T13:14:00+05:30",
+  dateModified: "2026-05-11T13:14:00+05:30",
+  mainEntity: {
+    "@type": "Person",
+    name: "Vibhakar Solanki",
+    givenName: "Vibhakar",
+    familyName: "Solanki",
+    email: "mailto:mail@vibhakar.com",
+    url: RESUME_URL,
+    jobTitle: "SDE 2",
+    description: DESCRIPTION,
+    worksFor: {
+      "@type": "Organization",
+      name: "VideoVerse",
+      url: "https://videoverse.com",
+    },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Meerut Institute of Engineering and Technology",
+      sameAs: "https://miet.ac.in",
+    },
+    knowsAbout: [
+      "AI Video Pipelines",
+      "LLM Evaluation & Optimization",
+      "Prompt Engineering",
+      "DSPy",
+      "MIPRO",
+      "COPRO",
+      "GEPA",
+      "Langfuse",
+      "Google Gemini",
+      "VertexAI",
+      "Python",
+      "Go",
+      "TypeScript",
+      "FastAPI",
+      "Django",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "AWS",
+      "Terraform",
+      "Docker",
+      "OpenTelemetry",
+      "Grafana",
+      "Nginx",
+      "GitHub Actions",
+      "Envoy",
+    ],
+    sameAs: [
+      "https://www.linkedin.com/in/solankivibhakar",
+      "https://github.com/MagneticNeedle",
+    ],
   },
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Meerut Institute of Engineering and Technology",
-    sameAs: "https://miet.ac.in",
-  },
-  knowsAbout: [
-    "AI Video Pipelines",
-    "LLM Evaluation & Optimization",
-    "Prompt Engineering",
-    "DSPy",
-    "MIPRO",
-    "COPRO",
-    "GEPA",
-    "Langfuse",
-    "Google Gemini",
-    "VertexAI",
-    "Python",
-    "Go",
-    "TypeScript",
-    "FastAPI",
-    "Django",
-    "PostgreSQL",
-    "MongoDB",
-    "Redis",
-    "AWS",
-    "Terraform",
-    "Docker",
-    "OpenTelemetry",
-    "Grafana",
-    "Nginx",
-    "GitHub Actions",
-    "Envoy",
-  ],
-  sameAs: [
-    "https://www.linkedin.com/in/solankivibhakar",
-    "https://github.com/MagneticNeedle",
-  ],
 };
 
 export default {
@@ -91,7 +97,7 @@ export default {
   <meta name="twitter:description" content="${DESCRIPTION}">
   <meta name="twitter:image" content="${PREVIEW_IMAGE}">
 
-  <script type="application/ld+json">${JSON.stringify(PERSON_SCHEMA)}</script>
+  <script type="application/ld+json">${JSON.stringify(PROFILE_PAGE_SCHEMA)}</script>
 
   <style>
     body {
