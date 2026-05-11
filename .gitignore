@@ -10,3 +10,6 @@
 
 # Python
 __pycache__/
+
+# Generated intermediates for resume variants
+sources/resumes/*.generated.yaml
