@@ -61,7 +61,7 @@ Full career record with detailed project descriptions, technologies used, and me
 
 ## Build stages
 
-The pipeline lives in [`build.py`](build.py). Run everything with `uv run build.py`, or pick a subset with `uv run build.py <stage> [<stage> ...]`. List stages with `uv run build.py --list`.
+The pipeline lives in [`dossier.py`](dossier.py). Run everything with `uv run dossier.py`, or pick a subset with `uv run dossier.py <stage> [<stage> ...]`. List stages with `uv run dossier.py --list`.
 
 | Stage         | What it does |
 |---------------|--------------|
@@ -76,7 +76,7 @@ The pipeline lives in [`build.py`](build.py). Run everything with `uv run build.
 
 ```
 dossier/
-├── build.py                              # Pipeline entrypoint (render, publish-pdf, render-anon, og-image)
+├── dossier.py                            # Pipeline entrypoint (render, publish-pdf, render-anon, og-image)
 ├── pyproject.toml
 ├── uv.lock
 ├── sources/
@@ -113,19 +113,19 @@ uv sync
 Run the full build pipeline:
 
 ```bash
-uv run build.py
+uv run dossier.py
 ```
 
 Run a subset of stages (e.g. re-render and publish after a YAML edit):
 
 ```bash
-uv run build.py render publish-pdf
+uv run dossier.py render publish-pdf
 ```
 
 List available stages:
 
 ```bash
-uv run build.py --list
+uv run dossier.py --list
 ```
 
 ---
