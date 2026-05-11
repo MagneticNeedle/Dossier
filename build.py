@@ -16,7 +16,19 @@ import sys
 from collections.abc import Callable
 from pathlib import Path
 
+from ruamel.yaml import YAML
+
 REPO_ROOT = Path(__file__).resolve().parent
+RESUMES_DIR = REPO_ROOT / "sources" / "resumes"
+RESUME_YAML = RESUMES_DIR / "SDE2_CV.yaml"
+ANON_YAML = RESUMES_DIR / "SDE2_CV.anon.generated.yaml"
+
+ANON_HEADER_OVERRIDES = {
+    "name": "Software Engineer",
+    "email": "name@example.com",
+    "website": "https://example.com",
+}
+ANON_SOCIAL_OVERRIDES = {"LinkedIn": "your-linkedin", "GitHub": "your-github"}
 
 Stage = Callable[[], None]
 STAGES: dict[str, Stage] = {}
@@ -42,9 +54,25 @@ def run(cmd: list[str], *, cwd: Path | None = None) -> None:
 def _render() -> None:
     """Render the resume PDF + PNG with rendercv."""
     run(
-        ["uv", "run", "rendercv", "render", "SDE2_CV.yaml"],
-        cwd=REPO_ROOT / "sources" / "resumes",
+        ["uv", "run", "rendercv", "render", RESUME_YAML.name],
+        cwd=RESUMES_DIR,
     )
+
+
+@stage("render-anon")
+def _render_anon() -> None:
+    """Render an anonymized resume (header redacted) for public feedback."""
+    yaml = YAML()
+    yaml.preserve_quotes = True
+    data = yaml.load(RESUME_YAML)
+    for key, value in ANON_HEADER_OVERRIDES.items():
+        data["cv"][key] = value
+    for entry in data["cv"].get("social_networks", []):
+        if entry["network"] in ANON_SOCIAL_OVERRIDES:
+            entry["username"] = ANON_SOCIAL_OVERRIDES[entry["network"]]
+    with ANON_YAML.open("w") as f:
+        yaml.dump(data, f)
+    run(["uv", "run", "rendercv", "render", ANON_YAML.name], cwd=RESUMES_DIR)
 
 
 @stage("og-image")
