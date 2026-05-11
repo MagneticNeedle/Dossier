@@ -45,6 +45,7 @@ cv:
         start_date: "2024-06"
         end_date: "2024-11"
         highlights:
+          - "Originally interned at **LetsDive.io** as a Django backend engineer, leading the codebase migration from **Python 3.9 to 3.11**; continued the role at VideoVerse **following its acquisition of LetsDive.io**."
           - "Designed and implemented an ETL pipeline with **sub-100ms latency** to
             optimise data processing."
           - "Improved an existing thumbnail service by migrating from **SQLite to PostgreSQL**, adding auto-retries, and enhancing face-embedding data collection for better selection accuracy"
