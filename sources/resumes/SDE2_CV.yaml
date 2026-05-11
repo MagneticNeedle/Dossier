@@ -104,7 +104,7 @@ design:
     date_and_location_column_alignment: right
     font_family: Helvetica 
     font_size:
-      body: 9.5pt
+      body: 9.8pt
       name: 20pt
       headline: 5pt
       connections: 10pt

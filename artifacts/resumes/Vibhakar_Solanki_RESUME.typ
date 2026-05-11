@@ -32,7 +32,7 @@
   typography-font-family-headline: "Helvetica",
   typography-font-family-connections: "Helvetica",
   typography-font-family-section-titles: "Helvetica",
-  typography-font-size-body: 9.5pt,
+  typography-font-size-body: 9.8pt,
   typography-font-size-name: 20pt,
   typography-font-size-headline: 5pt,
   typography-font-size-connections: 10pt,
