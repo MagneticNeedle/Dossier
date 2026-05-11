@@ -211,11 +211,11 @@ settings:
     output_folder: ../../artifacts/resumes 
     design:
     locale:
-    typst_path: OUTPUT_FOLDER/NAME_IN_SNAKE_CASE_RESUME.typ
-    pdf_path: OUTPUT_FOLDER/NAME_IN_SNAKE_CASE_RESUME.pdf
-    markdown_path: OUTPUT_FOLDER/NAME_IN_SNAKE_CASE_RESUME.md
-    html_path: OUTPUT_FOLDER/NAME_IN_SNAKE_CASE_RESUME.html
-    png_path: OUTPUT_FOLDER/NAME_IN_SNAKE_CASE_RESUME.png
+    typst_path: OUTPUT_FOLDER/impact-specific-sde2-resume.typ
+    pdf_path: OUTPUT_FOLDER/impact-specific-sde2-resume.pdf
+    markdown_path: OUTPUT_FOLDER/impact-specific-sde2-resume.md
+    html_path: OUTPUT_FOLDER/impact-specific-sde2-resume.html
+    png_path: OUTPUT_FOLDER/impact-specific-sde2-resume.png
     dont_generate_markdown: true 
     dont_generate_html: true 
     dont_generate_typst: false 

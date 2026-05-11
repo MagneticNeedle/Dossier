@@ -8,7 +8,7 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-const RESUME_PDF = "/resume.pdf";
+const RESUME_PDF = "/vibhakar-solanki-sde2-resume.pdf";
 const RESUME_VIEWER = `/pdfjs/web/viewer?file=${encodeURIComponent(RESUME_PDF)}#zoom=125`;
 const RESUME_URL = "https://vibhakar.dev";
 const PREVIEW_IMAGE = "https://resume.vibhakar.dev/og-image.png";

@@ -23,9 +23,9 @@ REPO_ROOT = Path(__file__).resolve().parent
 RESUMES_DIR = REPO_ROOT / "sources" / "resumes"
 RESUME_YAML = RESUMES_DIR / "SDE2_CV.yaml"
 ANON_YAML = RESUMES_DIR / "SDE2_CV.anon.generated.yaml"
-RENDERED_PDF = REPO_ROOT / "artifacts" / "resumes" / "Vibhakar_Solanki_RESUME.pdf"
+RENDERED_PDF = REPO_ROOT / "artifacts" / "resumes" / "impact-specific-sde2-resume.pdf"
 CF_WORKER_DIR = REPO_ROOT / "deployments" / "cf-workers"
-PUBLISHED_PDF = CF_WORKER_DIR / "public" / "resume.pdf"
+PUBLISHED_PDF = CF_WORKER_DIR / "public" / "vibhakar-solanki-sde2-resume.pdf"
 
 ANON_HEADER_OVERRIDES = {
     "name": "Software Engineer",

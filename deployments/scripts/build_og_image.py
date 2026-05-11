@@ -23,8 +23,8 @@ OUTPUT_PATH = REPO_ROOT / "deployments" / "cf-workers" / "public" / "og-image.pn
 # rendercv suffixes page numbers for multi-page docs; single-page may or may
 # not have a suffix depending on version. Try both.
 CANDIDATES = [
-    RESUME_PNG_DIR / "Vibhakar_Solanki_RESUME_1.png",
-    RESUME_PNG_DIR / "Vibhakar_Solanki_RESUME.png",
+    RESUME_PNG_DIR / "impact-specific-sde2-resume_1.png",
+    RESUME_PNG_DIR / "impact-specific-sde2-resume.png",
 ]
 
 
