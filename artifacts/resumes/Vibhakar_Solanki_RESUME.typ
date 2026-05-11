@@ -172,6 +172,8 @@
 
   ],
   main-column-second-row: [
+    - Originally interned at #strong[LetsDive.io] as a Django backend engineer, leading the codebase migration from #strong[#emph[#sym.ast.basic#h(0pt, weak: true) Python]#sym.ast.basic 3.9 to 3.11]; continued the role at VideoVerse #strong[following its acquisition of LetsDive.io].
+
     - Designed and implemented an ETL pipeline with #strong[sub-100ms latency] to optimise data processing.
 
     - Improved an existing thumbnail service by migrating from #strong[SQLite to PostgreSQL], adding auto-retries, and enhancing face-embedding data collection for better selection accuracy
