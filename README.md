@@ -66,7 +66,7 @@ The pipeline lives in [`dossier.py`](dossier.py). Run everything with `uv run do
 | Stage         | What it does |
 |---------------|--------------|
 | `render`      | Renders `sources/resumes/SDE2_CV.yaml` to PDF + PNG via RenderCV, into `artifacts/resumes/`. |
-| `publish-pdf` | Copies the rendered PDF into `deployments/cf-workers/public/resume.pdf` for the Worker to serve. |
+| `publish-pdf` | Copies the rendered PDF into `deployments/cf-workers/public/vibhakar-solanki-sde2-resume.pdf` for the Worker to serve. |
 | `render-anon` | Writes `SDE2_CV.anon.generated.yaml` with header + socials redacted, then renders it. |
 | `og-image`    | Builds a 1200×630 `og-image.png` via `deployments/scripts/build_og_image.py`. |
 
@@ -91,7 +91,7 @@ dossier/
 │   │   ├── worker.js                     # Cloudflare Worker (SEO, OG tags, viewer routing)
 │   │   ├── wrangler.toml
 │   │   └── public/
-│   │       ├── resume.pdf                # Published by `publish-pdf`
+│   │       ├── vibhakar-solanki-sde2-resume.pdf  # Published by `publish-pdf`
 │   │       ├── og-image.png              # Built by `og-image`
 │   │       └── pdfjs/                    # Vendored pdf.js viewer
 │   └── scripts/
