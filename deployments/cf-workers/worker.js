@@ -26,7 +26,7 @@ const PROFILE_PAGE_SCHEMA = {
     name: "Vibhakar Solanki",
     givenName: "Vibhakar",
     familyName: "Solanki",
-    email: "mailto:mail@vibhakar.com",
+    email: "mailto:mail@vibhakar.dev",
     url: RESUME_URL,
     jobTitle: "SDE 2",
     description: DESCRIPTION,
