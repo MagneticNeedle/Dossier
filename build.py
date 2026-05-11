@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import shlex
+import shutil
 import subprocess
 import sys
 from collections.abc import Callable
@@ -22,6 +23,8 @@ REPO_ROOT = Path(__file__).resolve().parent
 RESUMES_DIR = REPO_ROOT / "sources" / "resumes"
 RESUME_YAML = RESUMES_DIR / "SDE2_CV.yaml"
 ANON_YAML = RESUMES_DIR / "SDE2_CV.anon.generated.yaml"
+RENDERED_PDF = REPO_ROOT / "artifacts" / "resumes" / "Vibhakar_Solanki_RESUME.pdf"
+PUBLISHED_PDF = REPO_ROOT / "deployments" / "public" / "resume.pdf"
 
 ANON_HEADER_OVERRIDES = {
     "name": "Software Engineer",
@@ -57,6 +60,12 @@ def _render() -> None:
         ["uv", "run", "rendercv", "render", RESUME_YAML.name],
         cwd=RESUMES_DIR,
     )
+
+
+@stage("publish-pdf")
+def _publish_pdf() -> None:
+    """Copy the rendered resume PDF into deployments/public for the worker."""
+    shutil.copyfile(RENDERED_PDF, PUBLISHED_PDF)
 
 
 @stage("render-anon")
