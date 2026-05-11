@@ -5,7 +5,7 @@
 """Build the 1200x630 og:image PNG from the rendercv PNG output.
 
 Resolves paths relative to this file so it can be run from any CWD.
-Run via `uv run deployments/build_og_image.py` — uv resolves Pillow from the
+Run via `uv run deployments/scripts/build_og_image.py` — uv resolves Pillow from the
 inline script metadata above.
 """
 
@@ -16,9 +16,9 @@ from PIL import Image
 OG_WIDTH = 1200
 OG_HEIGHT = 630
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 RESUME_PNG_DIR = REPO_ROOT / "artifacts" / "resumes"
-OUTPUT_PATH = REPO_ROOT / "deployments" / "public" / "og-image.png"
+OUTPUT_PATH = REPO_ROOT / "deployments" / "cf-workers" / "public" / "og-image.png"
 
 # rendercv suffixes page numbers for multi-page docs; single-page may or may
 # not have a suffix depending on version. Try both.

@@ -24,7 +24,7 @@ RESUMES_DIR = REPO_ROOT / "sources" / "resumes"
 RESUME_YAML = RESUMES_DIR / "SDE2_CV.yaml"
 ANON_YAML = RESUMES_DIR / "SDE2_CV.anon.generated.yaml"
 RENDERED_PDF = REPO_ROOT / "artifacts" / "resumes" / "Vibhakar_Solanki_RESUME.pdf"
-PUBLISHED_PDF = REPO_ROOT / "deployments" / "public" / "resume.pdf"
+PUBLISHED_PDF = REPO_ROOT / "deployments" / "cf-workers" / "public" / "resume.pdf"
 
 ANON_HEADER_OVERRIDES = {
     "name": "Software Engineer",
@@ -64,7 +64,7 @@ def _render() -> None:
 
 @stage("publish-pdf")
 def _publish_pdf() -> None:
-    """Copy the rendered resume PDF into deployments/public for the worker."""
+    """Copy the rendered resume PDF into deployments/cf-workers/public for the worker."""
     shutil.copyfile(RENDERED_PDF, PUBLISHED_PDF)
 
 
@@ -87,7 +87,7 @@ def _render_anon() -> None:
 @stage("og-image")
 def _og_image() -> None:
     """Build the 1200x630 og:image PNG from the rendercv PNG output."""
-    run(["uv", "run", str(REPO_ROOT / "deployments" / "build_og_image.py")])
+    run(["uv", "run", str(REPO_ROOT / "deployments" / "scripts" / "build_og_image.py")])
 
 
 def main(argv: list[str] | None = None) -> int:
