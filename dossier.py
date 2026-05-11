@@ -33,6 +33,13 @@ ANON_HEADER_OVERRIDES = {
     "website": "https://example.com",
 }
 ANON_SOCIAL_OVERRIDES = {"LinkedIn": "your-linkedin", "GitHub": "your-github"}
+ANON_RENDER_PATH_OVERRIDES = {
+    "typst_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.typ",
+    "pdf_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.pdf",
+    "markdown_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.md",
+    "html_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.html",
+    "png_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.png",
+}
 
 Stage = Callable[[], None]
 STAGES: dict[str, Stage] = {}
@@ -80,6 +87,9 @@ def _render_anon() -> None:
     for entry in data["cv"].get("social_networks", []):
         if entry["network"] in ANON_SOCIAL_OVERRIDES:
             entry["username"] = ANON_SOCIAL_OVERRIDES[entry["network"]]
+    render_command = data["settings"]["render_command"]
+    for key, value in ANON_RENDER_PATH_OVERRIDES.items():
+        render_command[key] = value
     with ANON_YAML.open("w") as f:
         yaml.dump(data, f)
     run(["uv", "run", "rendercv", "render", ANON_YAML.name], cwd=RESUMES_DIR)
