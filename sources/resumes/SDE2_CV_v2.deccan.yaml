@@ -1,0 +1,216 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+cv:
+  name: Vibhakar Solanki
+  email: mail@vibhakar.com
+  website: https://vibhakar.dev
+  social_networks:
+    - network: LinkedIn
+      username: solankivibhakar
+    - network: GitHub
+      username: MagneticNeedle
+  sections:
+    experience:
+      - company: "VideoVerse"
+        location: Remote
+        position: "SDE 2"
+        start_date: "2026-01"
+        end_date: "present"
+        highlights:
+          - "Designed and built **SmartThumbnails** from scratch in **Python/FastAPI** — reverse-engineered selection heuristics from client-published thumbnails into a layered pipeline: **PySceneDetect** scene segmentation, Laplacian sharpness filtering, and **DSPy**-structured Gemini for final selection. Reached **99.2% client acceptance** across the first 4,500 clips, replacing manual curation."
+          - "Built an **SNS-driven** clip enrichment pipeline issuing **DSPy**-structured Gemini calls, so every clip is searchable and tagged at ingest."
+          - "Extended the export pipeline with multi-language, EPG, and AI tagging by routing **SNS events** through the internal AI Gateway, letting broadcast clients localize content without manual work."
+          - "Engineered a hybrid algorithmic + LLM pipeline for sibling-clip metadata back-fill and conflict detection, with batched updates that respect hard SLA windows — cut **SLA breaches by 25%**."
+          - "Unified two fragmented broadcast scheduling sources into a single queryable API; reconciliation logic catches shows split across source APIs that the prior manual-import workflow dropped."
+          - "Owned both the cross-service instrumentation refactor and the collector pipeline for the **Datadog → OpenTelemetry** migration, giving the team vendor-neutral structured observability."
+
+      - company: "VideoVerse"
+        location: Remote
+        position: SDE 1
+        start_date: "2024-11"
+        end_date: "2026-01"
+        highlights:
+          - "Built an internal LLM evaluation harness from scratch — eval datasets, metric definitions, and **Langfuse** integration — and used it to drive ground-truth analysis that lifted output accuracy **from 68% to 92%**."
+          - "Tuned and applied **DSPy MIPRO/COPRO** and **GEPA** prompt optimizers per service for thumbnail selection and metadata generation, raising task-level accuracy **from 30% to 87%**."
+          - "Built a **FastAPI AI Gateway** fronting **5 backend AI microservices** with service-to-service token auth and retry/backoff baked into both FastAPI middleware and the **HTTPX** transport — **zero dropped jobs** across 50k+ clips and 300+ streams monthly."
+          - "Engineered a **DSPy + Gemini** clip-ratings pipeline running on **500k+ clips/month**, with rate-limit-aware scheduling so peak-load batches still complete before SLA breach."
+          - "Established Langfuse and OTEL alerting workflows to enforce SLA compliance across the AI services."
+          - "Co-led migration of AWS infrastructure to **Terraform**, extending the existing module structure and adding **OTEL** wiring plus a **Cloudflare Tunnel** for secure local access to internal services."
+      - company: "VideoVerse"
+        location: Remote
+        position: "Software Engineer Intern"
+        start_date: "2024-06"
+        end_date: "2024-11"
+        highlights:
+          - "Originally interned at **LetsDive.io** as a Django backend engineer; continued the role at VideoVerse **following its acquisition of LetsDive.io**."
+          - "Designed an ETL feed from **PostgreSQL and MongoDB** into **BigQuery** with **sub-100ms** end-to-end latency, since live frontend and backend services consume from BigQuery in the request path."
+          - "Rewrote the legacy thumbnail service storage layer from **SQLite to PostgreSQL** with a from-scratch schema (no back-compat), and built the face-embedding ingestion and deployment that drives selection accuracy."
+    projects:
+      - name: Battlefield Portal Library | [bfportal.gg](https://bfportal.gg/) | [https://gh.bfportal.gg](https://github.com/battlefield-portal-community/bfportal.gg/)
+        start_date: "2022-01"
+        end_date: "present"
+        highlights:
+          - "**Django/Jinja** CMS, currently migrating templates to **HTMX** for dynamic interactions without a JavaScript framework; **Cloudflare** edge caching, Docker containerization, and GitHub Actions CI/CD."
+      - name: Gametools Network | [gametools.network](https://gametools.network/) | [github.com/community-network](https://github.com/community-network)
+        start_date: "2022-05"
+        end_date: "present"
+        highlights:
+          - "Open-source Stats API behind **Envoy** routing into a **Kubernetes** cluster, serving **2M+ daily requests**; extended the existing Envoy logic and authored the Kubernetes autoscaling policies for upstream services."
+    skills:
+      - label: "AI / ML"
+        details: "DSPy, MIPRO/COPRO, GEPA, Langfuse, Google Gemini, VertexAI, Prompt Engineering, LLM Evaluation & Optimization"
+      - label: "Backend"
+        details: "Python, Go, TypeScript, FastAPI, Django, PostgreSQL, MongoDB, Redis, BigQuery"
+      - label: "Infrastructure"
+        details: "AWS (SNS, ECS), GCP (BigQuery, VertexAI), Terraform, Docker, Kubernetes, OpenTelemetry, Grafana, Envoy, Cloudflare, GitHub Actions"
+    education:
+      - institution: "MIET"
+        location: Meerut, Uttar Pradesh
+        area: "Computer Science Engineering, Minor in Data Science"
+        degree: "B.Tech"
+        start_date: "2020"
+        end_date: "2024"
+
+design:
+  theme: sb2nov
+  page:
+    size: us-letter
+    top_margin: 0.5cm
+    bottom_margin: 0.1cm
+    left_margin: 0.15in
+    right_margin: 0.15in
+    show_footer: false
+    show_top_note: true
+  colors:
+    body: "#000000"
+    name: rgb(0, 0, 0)
+    headline: rgb(0, 0, 0)
+    connections: rgb(0, 0, 0)
+    section_titles: rgb(0, 0, 0)
+    links: rgb(0, 0, 0)
+    footer: rgb(128, 128, 128)
+    top_note: rgb(128, 128, 128)
+  typography:
+    line_spacing: 0.7em
+    alignment: justified
+    date_and_location_column_alignment: right
+    font_family: Helvetica
+    font_size:
+      body: 9.3pt
+      name: 20pt
+      headline: 5pt
+      connections: 10pt
+      section_titles: 1.2em
+    small_caps:
+      name: false
+      headline: false
+      connections: false
+      section_titles: false
+    bold:
+      name: true
+      headline: false
+      connections: false
+      section_titles: true
+  links:
+    underline: true
+    show_external_link_icon: true
+  header:
+    alignment: center
+    space_below_name: 0.5cm
+    space_below_connections: 0.3cm
+    connections:
+      phone_number_format: national
+      hyperlink: true
+      show_icons: true
+      display_urls_instead_of_usernames: true
+      separator: ┃
+      space_between_connections: 0.3cm
+  section_titles:
+    type: with_full_line
+    line_thickness: 0.5pt
+    space_above: 0.5cm
+    space_below: 0.3cm
+  sections:
+    allow_page_break: true
+    space_between_regular_entries: 0.5em
+    space_between_text_based_entries: 0.3em
+    show_time_spans_in: []
+  entries:
+    date_and_location_width: 4.15cm
+    side_space: 0.2cm
+    space_between_columns: 0.1cm
+    allow_page_break: false
+    short_second_row: false
+    degree_width: 1cm
+    summary:
+      space_above: 0cm
+      space_left: 0cm
+    highlights:
+      bullet: ◦
+      nested_bullet: ◦
+      space_left: 0.15cm
+      space_above: 0cm
+      space_between_items: 0cm
+      space_between_bullet_and_text: 0.5em
+  templates:
+    footer: '*NAME -- PAGE_NUMBER/TOTAL_PAGES*'
+    top_note: '*LAST_UPDATED CURRENT_DATE*'
+    single_date: MONTH_ABBREVIATION YEAR
+    date_range: START_DATE – END_DATE
+    time_span: HOW_MANY_YEARS YEARS HOW_MANY_MONTHS MONTHS
+    one_line_entry:
+      main_column: '**LABEL:** DETAILS'
+    education_entry:
+      main_column: |-
+        **INSTITUTION**
+        *DEGREE* *in* *AREA*
+        SUMMARY
+        HIGHLIGHTS
+      degree_column:
+      date_and_location_column: |-
+        *LOCATION*
+        *DATE*
+    normal_entry:
+      main_column: |-
+        **NAME**
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column: |-
+        *LOCATION*
+        *DATE*
+    experience_entry:
+      main_column: |-
+        **POSITION**
+        *COMPANY*
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column: |-
+        *LOCATION*
+        *DATE*
+    publication_entry:
+      main_column: |-
+        **TITLE**
+        SUMMARY
+        AUTHORS
+        URL (JOURNAL)
+      date_and_location_column: DATE
+locale:
+  language: english
+
+settings:
+  current_date: today
+  render_command:
+    output_folder: ../../artifacts/resumes/one_off/
+    design:
+    locale:
+    typst_path: OUTPUT_FOLDER/deccan-tech-sde2-resume.typ
+    pdf_path: OUTPUT_FOLDER/deccan-tech-sde2-resume.pdf
+    markdown_path: OUTPUT_FOLDER/deccan-tech-sde2-resume.md
+    html_path: OUTPUT_FOLDER/deccan-tech-sde2-resume.html
+    png_path: OUTPUT_FOLDER/deccan-tech-sde2-resume.png
+    dont_generate_markdown: true
+    dont_generate_html: true
+    dont_generate_typst: false
+    dont_generate_pdf: false
+    dont_generate_png: false
+  bold_keywords: []
+  pdf_title: NAME - Resume
