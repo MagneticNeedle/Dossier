@@ -28,7 +28,7 @@ The `cv.sections.experience`, `cv.sections.projects`, `cv.sections.skills`, and 
 
 ## Step 3 — Analyze and produce the report
 
-Be candid, not cheerleading. A weak fit must say so. Cite YAML evidence (quote the relevant bullet) whenever you claim a strength. Produce the following markdown report — every section is required except **Interview prep**, which is conditional.
+Be candid, not cheerleading. A weak fit must say so. Cite YAML evidence (quote the relevant bullet) whenever you claim a strength. Produce the following markdown report — every section is required.
 
 ### Verdict
 
@@ -63,10 +63,6 @@ Heuristic:
 - JD leans on **ownership, scale, customer outcomes, generalist/early-team energy** → impact-specific (`SDE2_CV.yaml`).
 - When it's a coin-flip, prefer impact-specific and say so.
 
-### Talking points
-
-3–5 highlights, each one sentence, framed for use in a cover letter or recruiter screen. Each one should map to a JD requirement and quote-or-paraphrase a YAML bullet.
-
 ### Gaps
 
 Honest red flags (missing requirements, level mismatch, domain stretch). For each, suggest how to address it (existing YAML bullet to lean on, adjacent experience to bridge with, or "acknowledge and move on").
@@ -83,16 +79,8 @@ Scan the JD for any certifications it names — e.g., AWS Solutions Architect, A
 
 If the JD lists no certifications at all, write exactly: `JD lists no certifications.`
 
-### Interview prep *(only if verdict is Strong or Marginal — omit entirely on Skip)*
-
-Split into three buckets:
-
-- **Must-skim** — gaps where the JD expects something the candidate hasn't shipped (or has shipped only an adjacent variant). Example: JD wants Kafka, candidate has SNS/SQS — skim Kafka semantics, partitions, consumer groups.
-- **Refresher** — things the candidate has shipped but should re-load into working memory before the interview. Cite the YAML bullet that earns the topic.
-- **Deep-dive** — concepts likely to show up in a system-design or architecture round given the role's domain (e.g., for an AI infra role: token-level latency vs. throughput tradeoffs, batching strategies, retry/backoff under rate limits).
-
-Keep each item to a single line. Prefer 3–6 items per bucket; do not pad.
-
 ---
 
 Output the report directly — no preamble like "here is your report." Use the section headings above verbatim.
+
+For cover-letter / recruiter-screen highlights run `/yap-for`; for interview prep run `/prep-for`.
