@@ -15,17 +15,18 @@ import shutil
 import subprocess
 import sys
 from collections.abc import Callable
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 from ruamel.yaml import YAML
 
 REPO_ROOT = Path(__file__).resolve().parent
 RESUMES_DIR = REPO_ROOT / "sources" / "resumes"
-RESUME_YAML = RESUMES_DIR / "SDE2_CV.yaml"
+RESUME_YAML = RESUMES_DIR / "SDE2_CV_v2.yaml"
 ANON_YAML = RESUMES_DIR / "SDE2_CV.anon.generated.yaml"
-RENDERED_PDF = REPO_ROOT / "artifacts" / "resumes" / "impact-specific-sde2-resume.pdf"
 CF_WORKER_DIR = REPO_ROOT / "deployments" / "cf-workers"
 PUBLISHED_PDF = CF_WORKER_DIR / "public" / "vibhakar-solanki-sde2-resume.pdf"
+
+RENDER_PATH_KEYS = ("typst_path", "pdf_path", "markdown_path", "html_path", "png_path")
 
 ANON_HEADER_OVERRIDES = {
     "name": "Software Engineer",
@@ -33,13 +34,17 @@ ANON_HEADER_OVERRIDES = {
     "website": "https://example.com",
 }
 ANON_SOCIAL_OVERRIDES = {"LinkedIn": "your-linkedin", "GitHub": "your-github"}
-ANON_RENDER_PATH_OVERRIDES = {
-    "typst_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.typ",
-    "pdf_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.pdf",
-    "markdown_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.md",
-    "html_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.html",
-    "png_path": "OUTPUT_FOLDER/impact-specific-sde2-resume.anon.png",
-}
+
+
+def _load_resume_yaml() -> tuple[YAML, dict]:
+    yaml = YAML()
+    yaml.preserve_quotes = True
+    return yaml, yaml.load(RESUME_YAML)
+
+
+def _resolve_render_path(render_command: dict, key: str) -> Path:
+    output_folder = (RESUMES_DIR / render_command["output_folder"]).resolve()
+    return Path(render_command[key].replace("OUTPUT_FOLDER", str(output_folder)))
 
 Stage = Callable[[], None]
 STAGES: dict[str, Stage] = {}
@@ -73,23 +78,24 @@ def _render() -> None:
 @stage("publish-pdf")
 def _publish_pdf() -> None:
     """Copy the rendered resume PDF into deployments/cf-workers/public for the worker."""
-    shutil.copyfile(RENDERED_PDF, PUBLISHED_PDF)
+    _, data = _load_resume_yaml()
+    rendered_pdf = _resolve_render_path(data["settings"]["render_command"], "pdf_path")
+    shutil.copyfile(rendered_pdf, PUBLISHED_PDF)
 
 
 @stage("render-anon")
 def _render_anon() -> None:
     """Render an anonymized resume (header redacted) for public feedback."""
-    yaml = YAML()
-    yaml.preserve_quotes = True
-    data = yaml.load(RESUME_YAML)
+    yaml, data = _load_resume_yaml()
     for key, value in ANON_HEADER_OVERRIDES.items():
         data["cv"][key] = value
     for entry in data["cv"].get("social_networks", []):
         if entry["network"] in ANON_SOCIAL_OVERRIDES:
             entry["username"] = ANON_SOCIAL_OVERRIDES[entry["network"]]
     render_command = data["settings"]["render_command"]
-    for key, value in ANON_RENDER_PATH_OVERRIDES.items():
-        render_command[key] = value
+    for key in RENDER_PATH_KEYS:
+        path = PurePosixPath(render_command[key])
+        render_command[key] = str(path.with_name(f"{path.stem}.anon{path.suffix}"))
     with ANON_YAML.open("w") as f:
         yaml.dump(data, f)
     run(["uv", "run", "rendercv", "render", ANON_YAML.name], cwd=RESUMES_DIR)
