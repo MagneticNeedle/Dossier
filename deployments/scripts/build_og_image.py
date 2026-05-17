@@ -5,10 +5,12 @@
 """Build the 1200x630 og:image PNG from the rendercv PNG output.
 
 Resolves paths relative to this file so it can be run from any CWD.
-Run via `uv run deployments/scripts/build_og_image.py` — uv resolves Pillow from the
-inline script metadata above.
+Run via `uv run deployments/scripts/build_og_image.py [path/to/source.png]` —
+uv resolves Pillow from the inline script metadata above. With no argument,
+falls back to the default impact-specific rendercv outputs.
 """
 
+import argparse
 from pathlib import Path
 
 from PIL import Image
@@ -22,18 +24,35 @@ OUTPUT_PATH = REPO_ROOT / "deployments" / "cf-workers" / "public" / "og-image.pn
 
 # rendercv suffixes page numbers for multi-page docs; single-page may or may
 # not have a suffix depending on version. Try both.
-CANDIDATES = [
+DEFAULT_CANDIDATES = [
     RESUME_PNG_DIR / "impact-specific-sde2-resume_1.png",
     RESUME_PNG_DIR / "impact-specific-sde2-resume.png",
 ]
 
 
-def main() -> None:
-    source = next((p for p in CANDIDATES if p.exists()), None)
+def _resolve_source(arg: Path | None) -> Path:
+    if arg is not None:
+        if not arg.exists():
+            raise SystemExit(f"Source PNG not found: {arg}")
+        return arg
+    source = next((p for p in DEFAULT_CANDIDATES if p.exists()), None)
     if source is None:
         raise SystemExit(
-            f"No rendercv PNG found. Looked for: {[str(p) for p in CANDIDATES]}"
+            f"No rendercv PNG found. Looked for: {[str(p) for p in DEFAULT_CANDIDATES]}"
         )
+    return source
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument(
+        "source",
+        nargs="?",
+        type=Path,
+        help="Path to the source PNG. Defaults to the impact-specific rendercv output.",
+    )
+    args = parser.parse_args()
+    source = _resolve_source(args.source)
 
     img = Image.open(source)
 
