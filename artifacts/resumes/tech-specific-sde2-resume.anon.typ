@@ -3,9 +3,9 @@
 
 // Apply the rendercv template with custom configuration
 #show: rendercv.with(
-  name: "Vibhakar Solanki",
-  title: "Vibhakar Solanki - Resume",
-  footer: context { [#emph[Vibhakar Solanki -- #str(here().page())\/#str(counter(page).final().first())]] },
+  name: "Software Engineer",
+  title: "Software Engineer - Resume",
+  footer: context { [#emph[Software Engineer -- #str(here().page())\/#str(counter(page).final().first())]] },
   top-note: [ #emph[Last updated in May 2026] ],
   locale-catalog-language: "en",
   text-direction: ltr,
@@ -86,13 +86,13 @@
 )
 
 
-= Vibhakar Solanki
+= Software Engineer
 
 #connections(
-  [#link("mailto:mail@vibhakar.com", icon: false, if-underline: false, if-color: false)[#connection-with-icon("envelope")[mail\@vibhakar.com]]],
-  [#link("https://vibhakar.dev/", icon: false, if-underline: false, if-color: false)[#connection-with-icon("link")[vibhakar.dev]]],
-  [#link("https://linkedin.com/in/solankivibhakar", icon: false, if-underline: false, if-color: false)[#connection-with-icon("linkedin")[linkedin.com\/in\/solankivibhakar]]],
-  [#link("https://github.com/MagneticNeedle", icon: false, if-underline: false, if-color: false)[#connection-with-icon("github")[github.com\/MagneticNeedle]]],
+  [#link("mailto:name@example.com", icon: false, if-underline: false, if-color: false)[#connection-with-icon("envelope")[name\@example.com]]],
+  [#link("https://example.com/", icon: false, if-underline: false, if-color: false)[#connection-with-icon("link")[example.com]]],
+  [#link("https://linkedin.com/in/your-linkedin", icon: false, if-underline: false, if-color: false)[#connection-with-icon("linkedin")[linkedin.com\/in\/your-linkedin]]],
+  [#link("https://github.com/your-github", icon: false, if-underline: false, if-color: false)[#connection-with-icon("github")[github.com\/your-github]]],
 )
 
 
