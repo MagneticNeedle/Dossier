@@ -104,7 +104,13 @@ def _render_anon() -> None:
 @stage("og-image")
 def _og_image() -> None:
     """Build the 1200x630 og:image PNG from the rendercv PNG output."""
-    run(["uv", "run", str(REPO_ROOT / "deployments" / "scripts" / "build_og_image.py")])
+    _, data = _load_resume_yaml()
+    png_path = _resolve_render_path(data["settings"]["render_command"], "png_path")
+    # rendercv suffixes `_1` for multi-page docs; prefer that if present.
+    paged = png_path.with_name(f"{png_path.stem}_1{png_path.suffix}")
+    source = paged if paged.exists() else png_path
+    script = REPO_ROOT / "deployments" / "scripts" / "build_og_image.py"
+    run(["uv", "run", str(script), str(source)])
 
 
 @stage("deploy-worker")
