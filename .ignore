@@ -1,3 +1,4 @@
+# .ignore
 # macOS
 .DS_Store
 
@@ -384,3 +385,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 
+
+deployments/cf-workers/public/*
