@@ -1,0 +1,3 @@
+[submodule "career-ops"]
+	path = career-ops
+	url = https://github.com/MagneticNeedle/career-ops.git
