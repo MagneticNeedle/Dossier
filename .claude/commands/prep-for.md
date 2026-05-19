@@ -19,13 +19,13 @@ $ARGUMENTS
 
 ## Step 2 — Load the resume
 
-Read the tech-specific YAML (do not edit it):
+Run `scripts/relevant_resume.py` against the tech-specific YAML to get the stripped sections (drops rendercv `design`/`locale`/`settings` noise):
 
-- `sources/resumes/SDE2_CV_v2.yaml` — **tech-specific** framing (named tools, architectural depth, lower-level engineering choices).
+- `uv run scripts/relevant_resume.py sources/resumes/SDE2_CV_v2.yaml` — **tech-specific** framing (named tools, architectural depth, lower-level engineering choices).
 
-Do **not** read `SDE2_CV.yaml` (impact-specific) — interview prep is scoped to the tech-specific resume only.
+Do **not** load `SDE2_CV.yaml` (impact-specific) — interview prep is scoped to the tech-specific resume only.
 
-The `cv.sections.experience`, `cv.sections.projects`, `cv.sections.skills`, and `cv.sections.education` blocks are what matters. Ignore `design`, `locale`, and `settings`.
+The script prints YAML to stdout containing only `cv.sections` (experience / projects / skills / education).
 
 ## Step 3 — Output
 

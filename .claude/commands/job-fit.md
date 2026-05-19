@@ -19,12 +19,12 @@ $ARGUMENTS
 
 ## Step 2 — Load the resumes
 
-Read both YAMLs (do not edit them):
+Run `scripts/relevant_resume.py` against each YAML to get the stripped sections (drops rendercv `design`/`locale`/`settings` noise):
 
-- `sources/resumes/SDE2_CV.yaml` — **impact-specific** framing (business outcomes, scale numbers, customer acceptance). Renders to `impact-specific-sde2-resume.pdf`.
-- `sources/resumes/SDE2_CV_v2.yaml` — **tech-specific** framing (named tools, architectural depth, lower-level engineering choices). Renders to `tech-specific-sde2-resume.pdf`.
+- `uv run scripts/relevant_resume.py sources/resumes/SDE2_CV.yaml` — **impact-specific** framing (business outcomes, scale numbers, customer acceptance). Renders to `impact-specific-sde2-resume.pdf`.
+- `uv run scripts/relevant_resume.py sources/resumes/SDE2_CV_v2.yaml` — **tech-specific** framing (named tools, architectural depth, lower-level engineering choices). Renders to `tech-specific-sde2-resume.pdf`.
 
-The `cv.sections.experience`, `cv.sections.projects`, `cv.sections.skills`, and `cv.sections.education` blocks are what matters. Ignore `design`, `locale`, and `settings`.
+The script prints YAML to stdout containing only `cv.sections` (experience / projects / skills / education).
 
 ## Step 3 — Analyze and produce the report
 
