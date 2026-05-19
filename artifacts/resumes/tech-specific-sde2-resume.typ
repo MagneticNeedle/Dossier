@@ -89,7 +89,7 @@
 = Vibhakar Solanki
 
 #connections(
-  [#link("mailto:mail@vibhakar.com", icon: false, if-underline: false, if-color: false)[#connection-with-icon("envelope")[mail\@vibhakar.com]]],
+  [#link("mailto:mail@vibhakar.dev", icon: false, if-underline: false, if-color: false)[#connection-with-icon("envelope")[mail\@vibhakar.dev]]],
   [#link("https://vibhakar.dev/", icon: false, if-underline: false, if-color: false)[#connection-with-icon("link")[vibhakar.dev]]],
   [#link("https://linkedin.com/in/solankivibhakar", icon: false, if-underline: false, if-color: false)[#connection-with-icon("linkedin")[linkedin.com\/in\/solankivibhakar]]],
   [#link("https://github.com/MagneticNeedle", icon: false, if-underline: false, if-color: false)[#connection-with-icon("github")[github.com\/MagneticNeedle]]],
