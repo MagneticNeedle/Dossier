@@ -13,9 +13,14 @@ The user-provided argument is:
 $ARGUMENTS
 ```
 
-- If the argument is empty or whitespace only, ask the user to paste a JD or pass a file path, then stop.
-- If the argument looks like a file path (single line, no prose, file exists on disk), read it with the Read tool and treat its contents as the JD.
-- Otherwise, treat the argument verbatim as the JD text.
+- If the argument is non-empty:
+  - If it looks like a file path (single line, no prose, file exists on disk), read it with the Read tool and treat its contents as the JD.
+  - Otherwise, treat the argument verbatim as the JD text.
+- If the argument is empty or whitespace only, fall back to the clipboard:
+  - Run `pbpaste` via the Bash tool to grab clipboard contents.
+  - Sanity-check: the clipboard looks like a JD if it is at least ~400 characters AND contains at least one JD-flavored signal (case-insensitive match against any of: `responsibilities`, `requirements`, `qualifications`, `experience`, `you'll`, `we're looking`, `role`, `engineer`, `developer`).
+  - If it fails the check, print a one-line warning ("Clipboard doesn't look like a JD, paste one or pass a file path.") and stop.
+  - If it passes, tell the user once ("Using JD from clipboard (N chars).") and use the clipboard contents as the JD.
 
 ## Step 2 — Ask the user (both optional)
 
@@ -92,6 +97,12 @@ printf '%s' "$NOTE" | uv run scripts/no_emdash.py
 Use the sanitized output as the final paragraph. Do not sanitize the **What I used** section.
 
 ## Step 8 — Output
+
+Print the output below, and also pipe the sanitized paragraph (just the note, not the **What I used** section) into the clipboard:
+
+```
+printf '%s' "$NOTE" | pbcopy
+```
 
 Output in this order, nothing else:
 
