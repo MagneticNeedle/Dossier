@@ -21,10 +21,15 @@ from ruamel.yaml import YAML
 
 REPO_ROOT = Path(__file__).resolve().parent
 RESUMES_DIR = REPO_ROOT / "sources" / "resumes"
-RESUME_YAML = RESUMES_DIR / "SDE2_CV_v2.yaml"
+RESUME_YAML_TECH = RESUMES_DIR / "SDE2_CV_v2.yaml"
+RESUME_YAML_IMPACT = RESUMES_DIR / "SDE2_CV.yaml"
+RESUME_YAML = RESUME_YAML_TECH
 ANON_YAML = RESUMES_DIR / "SDE2_CV.anon.generated.yaml"
 CF_WORKER_DIR = REPO_ROOT / "deployments" / "cf-workers"
-PUBLISHED_PDF = CF_WORKER_DIR / "public" / "vibhakar-solanki-sde2-resume.pdf"
+PUBLIC_DIR = CF_WORKER_DIR / "public"
+PUBLISHED_PDF = PUBLIC_DIR / "vibhakar-solanki-sde2-resume.pdf"
+PUBLISHED_PDF_TECH = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech.pdf"
+PUBLISHED_PDF_IMPACT = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact.pdf"
 
 RENDER_PATH_KEYS = ("typst_path", "pdf_path", "markdown_path", "html_path", "png_path")
 
@@ -36,10 +41,10 @@ ANON_HEADER_OVERRIDES = {
 ANON_SOCIAL_OVERRIDES = {"LinkedIn": "your-linkedin", "GitHub": "your-github"}
 
 
-def _load_resume_yaml() -> tuple[YAML, dict]:
+def _load_resume_yaml(path: Path = RESUME_YAML) -> tuple[YAML, dict]:
     yaml = YAML()
     yaml.preserve_quotes = True
-    return yaml, yaml.load(RESUME_YAML)
+    return yaml, yaml.load(path)
 
 
 def _resolve_render_path(render_command: dict, key: str) -> Path:
@@ -68,19 +73,24 @@ def run(cmd: list[str], *, cwd: Path | None = None) -> None:
 
 @stage("render")
 def _render() -> None:
-    """Render the resume PDF + PNG with rendercv."""
-    run(
-        ["uv", "run", "rendercv", "render", RESUME_YAML.name],
-        cwd=RESUMES_DIR,
-    )
+    """Render both resume variants (tech + impact) with rendercv."""
+    for yaml_path in (RESUME_YAML_TECH, RESUME_YAML_IMPACT):
+        run(
+            ["uv", "run", "rendercv", "render", yaml_path.name],
+            cwd=RESUMES_DIR,
+        )
 
 
 @stage("publish-pdf")
 def _publish_pdf() -> None:
-    """Copy the rendered resume PDF into deployments/cf-workers/public for the worker."""
-    _, data = _load_resume_yaml()
-    rendered_pdf = _resolve_render_path(data["settings"]["render_command"], "pdf_path")
-    shutil.copyfile(rendered_pdf, PUBLISHED_PDF)
+    """Copy both rendered resume PDFs into deployments/cf-workers/public for the worker."""
+    _, tech = _load_resume_yaml(RESUME_YAML_TECH)
+    _, impact = _load_resume_yaml(RESUME_YAML_IMPACT)
+    tech_pdf = _resolve_render_path(tech["settings"]["render_command"], "pdf_path")
+    impact_pdf = _resolve_render_path(impact["settings"]["render_command"], "pdf_path")
+    shutil.copyfile(tech_pdf, PUBLISHED_PDF_TECH)
+    shutil.copyfile(impact_pdf, PUBLISHED_PDF_IMPACT)
+    shutil.copyfile(tech_pdf, PUBLISHED_PDF)
 
 
 @stage("render-anon")

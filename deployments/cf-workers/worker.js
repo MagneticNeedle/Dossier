@@ -8,8 +8,12 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-const RESUME_PDF = "/vibhakar-solanki-sde2-resume.pdf";
-const RESUME_VIEWER = `/pdfjs/web/viewer?file=${encodeURIComponent(RESUME_PDF)}#zoom=125`;
+const RESUME_PDFS = {
+  tech: "/vibhakar-solanki-sde2-resume-tech.pdf",
+  impact: "/vibhakar-solanki-sde2-resume-impact.pdf",
+};
+const viewerFor = (pdf) =>
+  `/pdfjs/web/viewer?file=${encodeURIComponent(pdf)}#zoom=125`;
 const RESUME_URL = "https://vibhakar.dev";
 const PREVIEW_IMAGE = "https://resume.vibhakar.dev/og-image.png";
 const TITLE = "Vibhakar Solanki | SDE 2 @ VideoVerse | AI Video Pipelines";
@@ -77,6 +81,13 @@ const PROFILE_PAGE_SCHEMA = {
 
 export default {
   async fetch(request) {
+    const pathname = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
+    const variantByPath = { "/": "tech", "/tech": "tech", "/impact": "impact" };
+    const variant = variantByPath[pathname];
+    if (!variant) {
+      return new Response("Not found", { status: 404 });
+    }
+    const resumeViewer = viewerFor(RESUME_PDFS[variant]);
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +120,7 @@ export default {
 </head>
 <body>
   <iframe
-    src="${RESUME_VIEWER}"
+    src="${resumeViewer}"
     height="100%"
     width="100%"
     style="border: none;">
