@@ -79,6 +79,12 @@ const PROFILE_PAGE_SCHEMA = {
   },
 };
 
+// Social unfurlers (Slackbot, Twitterbot, LinkedInBot, Discordbot, WhatsApp,
+// FacebookBot/facebookexternalhit, Meta-ExternalAgent, TelegramBot) are
+// intentionally EXCLUDED so they still get HTML and OG previews keep working.
+const AGENT_UA =
+  /GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|Claude-User|Claude-Web|anthropic-ai|PerplexityBot|Perplexity-User|Google-Extended|Googlebot|Bingbot|Applebot-Extended|CCBot|Bytespider|DuckDuckBot|YouBot|cohere-ai|Diffbot|Amazonbot|curl|wget|python-requests|httpx|node-fetch|Go-http-client/i;
+
 export default {
   async fetch(request) {
     const pathname = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
@@ -87,6 +93,27 @@ export default {
     if (!variant) {
       return new Response("Not found", { status: 404 });
     }
+
+    const ua = request.headers.get("user-agent") || "";
+    const accept = request.headers.get("accept") || "";
+    const isAgent =
+      !ua ||
+      AGENT_UA.test(ua) ||
+      (accept && !accept.includes("text/html") && !accept.includes("*/*"));
+    if (isAgent) {
+      const pdfUrl = new URL(RESUME_PDFS[variant], request.url);
+      const pdfResp = await fetch(pdfUrl, request);
+      return new Response(pdfResp.body, {
+        status: pdfResp.status,
+        headers: {
+          "content-type": "application/pdf",
+          "content-disposition": `inline; filename="${RESUME_PDFS[variant].slice(1)}"`,
+          "cache-control":
+            pdfResp.headers.get("cache-control") || "public, max-age=3600",
+        },
+      });
+    }
+
     const resumeViewer = viewerFor(RESUME_PDFS[variant]);
     const html = `<!DOCTYPE html>
 <html lang="en">
