@@ -81,7 +81,7 @@
   date: datetime(
     year: 2026,
     month: 5,
-    day: 20,
+    day: 23,
   ),
 )
 
@@ -91,7 +91,7 @@
 #connections(
   [#link("mailto:mail@vibhakar.dev", icon: false, if-underline: false, if-color: false)[#connection-with-icon("envelope")[mail\@vibhakar.dev]]],
   [#link("https://vibhakar.dev/", icon: false, if-underline: false, if-color: false)[#connection-with-icon("link")[vibhakar.dev]]],
-  [#link("https://linkedin.com/in/solankivibhakar", icon: false, if-underline: false, if-color: false)[#connection-with-icon("linkedin")[linkedin.com\/in\/solankivibhakar]]],
+  [#link("https://linkedin.com/in/vibhakarsolanki", icon: false, if-underline: false, if-color: false)[#connection-with-icon("linkedin")[linkedin.com\/in\/vibhakarsolanki]]],
   [#link("https://github.com/MagneticNeedle", icon: false, if-underline: false, if-color: false)[#connection-with-icon("github")[github.com\/MagneticNeedle]]],
 )
 
