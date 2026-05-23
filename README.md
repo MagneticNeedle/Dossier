@@ -13,50 +13,34 @@ Dossier renders my resume from a YAML source of truth and publishes it via a Clo
 ## How it works
 
 ```mermaid
-%%{init: {'theme':'dark', 'themeVariables': {
-    'background':'#0d1117',
-    'primaryColor':'#161b22',
-    'primaryTextColor':'#e6edf3',
-    'primaryBorderColor':'#30363d',
-    'lineColor':'#8b949e',
-    'clusterBkg':'#0d1117',
-    'clusterBorder':'#30363d',
-    'fontFamily':'ui-monospace, SFMono-Regular, monospace'
-}}}%%
 flowchart LR
-    classDef source   fill:#3b2f0b,stroke:#d4a017,stroke-width:2px,color:#fde68a
-    classDef stage    fill:#0b2a3b,stroke:#3b82f6,stroke-width:2px,color:#bae6fd
-    classDef artifact fill:#0f2e1a,stroke:#22c55e,stroke-width:2px,color:#bbf7d0
-    classDef deploy   fill:#3b0b22,stroke:#ec4899,stroke-width:2px,color:#fbcfe8
-    classDef edge     fill:#231447,stroke:#a78bfa,stroke-width:2px,color:#ddd6fe
-
-    subgraph SOURCES["🟡 Sources"]
+    subgraph SOURCES["Sources"]
         direction TB
-        TECH[SDE2_CV_v2.yaml<br/>tech]:::source
-        IMPACT[SDE2_CV.yaml<br/>impact]:::source
+        TECH[SDE2_CV_v2.yaml<br/>tech]
+        IMPACT[SDE2_CV.yaml<br/>impact]
     end
 
-    subgraph BUILD["🔵 Build (dossier.py stages)"]
+    subgraph BUILD["Build (dossier.py stages)"]
         direction TB
-        R([render]):::stage
-        RA([render-anon]):::stage
-        PP([publish-pdf]):::stage
-        OG([og-image]):::stage
+        R([render])
+        RA([render-anon])
+        PP([publish-pdf])
+        OG([og-image])
     end
 
-    subgraph ARTIFACTS["🟢 Artifacts"]
+    subgraph ARTIFACTS["Artifacts"]
         direction TB
-        ANON[SDE2_CV.anon.<br/>generated.yaml]:::artifact
-        PDFS[artifacts/resumes/<br/>PDF + PNG + Typst]:::artifact
-        PUB[public/*.pdf]:::artifact
-        OGIMG[public/og-image.png]:::artifact
+        ANON[SDE2_CV.anon.<br/>generated.yaml]
+        PDFS[artifacts/resumes/<br/>PDF + PNG + Typst]
+        PUB[public/*.pdf]
+        OGIMG[public/og-image.png]
     end
 
-    subgraph DEPLOY["🟣 Deploy"]
+    subgraph DEPLOY["Deploy"]
         direction TB
-        DW([deploy-worker]):::stage
-        CF{{Cloudflare Worker<br/>worker.js + pdf.js}}:::deploy
-        WEB((resume.vibhakar.dev<br/>resume.vibhakar.in)):::edge
+        DW([deploy-worker])
+        CF{{Cloudflare Worker<br/>worker.js + pdf.js}}
+        WEB((resume.vibhakar.dev<br/>resume.vibhakar.in))
     end
 
     TECH   --> R
