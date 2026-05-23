@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="static/banner.png" alt="Dossier" width="100%" />
+</p>
+
 # Dossier
 
 > My work history, automatically turned into professional documents.
