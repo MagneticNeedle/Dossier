@@ -8,10 +8,47 @@ Dossier renders my resume from a YAML source of truth and publishes it via a Clo
 
 ## How it works
 
-![How it works](static/artifact_pipeline_diagram.svg)
+```mermaid
+flowchart LR
+    classDef source fill:#fde68a,stroke:#b45309,stroke-width:2px,color:#1f2937
+    classDef stage  fill:#bae6fd,stroke:#0369a1,stroke-width:2px,color:#0c4a6e
+    classDef artifact fill:#bbf7d0,stroke:#15803d,stroke-width:2px,color:#14532d
+    classDef deploy fill:#fbcfe8,stroke:#be185d,stroke-width:2px,color:#831843
+    classDef edge   fill:#ddd6fe,stroke:#6d28d9,stroke-width:2px,color:#3b0764
 
-1. **Generate** — Renders the resume from `sources/resumes/SDE2_CV.yaml` using [RenderCV](https://github.com/sinaatalay/rendercv).
-2. **Publish** — A Cloudflare Worker serves the PDF (with SEO + OG tags) and a vendored [pdf.js](https://mozilla.github.io/pdf.js/) viewer for in-browser display.
+    subgraph S[sources/resumes/]
+        TECH[SDE2_CV_v2.yaml<br/>tech]:::source
+        IMPACT[SDE2_CV.yaml<br/>impact]:::source
+    end
+
+    R([render]):::stage
+    RA([render-anon]):::stage
+    PP([publish-pdf]):::stage
+    OG([og-image]):::stage
+    DW([deploy-worker]):::stage
+
+    ANON[SDE2_CV.anon.<br/>generated.yaml]:::source
+    PDFS[artifacts/resumes/<br/>PDF + PNG + Typst]:::artifact
+    PUB[deployments/cf-workers/<br/>public/*.pdf]:::artifact
+    OGIMG[public/og-image.png]:::artifact
+
+    CF{{Cloudflare Worker<br/>worker.js + pdf.js}}:::deploy
+    WEB((resume.vibhakar.dev<br/>resume.vibhakar.in)):::edge
+
+    TECH --> R
+    IMPACT --> R
+    IMPACT --> RA --> ANON --> PDFS
+    R --> PDFS
+    PDFS --> PP --> PUB
+    PDFS --> OG --> OGIMG
+    PUB --> DW
+    OGIMG --> DW
+    DW --> CF --> WEB
+```
+
+1. **Render** — `render` runs [RenderCV](https://github.com/sinaatalay/rendercv) on both YAML variants (tech + impact); `render-anon` produces a redacted variant for public feedback.
+2. **Stage assets** — `publish-pdf` copies the PDFs into the Worker's `public/` directory; `og-image` builds a 1200×630 social preview from the rendered PNG.
+3. **Deploy** — `deploy-worker` ships `public/` via `wrangler` to a Cloudflare Worker that serves the PDF directly (with SEO + OG tags) and a vendored [pdf.js](https://mozilla.github.io/pdf.js/) viewer for browsers.
 
 ---
 
