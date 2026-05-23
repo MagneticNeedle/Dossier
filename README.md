@@ -13,12 +13,22 @@ Dossier renders my resume from a YAML source of truth and publishes it via a Clo
 ## How it works
 
 ```mermaid
+%%{init: {'theme':'dark', 'themeVariables': {
+    'background':'#0d1117',
+    'primaryColor':'#161b22',
+    'primaryTextColor':'#e6edf3',
+    'primaryBorderColor':'#30363d',
+    'lineColor':'#8b949e',
+    'clusterBkg':'#0d1117',
+    'clusterBorder':'#30363d',
+    'fontFamily':'ui-monospace, SFMono-Regular, monospace'
+}}}%%
 flowchart LR
-    classDef source   fill:#fde68a,stroke:#b45309,stroke-width:2px,color:#1f2937
-    classDef stage    fill:#bae6fd,stroke:#0369a1,stroke-width:2px,color:#0c4a6e
-    classDef artifact fill:#bbf7d0,stroke:#15803d,stroke-width:2px,color:#14532d
-    classDef deploy   fill:#fbcfe8,stroke:#be185d,stroke-width:2px,color:#831843
-    classDef edge     fill:#ddd6fe,stroke:#6d28d9,stroke-width:2px,color:#3b0764
+    classDef source   fill:#3b2f0b,stroke:#d4a017,stroke-width:2px,color:#fde68a
+    classDef stage    fill:#0b2a3b,stroke:#3b82f6,stroke-width:2px,color:#bae6fd
+    classDef artifact fill:#0f2e1a,stroke:#22c55e,stroke-width:2px,color:#bbf7d0
+    classDef deploy   fill:#3b0b22,stroke:#ec4899,stroke-width:2px,color:#fbcfe8
+    classDef edge     fill:#231447,stroke:#a78bfa,stroke-width:2px,color:#ddd6fe
 
     subgraph SOURCES["🟡 Sources"]
         direction TB
