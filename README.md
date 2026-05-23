@@ -14,40 +14,51 @@ Dossier renders my resume from a YAML source of truth and publishes it via a Clo
 
 ```mermaid
 flowchart LR
-    classDef source fill:#fde68a,stroke:#b45309,stroke-width:2px,color:#1f2937
-    classDef stage  fill:#bae6fd,stroke:#0369a1,stroke-width:2px,color:#0c4a6e
+    classDef source   fill:#fde68a,stroke:#b45309,stroke-width:2px,color:#1f2937
+    classDef stage    fill:#bae6fd,stroke:#0369a1,stroke-width:2px,color:#0c4a6e
     classDef artifact fill:#bbf7d0,stroke:#15803d,stroke-width:2px,color:#14532d
-    classDef deploy fill:#fbcfe8,stroke:#be185d,stroke-width:2px,color:#831843
-    classDef edge   fill:#ddd6fe,stroke:#6d28d9,stroke-width:2px,color:#3b0764
+    classDef deploy   fill:#fbcfe8,stroke:#be185d,stroke-width:2px,color:#831843
+    classDef edge     fill:#ddd6fe,stroke:#6d28d9,stroke-width:2px,color:#3b0764
 
-    subgraph S[sources/resumes/]
+    subgraph SOURCES["🟡 Sources"]
+        direction TB
         TECH[SDE2_CV_v2.yaml<br/>tech]:::source
         IMPACT[SDE2_CV.yaml<br/>impact]:::source
     end
 
-    R([render]):::stage
-    RA([render-anon]):::stage
-    PP([publish-pdf]):::stage
-    OG([og-image]):::stage
-    DW([deploy-worker]):::stage
+    subgraph BUILD["🔵 Build (dossier.py stages)"]
+        direction TB
+        R([render]):::stage
+        RA([render-anon]):::stage
+        PP([publish-pdf]):::stage
+        OG([og-image]):::stage
+    end
 
-    ANON[SDE2_CV.anon.<br/>generated.yaml]:::source
-    PDFS[artifacts/resumes/<br/>PDF + PNG + Typst]:::artifact
-    PUB[deployments/cf-workers/<br/>public/*.pdf]:::artifact
-    OGIMG[public/og-image.png]:::artifact
+    subgraph ARTIFACTS["🟢 Artifacts"]
+        direction TB
+        ANON[SDE2_CV.anon.<br/>generated.yaml]:::artifact
+        PDFS[artifacts/resumes/<br/>PDF + PNG + Typst]:::artifact
+        PUB[public/*.pdf]:::artifact
+        OGIMG[public/og-image.png]:::artifact
+    end
 
-    CF{{Cloudflare Worker<br/>worker.js + pdf.js}}:::deploy
-    WEB((resume.vibhakar.dev<br/>resume.vibhakar.in)):::edge
+    subgraph DEPLOY["🟣 Deploy"]
+        direction TB
+        DW([deploy-worker]):::stage
+        CF{{Cloudflare Worker<br/>worker.js + pdf.js}}:::deploy
+        WEB((resume.vibhakar.dev<br/>resume.vibhakar.in)):::edge
+    end
 
-    TECH --> R
+    TECH   --> R
     IMPACT --> R
-    IMPACT --> RA --> ANON --> PDFS
-    R --> PDFS
-    PDFS --> PP --> PUB
-    PDFS --> OG --> OGIMG
-    PUB --> DW
-    OGIMG --> DW
-    DW --> CF --> WEB
+    IMPACT --> RA
+    RA     --> ANON --> PDFS
+    R      --> PDFS
+    PDFS   --> PP --> PUB
+    PDFS   --> OG --> OGIMG
+    PUB    --> DW
+    OGIMG  --> DW
+    DW     --> CF --> WEB
 ```
 
 1. **Render** — `render` runs [RenderCV](https://github.com/sinaatalay/rendercv) on both YAML variants (tech + impact); `render-anon` produces a redacted variant for public feedback.
