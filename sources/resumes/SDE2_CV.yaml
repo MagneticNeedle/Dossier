@@ -2,12 +2,13 @@
 cv:
   name: Vibhakar Solanki 
   email: mail@vibhakar.dev
+  phone: "+91-812-649-0848"
   website: https://vibhakar.dev 
   social_networks:
-    - network: LinkedIn
-      username: vibhakarsolanki 
     - network: GitHub
       username: MagneticNeedle 
+    - network: LinkedIn
+      username: vibhakarsolanki 
   sections:
     experience:
       - company: "VideoVerse"
@@ -107,12 +108,12 @@ design:
       body: 9.8pt
       name: 20pt
       headline: 5pt
-      connections: 10pt
+      connections: 9.5pt
       section_titles: 1.2em
     small_caps:
       name: false
       headline: false
-      connections: false
+      connections: True 
       section_titles: false
     bold:
       name: true
@@ -125,14 +126,15 @@ design:
   header:
     alignment: center
     space_below_name: 0.5cm
-    space_below_connections: 0.3cm
+    space_below_connections: 0.5cm
     connections:
-      phone_number_format: national
+      phone_number_format: international
       hyperlink: true
       show_icons: true 
       display_urls_instead_of_usernames: true
       separator: ┃
-      space_between_connections: 0.3cm
+      space_between_connections: 0pt
+
   section_titles:
     type: with_full_line
     line_thickness: 0.5pt
