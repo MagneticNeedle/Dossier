@@ -1,0 +1,237 @@
+// Import the rendercv function and all the refactored components
+#import "@preview/rendercv:0.3.0": *
+
+// Apply the rendercv template with custom configuration
+#show: rendercv.with(
+  name: "Vibhakar Solanki",
+  title: "Vibhakar Solanki - Resume",
+  footer: context { [#emph[Vibhakar Solanki -- #str(here().page())\/#str(counter(page).final().first())]] },
+  top-note: [ #emph[Last updated in Oct 2026] ],
+  locale-catalog-language: "en",
+  text-direction: ltr,
+  page-size: (width: 4in, height: auto),
+  page-top-margin: 0.4cm,
+  page-bottom-margin: 0.5cm,
+  page-left-margin: 0.15in,
+  page-right-margin: 0.15in,
+  page-show-footer: false,
+  page-show-top-note: false,
+  colors-body: rgb(0, 0, 0),
+  colors-name: rgb(0, 0, 0),
+  colors-headline: rgb(0, 0, 0),
+  colors-connections: rgb(0, 0, 0),
+  colors-section-titles: rgb(0, 0, 0),
+  colors-links: rgb(0, 0, 0),
+  colors-footer: rgb(128, 128, 128),
+  colors-top-note: rgb(128, 128, 128),
+  typography-line-spacing: 0.7em,
+  typography-alignment: "left",
+  typography-date-and-location-column-alignment: right,
+  typography-font-family-body: "Helvetica",
+  typography-font-family-name: "Helvetica",
+  typography-font-family-headline: "Helvetica",
+  typography-font-family-connections: "Helvetica",
+  typography-font-family-section-titles: "Helvetica",
+  typography-font-size-body: 9.5pt,
+  typography-font-size-name: 18pt,
+  typography-font-size-headline: 5pt,
+  typography-font-size-connections: 8.5pt,
+  typography-font-size-section-titles: 1.2em,
+  typography-small-caps-name: false,
+  typography-small-caps-headline: false,
+  typography-small-caps-connections: true,
+  typography-small-caps-section-titles: false,
+  typography-bold-name: true,
+  typography-bold-headline: false,
+  typography-bold-connections: false,
+  typography-bold-section-titles: true,
+  links-underline: true,
+  links-show-external-link-icon: true,
+  header-alignment: center,
+  header-photo-width: 3.5cm,
+  header-space-below-name: 0.3cm,
+  header-space-below-headline: 0.7cm,
+  header-space-below-connections: 0.3cm,
+  header-connections-hyperlink: true,
+  header-connections-show-icons: true,
+  header-connections-display-urls-instead-of-usernames: true,
+  header-connections-separator: "┃",
+  header-connections-space-between-connections: 0pt,
+  section-titles-type: "with_full_line",
+  section-titles-line-thickness: 0.5pt,
+  section-titles-space-above: 0.45cm,
+  section-titles-space-below: 0.25cm,
+  sections-allow-page-break: true,
+  sections-space-between-text-based-entries: 0.3em,
+  sections-space-between-regular-entries: 0.5em,
+  entries-date-and-location-width: 0cm,
+  entries-side-space: 0.2cm,
+  entries-space-between-columns: 0cm,
+  entries-allow-page-break: false,
+  entries-short-second-row: false,
+  entries-degree-width: 1cm,
+  entries-summary-space-left: 0cm,
+  entries-summary-space-above: 0cm,
+  entries-highlights-bullet:  "◦" ,
+  entries-highlights-nested-bullet:  "◦" ,
+  entries-highlights-space-left: 0.15cm,
+  entries-highlights-space-above: 0cm,
+  entries-highlights-space-between-items: 0cm,
+  entries-highlights-space-between-bullet-and-text: 0.5em,
+  date: datetime(
+    year: 2026,
+    month: 10,
+    day: 24,
+  ),
+)
+
+
+= Vibhakar Solanki
+
+#connections(
+  [#link("mailto:mail@vibhakar.dev", icon: false, if-underline: false, if-color: false)[#connection-with-icon("envelope")[mail\@vibhakar.dev]]],
+  [#link("tel:+91-81264-90848", icon: false, if-underline: false, if-color: false)[#connection-with-icon("phone")[+91 81264 90848]]],
+  [#link("https://vibhakar.dev/", icon: false, if-underline: false, if-color: false)[#connection-with-icon("link")[vibhakar.dev]]],
+  [#link("https://github.com/MagneticNeedle", icon: false, if-underline: false, if-color: false)[#connection-with-icon("github")[github.com\/MagneticNeedle]]],
+  [#link("https://linkedin.com/in/vibhakarsolanki", icon: false, if-underline: false, if-color: false)[#connection-with-icon("linkedin")[linkedin.com\/in\/vibhakarsolanki]]],
+)
+
+
+== Experience
+
+  #regular-entry(
+  [
+    #strong[Founding Engineer]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    #emph[Bread Butter (bb.bio) · Remote · July 2026 – present]
+
+    - Own the AI stack end to end for #strong[bb.bio], a creator portfolio platform; built and shipped #strong[AI onboarding] that turns a creator's social media into 3 portfolio drafts in #strong[\~3.6s] for #strong[under \$0.01 each], with #strong[zero failed LLM calls] in production.
+
+    - Built an eval and #strong[DSPy GEPA] optimization loop on 52 real-user cases, lifting held-out quality #strong[from 0.52 to 0.74] on the cheaper Flash model and cutting input tokens #strong[66\% per user].
+
+    - Built the pipeline that imports creators' Instagram\/YouTube posts into their portfolios and feeds AI drafts; caught a cost-tracking bug that under-reported scraping spend #strong[\~10x].
+
+    - Launched the bb.bio #strong[waitlist gate] across 4 sign-in methods with an admin approval console, pre-generating AI portfolios for #strong[98 waitlist creators].
+
+    - Built creator analytics end to end: fixed visitor tracking that left #strong[100\% of signups] unattributed, shipped a creator-facing audience dashboard, and live analytics APIs answering in #strong[6-17 ms at 3x production volume].
+
+    - Set the \"evals before features\" release gate, wrote architecture decision records, and mentored a new engineer.
+
+  ],
+)
+
+  #regular-entry(
+  [
+    #strong[SDE 2]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    #emph[VideoVerse · Remote · Jan 2026 – June 2026]
+
+    - Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed #strong[4,500+ clips in its first month with a 99.2\% client acceptance rate], effectively eliminating manual thumbnail curation from broadcast workflows.
+
+    - Added multi-language, EPG metadata, and AI tagging support to the export pipeline, #strong[processing 11,000+ clips monthly] and letting broadcast clients localize content without manual work.
+
+    - Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and #strong[SLA breaches by 25\%].
+
+  ],
+)
+
+  #regular-entry(
+  [
+    #strong[SDE 1]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    #emph[VideoVerse · Remote · Nov 2024 – Jan 2026]
+
+    - Built an internal LLM evaluation pipeline using Langfuse and DSPy Evaluate, improving model output accuracy #strong[from 68\% to 92\%].
+
+    - Applied automated prompt optimization using DSPy's #strong[MIPRO\/COPRO] optimizers and #strong[GEPA], lifting task-level accuracy #strong[from 30\% to 87\%].
+
+    - Built a centralized #strong[AI Gateway] (auth, tracking, auto-retriggers) for 5 AI services, processing #strong[50k+ clips and 300+ streams monthly].
+
+    - Engineered an LLM-powered video clip ratings pipeline using DSPy, handling over #strong[500k clips per month]
+
+  ],
+)
+
+  #regular-entry(
+  [
+    #strong[Software Engineer Intern]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    #emph[VideoVerse · Remote · June 2024 – Nov 2024]
+
+    - Interned at #strong[LetsDive.io] (acquired by VideoVerse) as a Django backend engineer; led the #strong[Python 3.9 to 3.11] migration and built an ETL pipeline with #strong[sub-100ms latency].
+
+  ],
+)
+
+== Projects
+
+  #regular-entry(
+  [
+    #strong[Battlefield Portal Library | #link("https://bfportal.gg/")[bfportal.gg] | #link("https://github.com/battlefield-portal-community/bfportal.gg/")[https:\/\/gh.bfportal.gg]]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    #emph[Jan 2022 – present]
+
+    - Built a Django-based CMS serving #strong[17,000+ users], with a full frontend built on Jinja templates — currently migrating to #strong[HTMX] for faster, dynamic interactions without a JavaScript framework; Dockerised with GitHub Actions deploys.
+
+  ],
+)
+
+  #regular-entry(
+  [
+    #strong[Gametools Network | #link("https://gametools.network/")[gametools.network] | #link("https://github.com/community-network")[github.com\/community-network]]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    #emph[May 2022 – present]
+
+    - Developed and maintain an open-source Stats API serving #strong[3 million players], handling over #strong[2 million daily requests] via Envoy proxy and Cloudflare caching.
+
+  ],
+)
+
+== Skills
+
+#strong[AI \/ ML:] DSPy, LiteLLM, MIPRO\/COPRO, GEPA, Langfuse, MLflow, Google Gemini, VertexAI, LLM Evaluation & Optimization
+
+#strong[Backend:] Python, TypeScript, Go, FastAPI, Node.js\/Express, Next.js, Django, PostgreSQL, MongoDB, Redis, BullMQ, PostHog
+
+#strong[Infrastructure:] AWS, Terraform, Docker, OpenTelemetry, Grafana, Nginx, GitHub Actions, Envoy
+
+== Education
+
+  #education-entry(
+  [
+    #strong[MIET]
+
+  ],
+  [
+  ],
+  main-column-second-row: [
+    #emph[B.Tech] #emph[in] #emph[Computer Science Engineering, Minor in Data Science]
+
+    #emph[Meerut, Uttar Pradesh · Jan 2020 – Jan 2024]
+
+  ],
+)
