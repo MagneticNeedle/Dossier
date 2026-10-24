@@ -40,6 +40,41 @@ ANON_HEADER_OVERRIDES = {
 }
 ANON_SOCIAL_OVERRIDES = {"LinkedIn": "your-linkedin", "GitHub": "your-github"}
 
+# Phone variant: a narrow, single continuous page, with dates and locations
+# folded into the main column so nothing needs a right-hand column.
+MOBILE_PAGE_WIDTH = "4in"
+MOBILE_DESIGN_OVERRIDES = {
+    "page": {
+        "top_margin": "0.4cm",
+        "bottom_margin": "0.5cm",
+        "left_margin": "0.15in",
+        "right_margin": "0.15in",
+        # Collides with the centred name at this width.
+        "show_top_note": False,
+    },
+    "typography": {
+        "alignment": "left",
+        "font_size": {"body": "9.5pt", "name": "18pt", "connections": "8.5pt"},
+    },
+    "header": {"space_below_name": "0.3cm", "space_below_connections": "0.3cm"},
+    "section_titles": {"space_above": "0.45cm", "space_below": "0.25cm"},
+    "entries": {"date_and_location_width": "0cm", "space_between_columns": "0cm"},
+    "templates": {
+        "experience_entry": {
+            "main_column": "**POSITION**\n*COMPANY · LOCATION · DATE*\nSUMMARY\nHIGHLIGHTS",
+            "date_and_location_column": "",
+        },
+        "normal_entry": {
+            "main_column": "**NAME**\n*DATE*\nSUMMARY\nHIGHLIGHTS",
+            "date_and_location_column": "",
+        },
+        "education_entry": {
+            "main_column": "**INSTITUTION**\n*DEGREE* *in* *AREA*\n*LOCATION · DATE*\nSUMMARY\nHIGHLIGHTS",
+            "date_and_location_column": "",
+        },
+    },
+}
+
 
 def _load_resume_yaml(path: Path = RESUME_YAML) -> tuple[YAML, dict]:
     yaml = YAML()
@@ -50,6 +85,20 @@ def _load_resume_yaml(path: Path = RESUME_YAML) -> tuple[YAML, dict]:
 def _resolve_render_path(render_command: dict, key: str) -> Path:
     output_folder = (RESUMES_DIR / render_command["output_folder"]).resolve()
     return Path(render_command[key].replace("OUTPUT_FOLDER", str(output_folder)))
+
+
+def _suffix_render_paths(render_command: dict, suffix: str) -> None:
+    for key in RENDER_PATH_KEYS:
+        path = PurePosixPath(render_command[key])
+        render_command[key] = str(path.with_name(f"{path.stem}.{suffix}{path.suffix}"))
+
+
+def _deep_merge(target: dict, overrides: dict) -> None:
+    for key, value in overrides.items():
+        if isinstance(value, dict) and isinstance(target.get(key), dict):
+            _deep_merge(target[key], value)
+        else:
+            target[key] = value
 
 Stage = Callable[[], None]
 STAGES: dict[str, Stage] = {}
@@ -81,6 +130,59 @@ def _render() -> None:
         )
 
 
+@stage("render-mobile")
+def _render_mobile() -> None:
+    """Render a narrow, single-page phone variant of both resumes."""
+    # Imported lazily: only this stage compiles Typst in-process.
+    from rendercv.renderer.pdf_png import get_package_path, get_typst_compiler
+
+    # rendercv only knows named paper sizes. Patch the temporary copy of its
+    # Typst package it compiles against so `page-size` also accepts a
+    # (width, height) dictionary.
+    lib_typ = next(get_package_path().glob("preview/rendercv/*/lib.typ"))
+    lib_source = lib_typ.read_text()
+    paper_arg = "    paper: page-size,\n"
+    if paper_arg not in lib_source:
+        raise RuntimeError(f"rendercv template changed; can't find {paper_arg!r}")
+    lib_typ.write_text(
+        lib_source.replace(
+            paper_arg,
+            "    ..if type(page-size) == dictionary { page-size }"
+            " else { (paper: page-size) },\n",
+        )
+    )
+
+    for yaml_path in (RESUME_YAML_TECH, RESUME_YAML_IMPACT):
+        yaml, data = _load_resume_yaml(yaml_path)
+        _deep_merge(data["design"], MOBILE_DESIGN_OVERRIDES)
+        render_command = data["settings"]["render_command"]
+        _suffix_render_paths(render_command, "mobile")
+        # Emit Typst only; the page size is set below before compiling.
+        render_command["dont_generate_pdf"] = True
+        render_command["dont_generate_png"] = True
+        generated = yaml_path.with_name(f"{yaml_path.stem}.mobile.generated.yaml")
+        with generated.open("w") as f:
+            yaml.dump(data, f)
+        run(["uv", "run", "rendercv", "render", generated.name], cwd=RESUMES_DIR)
+
+        typst_path = _resolve_render_path(render_command, "typst_path")
+        source = typst_path.read_text()
+        page_size = f'  page-size: "{data["design"]["page"]["size"]}",\n'
+        if page_size not in source:
+            raise RuntimeError(f"can't find {page_size!r} in {typst_path.name}")
+        typst_path.write_text(
+            source.replace(
+                page_size,
+                f"  page-size: (width: {MOBILE_PAGE_WIDTH}, height: auto),\n",
+            )
+        )
+        pdf_path = _resolve_render_path(render_command, "pdf_path")
+        get_typst_compiler(generated, typst_path.parent).compile(
+            input=typst_path, format="pdf", output=pdf_path
+        )
+        print(f"wrote {pdf_path.relative_to(REPO_ROOT)}", file=sys.stderr)
+
+
 @stage("publish-pdf")
 def _publish_pdf() -> None:
     """Copy both rendered resume PDFs into deployments/cf-workers/public for the worker."""
@@ -102,10 +204,7 @@ def _render_anon() -> None:
     for entry in data["cv"].get("social_networks", []):
         if entry["network"] in ANON_SOCIAL_OVERRIDES:
             entry["username"] = ANON_SOCIAL_OVERRIDES[entry["network"]]
-    render_command = data["settings"]["render_command"]
-    for key in RENDER_PATH_KEYS:
-        path = PurePosixPath(render_command[key])
-        render_command[key] = str(path.with_name(f"{path.stem}.anon{path.suffix}"))
+    _suffix_render_paths(data["settings"]["render_command"], "anon")
     with ANON_YAML.open("w") as f:
         yaml.dump(data, f)
     run(["uv", "run", "rendercv", "render", ANON_YAML.name], cwd=RESUMES_DIR)
