@@ -12,6 +12,13 @@ const RESUME_PDFS = {
   tech: "/vibhakar-solanki-sde2-resume-tech.pdf",
   impact: "/vibhakar-solanki-sde2-resume-impact.pdf",
 };
+// Narrow single-page renders for phones; see the render-mobile stage.
+const RESUME_PDFS_MOBILE = {
+  tech: "/vibhakar-solanki-sde2-resume-tech-mobile.pdf",
+  impact: "/vibhakar-solanki-sde2-resume-impact-mobile.pdf",
+};
+// Phone browsers put "Mobi" in the UA; tablets don't, so they keep the letter page.
+const PHONE_UA = /Mobi/i;
 const viewerFor = (pdf) =>
   `/pdfjs/web/viewer?file=${encodeURIComponent(pdf)}#zoom=auto`;
 const RESUME_URL = "https://vibhakar.dev";
@@ -114,7 +121,8 @@ export default {
       });
     }
 
-    const resumeViewer = viewerFor(RESUME_PDFS[variant]);
+    const pdfs = PHONE_UA.test(ua) ? RESUME_PDFS_MOBILE : RESUME_PDFS;
+    const resumeViewer = viewerFor(pdfs[variant]);
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,6 +167,7 @@ export default {
     return new Response(html, {
       headers: {
         "content-type": "text/html;charset=UTF-8",
+        vary: "User-Agent",
       },
     });
   },
