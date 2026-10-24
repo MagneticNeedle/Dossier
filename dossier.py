@@ -30,6 +30,8 @@ PUBLIC_DIR = CF_WORKER_DIR / "public"
 PUBLISHED_PDF = PUBLIC_DIR / "vibhakar-solanki-sde2-resume.pdf"
 PUBLISHED_PDF_TECH = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech.pdf"
 PUBLISHED_PDF_IMPACT = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact.pdf"
+PUBLISHED_PDF_TECH_MOBILE = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech-mobile.pdf"
+PUBLISHED_PDF_IMPACT_MOBILE = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact-mobile.pdf"
 
 RENDER_PATH_KEYS = ("typst_path", "pdf_path", "markdown_path", "html_path", "png_path")
 
@@ -185,7 +187,7 @@ def _render_mobile() -> None:
 
 @stage("publish-pdf")
 def _publish_pdf() -> None:
-    """Copy both rendered resume PDFs into deployments/cf-workers/public for the worker."""
+    """Copy both rendered resume PDFs (letter + phone) into deployments/cf-workers/public for the worker."""
     _, tech = _load_resume_yaml(RESUME_YAML_TECH)
     _, impact = _load_resume_yaml(RESUME_YAML_IMPACT)
     tech_pdf = _resolve_render_path(tech["settings"]["render_command"], "pdf_path")
@@ -193,6 +195,10 @@ def _publish_pdf() -> None:
     shutil.copyfile(tech_pdf, PUBLISHED_PDF_TECH)
     shutil.copyfile(impact_pdf, PUBLISHED_PDF_IMPACT)
     shutil.copyfile(tech_pdf, PUBLISHED_PDF)
+    shutil.copyfile(tech_pdf.with_name(f"{tech_pdf.stem}.mobile.pdf"), PUBLISHED_PDF_TECH_MOBILE)
+    shutil.copyfile(
+        impact_pdf.with_name(f"{impact_pdf.stem}.mobile.pdf"), PUBLISHED_PDF_IMPACT_MOBILE
+    )
 
 
 @stage("render-anon")
