@@ -1,0 +1,20 @@
+/* Hides every viewer control except zoom, print and download. Loaded after
+ * viewer.css from pdfjs/web/viewer.html; paired with pdfjs-config.js, which
+ * disables the features themselves. */
+
+#viewsManagerToggleButton,
+#viewFindButton,
+#findbar,
+#toolbarViewerLeft > .toolbarHorizontalGroup,
+#editorModeButtons,
+#editorModeSeparator,
+#toolbarViewerRight > .verticalToolbarSeparator,
+#secondaryToolbarToggle {
+  display: none !important;
+}
+
+/* Below 750px pdf.js moves print/download into the overflow menu; keep them
+ * in the toolbar since that menu is hidden. */
+#outerContainer #toolbarViewerRight > .hiddenMediumView {
+  display: flex !important;
+}
