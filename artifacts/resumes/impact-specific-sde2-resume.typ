@@ -6,7 +6,7 @@
   name: "Vibhakar Solanki",
   title: "Vibhakar Solanki - Resume",
   footer: context { [#emph[Vibhakar Solanki -- #str(here().page())\/#str(counter(page).final().first())]] },
-  top-note: [ #emph[Last updated in May 2026] ],
+  top-note: [ #emph[Last updated in Oct 2026] ],
   locale-catalog-language: "en",
   text-direction: ltr,
   page-size: "us-letter",
@@ -80,8 +80,8 @@
   entries-highlights-space-between-bullet-and-text: 0.5em,
   date: datetime(
     year: 2026,
-    month: 5,
-    day: 29,
+    month: 10,
+    day: 24,
   ),
 )
 
@@ -101,6 +101,35 @@
 
 #regular-entry(
   [
+    #strong[Founding Engineer]
+
+    #emph[Bread Butter (bb.bio)]
+
+  ],
+  [
+    #emph[Remote]
+
+    #emph[July 2026 – present]
+
+  ],
+  main-column-second-row: [
+    - Own the AI stack end to end for #strong[bb.bio], a creator portfolio platform. Built the AI services from scratch and shipped #strong[AI onboarding] that turns a creator's social media into 3 ready-to-publish portfolio drafts for #strong[\~\$0.013 per user].
+
+    - Built an eval and #strong[DSPy GEPA] optimization loop on 52 real-user cases, lifting held-out quality #strong[from 0.52 to 0.74] on the cheaper Flash model; cut input tokens #strong[66\% per user] (projected cost #strong[\$142 to \$53\/month]).
+
+    - Built the social-scrape pipeline that imports a creator's Instagram\/YouTube posts into their vault and feeds AI drafts, with idempotent retries and self-healing jobs; caught a cost-tracking bug that under-reported scraping spend #strong[\~10x].
+
+    - Designed and launched the bb.bio #strong[waitlist gate] across 4 sign-in methods with bot protection, rate limiting, and an admin approval console; redesigned onboarding #strong[from 8 screens to 3].
+
+    - Built creator analytics end to end: a #strong[PostHog] visitor pipeline (fixing tracking that left #strong[100\% of signups] unattributed), the Intelligence dashboard (#strong[64 PRs in 4 weeks]), and live analytics APIs answering in #strong[6-17 ms at 3x production volume].
+
+    - Set the \"evals before features\" release gate, wrote architecture decision records, and mentored a new engineer.
+
+  ],
+)
+
+#regular-entry(
+  [
     #strong[SDE 2]
 
     #emph[VideoVerse]
@@ -109,23 +138,15 @@
   [
     #emph[Remote]
 
-    #emph[Jan 2026 – present]
+    #emph[Jan 2026 – June 2026]
 
   ],
   main-column-second-row: [
     - Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed #strong[4,500+ clips in its first month with a 99.2\% client acceptance rate], effectively eliminating manual thumbnail curation from broadcast workflows.
 
-    - Engineered the service using #strong[FastAPI, PySceneDetect] for scene segmentation, Laplacian sharpness scoring for frame quality filtering, and Google Gemini via DSPy for AI-driven final selection
-
-    - Automated clip enrichment at scale via an event-driven pipeline, making every clip searchable and tagged the moment it's ingested.
-
     - Added multi-language, EPG metadata, and AI tagging support to the export pipeline, #strong[processing 11,000+ clips monthly] and letting broadcast clients localize content without manual work.
 
     - Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and #strong[SLA breaches by 25\%].
-
-    - Shipped an API that unified a broadcast client's scheduling data into a single queryable source, replacing fragmented manual imports
-
-    - Migrated from #strong[Datadog to OpenTelemetry], giving the team vendor-neutral structured observability and faster production debugging.
 
   ],
 )
@@ -148,13 +169,9 @@
 
     - Applied automated prompt optimization using DSPy's #strong[MIPRO\/COPRO] optimizers and #strong[GEPA], lifting task-level accuracy #strong[from 30\% to 87\%].
 
-    - Built a centralized #strong[AI Gateway] handling auth, request tracking, and auto-retriggers across 5 backend AI services, processing #strong[50,000+ clips and 300+ streams monthly]
+    - Built a centralized #strong[AI Gateway] (auth, tracking, auto-retriggers) for 5 AI services, processing #strong[50k+ clips and 300+ streams monthly].
 
     - Engineered an LLM-powered video clip ratings pipeline using DSPy, handling over #strong[500k clips per month]
-
-    - Established monitoring and alerting workflows using Langfuse and OTEL to enforce SLA compliance.
-
-    - Co-led migration of entire #strong[AWS infrastructure to Terraform], improving infrastructure-as-code practices.
 
   ],
 )
@@ -173,11 +190,7 @@
 
   ],
   main-column-second-row: [
-    - Originally interned at #strong[LetsDive.io] as a Django backend engineer, leading the codebase migration from #strong[Python 3.9 to 3.11]; continued the role at VideoVerse #strong[following its acquisition of LetsDive.io].
-
-    - Designed and implemented an ETL pipeline with #strong[sub-100ms latency] to optimise data processing.
-
-    - Improved an existing thumbnail service by migrating from #strong[SQLite to PostgreSQL], adding auto-retries, and enhancing face-embedding data collection for better selection accuracy
+    - Interned at #strong[LetsDive.io] (acquired by VideoVerse) as a Django backend engineer; led the #strong[Python 3.9 to 3.11] migration and built an ETL pipeline with #strong[sub-100ms latency].
 
   ],
 )
@@ -194,9 +207,7 @@
 
   ],
   main-column-second-row: [
-    - Built a Django-based CMS serving #strong[17,000+ users], with a full frontend built on Jinja templates — currently migrating to #strong[HTMX] for faster, dynamic interactions without a JavaScript framework.
-
-    - Containerised with Docker and automated deployments via GitHub Actions.
+    - Built a Django-based CMS serving #strong[17,000+ users], with a full frontend built on Jinja templates — currently migrating to #strong[HTMX] for faster, dynamic interactions without a JavaScript framework; Dockerised with GitHub Actions deploys.
 
   ],
 )
@@ -218,9 +229,9 @@
 
 == Skills
 
-#strong[AI \/ ML:] DSPy, MIPRO\/COPRO, GEPA, Langfuse, Google Gemini, VertexAI, Prompt Engineering, LLM Evaluation & Optimization
+#strong[AI \/ ML:] DSPy, LiteLLM, MIPRO\/COPRO, GEPA, Langfuse, MLflow, Google Gemini, VertexAI, LLM Evaluation & Optimization
 
-#strong[Backend:] Python, Go, TypeScript, FastAPI, Django, PostgreSQL, MongoDB, Redis
+#strong[Backend:] Python, TypeScript, Go, FastAPI, Node.js\/Express, Next.js, Django, PostgreSQL, MongoDB, Redis, BullMQ, PostHog
 
 #strong[Infrastructure:] AWS, Terraform, Docker, OpenTelemetry, Grafana, Nginx, GitHub Actions, Envoy
 
