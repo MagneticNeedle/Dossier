@@ -27,11 +27,13 @@ window.addEventListener(
   true,
 );
 
-// The phone render ("-mobile.pdf") is only for reading; Download still hands
-// out the letter-size PDF.
+// The phone render ("-mobile.pdf", served under /mobile) is only for reading;
+// Download still hands out the letter-size PDF.
 const file = new URLSearchParams(location.search).get("file") ?? "";
 const letterPdf = file.replace(/-mobile\.pdf$/, ".pdf");
 if (letterPdf !== file) {
+  // Switches on the phone toolbar in pdfjs-theme.css.
+  document.documentElement.classList.add("phoneLayout");
   window.addEventListener(
     "click",
     (evt) => {
