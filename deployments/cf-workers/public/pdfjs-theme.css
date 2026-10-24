@@ -8,37 +8,63 @@
 
 :root {
   --toolbar-height: 40px;
-  --icon-size: 18px;
-  --toolbar-icon-opacity: 0.85;
+  --icon-size: 16px;
+  --toolbar-icon-opacity: 0.45;
 
-  --main-color: light-dark(rgb(21 20 26), rgb(251 251 254));
-  --body-bg-color: light-dark(rgb(240 240 244), rgb(28 27 34));
-  --toolbar-bg-color: light-dark(rgb(249 249 251), rgb(43 42 51));
-  --toolbar-border-color: light-dark(rgb(207 207 216), rgb(21 20 26));
+  /* The toolbar shares the page background so it recedes behind the resume. */
+  --main-color: light-dark(rgb(63 63 70), rgb(212 212 216));
+  --body-bg-color: light-dark(rgb(244 244 245), rgb(24 24 27));
+  --toolbar-bg-color: var(--body-bg-color);
+  --toolbar-box-shadow: none;
+  --toolbar-border-bottom: none;
   --toolbar-icon-bg-color: var(--main-color);
   --toolbar-icon-hover-bg-color: var(--main-color);
-  --button-hover-color: light-dark(rgb(224 224 230), rgb(64 63 76));
+  --button-hover-color: light-dark(rgb(0 0 0 / 0.06), rgb(255 255 255 / 0.08));
   --dropdown-btn-bg-color: transparent;
-  --dropdown-btn-border: 1px solid light-dark(rgb(143 143 157), rgb(128 127 140));
-  --separator-color: light-dark(rgb(207 207 216), rgb(82 82 94));
+  --dropdown-btn-border: none;
+  --separator-color: transparent;
+  --page-shadow-color: light-dark(rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.4));
 }
 
 /* ---- Controls ------------------------------------------------------------ */
 
 .toolbarButton {
-  border-radius: 6px;
+  border-radius: 8px;
+
+  &::before {
+    transition: opacity 120ms ease;
+  }
+
+  &:is(:hover, :focus-visible)::before {
+    opacity: 1;
+  }
 }
 
-/* Pill-shaped zoom dropdown. */
 .dropdownToolbarButton {
-  border-radius: 999px;
+  border-radius: 8px;
   overflow: hidden;
+  opacity: 0.7;
+  transition: opacity 120ms ease;
+
+  &:is(:hover, :focus-within) {
+    opacity: 1;
+  }
 
   > select {
     height: 30px;
-    font-size: 14px;
-    padding-inline-start: 14px;
+    font-size: 13px;
   }
+}
+
+/* Soft shadow so the page floats on the background instead of a hard edge. */
+.pdfViewer .page {
+  box-shadow:
+    0 1px 2px var(--page-shadow-color),
+    0 8px 24px var(--page-shadow-color);
+  background-clip: padding-box;
+  border-color: transparent;
+  border-width: 0;
+  margin-block: 8px 24px;
 }
 
 /* ---- Hidden controls -----------------------------------------------------
