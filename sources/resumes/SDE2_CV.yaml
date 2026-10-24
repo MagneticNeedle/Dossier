@@ -11,20 +11,28 @@ cv:
       username: vibhakarsolanki 
   sections:
     experience:
+      - company: "Bread Butter (bb.bio)"
+        location: Remote
+        position: "Founding Engineer"
+        start_date: "2026-07"
+        end_date: "present"
+        highlights:
+          - "Own the AI stack end to end for **bb.bio**, a creator portfolio platform. Built the AI services from scratch and shipped **AI onboarding** that turns a creator's social media into 3 ready-to-publish portfolio drafts for **~$0.013 per user**."
+          - "Built an eval and **DSPy GEPA** optimization loop on 52 real-user cases, lifting held-out quality **from 0.52 to 0.74** on the cheaper Flash model; cut input tokens **66% per user** (projected cost **$142 to $53/month**)."
+          - "Built the social-scrape pipeline that imports a creator's Instagram/YouTube posts into their vault and feeds AI drafts, with idempotent retries and self-healing jobs; caught a cost-tracking bug that under-reported scraping spend **~10x**."
+          - "Designed and launched the bb.bio **waitlist gate** across 4 sign-in methods with bot protection, rate limiting, and an admin approval console; redesigned onboarding **from 8 screens to 3**."
+          - "Built creator analytics end to end: a **PostHog** visitor pipeline (fixing tracking that left **100% of signups** unattributed), the Intelligence dashboard (**64 PRs in 4 weeks**), and live analytics APIs answering in **6-17 ms at 3x production volume**."
+          - "Set the \"evals before features\" release gate, wrote architecture decision records, and mentored a new engineer."
+
       - company: "VideoVerse"
         location: Remote
         position: "SDE 2"
         start_date: "2026-01"
-        end_date: "present"
+        end_date: "2026-06"
         highlights:
           - "Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed **4,500+ clips in its first month with a 99.2% client acceptance rate**, effectively eliminating manual thumbnail curation from broadcast workflows."
-          - "Engineered the service using **FastAPI, PySceneDetect** for scene segmentation, Laplacian sharpness scoring for frame quality filtering, and Google Gemini via DSPy for AI-driven final selection"
-          - "Automated clip enrichment at scale via an event-driven pipeline, 
-            making every clip searchable and tagged the moment it's ingested."
           - "Added multi-language, EPG metadata, and AI tagging support to the export pipeline, **processing 11,000+ clips monthly** and letting broadcast clients localize content without manual work."
           - "Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and **SLA breaches by 25%**."
-          - "Shipped an API that unified a broadcast client's scheduling data into a single queryable source, replacing fragmented manual imports"
-          - "Migrated from **Datadog to OpenTelemetry**, giving the team vendor-neutral structured observability and faster production debugging."
 
       - company: "VideoVerse"
         location: Remote
@@ -36,28 +44,21 @@ cv:
             Evaluate, improving model output accuracy **from 68% to 92%**."
           - "Applied automated prompt optimization using DSPy's **MIPRO/COPRO**
             optimizers and **GEPA**, lifting task-level accuracy **from 30% to 87%**."
-          - "Built a centralized **AI Gateway** handling auth, request tracking, and auto-retriggers across 5 backend AI services, processing **50,000+ clips and 300+ streams monthly**"
+          - "Built a centralized **AI Gateway** (auth, tracking, auto-retriggers) for 5 AI services, processing **50k+ clips and 300+ streams monthly**."
           - "Engineered an LLM-powered video clip ratings pipeline using DSPy, handling over **500k clips per month**"
-          - "Established monitoring and alerting workflows using Langfuse and OTEL to enforce SLA compliance."
-          - "Co-led migration of entire **AWS infrastructure to Terraform**, improving infrastructure-as-code practices."
       - company: "VideoVerse"
         location: Remote
         position: "Software Engineer Intern"
         start_date: "2024-06"
         end_date: "2024-11"
         highlights:
-          - "Originally interned at **LetsDive.io** as a Django backend engineer, leading the codebase migration from **Python 3.9 to 3.11**; continued the role at VideoVerse **following its acquisition of LetsDive.io**."
-          - "Designed and implemented an ETL pipeline with **sub-100ms latency** to
-            optimise data processing."
-          - "Improved an existing thumbnail service by migrating from **SQLite to PostgreSQL**, adding auto-retries, and enhancing face-embedding data collection for better selection accuracy"
+          - "Interned at **LetsDive.io** (acquired by VideoVerse) as a Django backend engineer; led the **Python 3.9 to 3.11** migration and built an ETL pipeline with **sub-100ms latency**."
     projects:
       - name: Battlefield Portal Library | [bfportal.gg](https://bfportal.gg/) | [https://gh.bfportal.gg](https://github.com/battlefield-portal-community/bfportal.gg/)
         start_date: "2022-01"
         end_date: "present" 
         highlights:
-          - "Built a Django-based CMS serving **17,000+ users**, with a full frontend built on Jinja templates — currently migrating to **HTMX** for faster, dynamic interactions without a JavaScript framework."
-          - "Containerised with Docker and automated deployments via GitHub
-            Actions."
+          - "Built a Django-based CMS serving **17,000+ users**, with a full frontend built on Jinja templates — currently migrating to **HTMX** for faster, dynamic interactions without a JavaScript framework; Dockerised with GitHub Actions deploys."
       - name: Gametools Network | [gametools.network](https://gametools.network/) | [github.com/community-network](https://github.com/community-network)
         start_date: "2022-05"
         end_date: "present"
@@ -67,9 +68,9 @@ cv:
             Cloudflare caching."
     skills:
       - label: "AI / ML"
-        details: "DSPy, MIPRO/COPRO, GEPA, Langfuse, Google Gemini, VertexAI, Prompt Engineering, LLM Evaluation & Optimization"
+        details: "DSPy, LiteLLM, MIPRO/COPRO, GEPA, Langfuse, MLflow, Google Gemini, VertexAI, LLM Evaluation & Optimization"
       - label: "Backend"
-        details: "Python, Go, TypeScript, FastAPI, Django, PostgreSQL, MongoDB, Redis"
+        details: "Python, TypeScript, Go, FastAPI, Node.js/Express, Next.js, Django, PostgreSQL, MongoDB, Redis, BullMQ, PostHog"
       - label: "Infrastructure"
         details: "AWS, Terraform, Docker, OpenTelemetry, Grafana, Nginx, GitHub Actions, Envoy"
     education:
