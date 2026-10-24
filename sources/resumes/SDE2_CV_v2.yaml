@@ -17,12 +17,12 @@ cv:
         start_date: "2026-07"
         end_date: "present"
         highlights:
-          - "Own the AI stack end to end. Built **ai-core** from scratch as a **Python/uv** monorepo (**DSPy/LiteLLM** model factory, eval harness, **FastAPI** base), deployed to **AWS ECS Fargate** with **GitHub Actions OIDC** image promotion."
-          - "Built the onboarding AI service on **Gemini (Vertex AI)**: a selection call plus 3 concurrent writers turn scraped social media into 3 profile drafts as Postgres-backed async jobs, at **~$0.013 per user** after cutting input tokens **66%**."
-          - "Built an eval harness (F1 terms + human-calibrated **LLM-as-judge**) on 52 production ground-truth cases and ran **GEPA** optimization, lifting held-out score **from 0.52 to 0.74**, with prompts, traces, and cost tracked in **Langfuse**."
-          - "Built the social-scrape to AI-drafts pipeline in **Node/TypeScript** on **BullMQ/Redis, Apify, S3**, shipped dark behind feature flags with idempotent retries and a self-heal path for silently dead generations."
-          - "Designed the bb.bio waitlist gate across 4 sign-in methods using **Postgres advisory locks, Cloudflare Turnstile**, a **Redis** rate limiter, RBAC + audit-logged admin console, and **Customer.io/WhatsApp** notifications; cut onboarding **from 8 screens to 3** in **Next.js**."
-          - "Built creator analytics across the stack: **PostHog** HogQL + Redis backend, live endpoints over a partitioned Postgres event table with keyset pagination (**6-17 ms at 3x prod volume**), and a **Next.js/TanStack Query/d3-geo** dashboard pinned to a SHA-verified JSON contract."
+          - "Own the AI stack end to end. Built **ai-core** from scratch, the **Python** monorepo behind bb.bio's AI features (**DSPy, LiteLLM, FastAPI**), running on **AWS ECS Fargate** with CI/CD on **GitHub Actions**."
+          - "Built AI onboarding on **Gemini (Vertex AI)**, turning a creator's social media into 3 ready-to-publish portfolio drafts at **3.6s p50** for **under $0.01 per creator**, with **zero failed LLM calls** across 1,000+ production generations."
+          - "Built an eval and **GEPA** prompt-optimization loop with **LLM-as-judge** on 52 real-user cases, lifting held-out quality **from 0.52 to 0.74** and cutting input tokens **66%**, with prompts, traces, and cost in **Langfuse**."
+          - "Built the pipeline that imports creators' Instagram/YouTube posts into their portfolios and feeds AI drafts (**Node/TypeScript, BullMQ, Apify, S3**); caught a cost-tracking bug that under-reported scraping spend **~10x**."
+          - "Designed and launched the bb.bio waitlist gate across 4 sign-in methods with bot protection, rate limiting, and an admin approval console (**Postgres, Redis, Cloudflare Turnstile**)." 
+          - "Built creator analytics across the stack (**PostHog, Postgres, Next.js, d3**): fixed visitor tracking that left **100% of signups** unattributed, and shipped an audience dashboard backed by live APIs answering in **6-17 ms at 3x production volume**."
 
       - company: "VideoVerse"
         location: Remote
