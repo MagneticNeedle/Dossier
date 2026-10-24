@@ -27,6 +27,26 @@ window.addEventListener(
   true,
 );
 
+// The phone render ("-mobile.pdf") is only for reading; Download still hands
+// out the letter-size PDF.
+const file = new URLSearchParams(location.search).get("file") ?? "";
+const letterPdf = file.replace(/-mobile\.pdf$/, ".pdf");
+if (letterPdf !== file) {
+  window.addEventListener(
+    "click",
+    (evt) => {
+      if (!evt.target.closest?.("#downloadButton, #secondaryDownload")) return;
+      evt.preventDefault();
+      evt.stopImmediatePropagation();
+      const link = document.createElement("a");
+      link.href = letterPdf;
+      link.download = letterPdf.split("/").pop();
+      link.click();
+    },
+    true,
+  );
+}
+
 // Block drag-and-drop of other PDFs into the viewer.
 for (const type of ["dragover", "drop"]) {
   window.addEventListener(
