@@ -21,15 +21,15 @@ const viewerFor = (pdf) =>
   `/pdfjs/web/viewer?file=${encodeURIComponent(pdf)}#zoom=auto`;
 const RESUME_URL = "https://vibhakar.dev";
 const PREVIEW_IMAGE = "https://resume.vibhakar.dev/og-image.png";
-const TITLE = "Vibhakar Solanki | SDE 2 @ VideoVerse | AI Video Pipelines";
+const TITLE = "Vibhakar Solanki | Founding Engineer @ Bread Butter | AI Engineer";
 const DESCRIPTION =
-  "SDE 2 at VideoVerse building AI-powered video pipelines with FastAPI, DSPy, and OpenTelemetry. Python, Go, AWS, Terraform.";
+  "Founding Engineer at Bread Butter (bb.bio), owning the AI stack with DSPy, LiteLLM, and FastAPI on AWS. Previously built AI video pipelines at VideoVerse.";
 
 const PROFILE_PAGE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   dateCreated: "2026-05-11T13:14:00+05:30",
-  dateModified: "2026-05-11T13:14:00+05:30",
+  dateModified: "2026-10-24T22:00:00+05:30",
   mainEntity: {
     "@type": "Person",
     name: "Vibhakar Solanki",
@@ -37,12 +37,12 @@ const PROFILE_PAGE_SCHEMA = {
     familyName: "Solanki",
     email: "mailto:mail@vibhakar.dev",
     url: RESUME_URL,
-    jobTitle: "SDE 2",
+    jobTitle: "Founding Engineer",
     description: DESCRIPTION,
     worksFor: {
       "@type": "Organization",
-      name: "VideoVerse",
-      url: "https://videoverse.com",
+      name: "Bread Butter",
+      url: "https://bb.bio",
     },
     alumniOf: {
       "@type": "CollegeOrUniversity",
@@ -58,11 +58,14 @@ const PROFILE_PAGE_SCHEMA = {
       "COPRO",
       "GEPA",
       "Langfuse",
+      "LiteLLM",
       "Google Gemini",
       "VertexAI",
       "Python",
       "Go",
       "TypeScript",
+      "Node.js",
+      "Next.js",
       "FastAPI",
       "Django",
       "PostgreSQL",
