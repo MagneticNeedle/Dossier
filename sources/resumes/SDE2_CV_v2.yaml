@@ -11,18 +11,28 @@ cv:
       username: vibhakarsolanki 
   sections:
     experience:
+      - company: "Bread Butter (bb.bio)"
+        location: Remote
+        position: "Founding Engineer"
+        start_date: "2026-07"
+        end_date: "present"
+        highlights:
+          - "Own the AI stack end to end. Built **ai-core** from scratch as a **Python/uv** monorepo (**DSPy/LiteLLM** model factory, eval harness, **FastAPI** base), deployed to **AWS ECS Fargate** with **GitHub Actions OIDC** image promotion."
+          - "Built the onboarding AI service on **Gemini (Vertex AI)**: a selection call plus 3 concurrent writers turn scraped social media into 3 profile drafts as Postgres-backed async jobs, at **~$0.013 per user** after cutting input tokens **66%**."
+          - "Built an eval harness (F1 terms + human-calibrated **LLM-as-judge**) on 52 production ground-truth cases and ran **GEPA** optimization, lifting held-out score **from 0.52 to 0.74**, with prompts, traces, and cost tracked in **Langfuse**."
+          - "Built the social-scrape to AI-drafts pipeline in **Node/TypeScript** on **BullMQ/Redis, Apify, S3**, shipped dark behind feature flags with idempotent retries and a self-heal path for silently dead generations."
+          - "Designed the bb.bio waitlist gate across 4 sign-in methods using **Postgres advisory locks, Cloudflare Turnstile**, a **Redis** rate limiter, RBAC + audit-logged admin console, and **Customer.io/WhatsApp** notifications; cut onboarding **from 8 screens to 3** in **Next.js**."
+          - "Built creator analytics across the stack: **PostHog** HogQL + Redis backend, live endpoints over a partitioned Postgres event table with keyset pagination (**6-17 ms at 3x prod volume**), and a **Next.js/TanStack Query/d3-geo** dashboard pinned to a SHA-verified JSON contract."
+
       - company: "VideoVerse"
         location: Remote
         position: "SDE 2"
         start_date: "2026-01"
-        end_date: "present"
+        end_date: "2026-06"
         highlights:
           - "Designed and built **SmartThumbnails** from scratch in **Python/FastAPI** — reverse-engineered selection heuristics from client-published thumbnails into a layered pipeline: **PySceneDetect** scene segmentation, Laplacian sharpness filtering, and **DSPy**-structured Gemini for final selection. Reached **99.2% client acceptance** across the first 4,500 clips, replacing manual curation."
-          - "Built an **SNS-driven** clip enrichment pipeline issuing **DSPy**-structured Gemini calls, so every clip is searchable and tagged at ingest."
-          - "Extended the export pipeline with multi-language, EPG, and AI tagging by routing **SNS events** through the internal AI Gateway, letting broadcast clients localize content without manual work."
           - "Engineered a hybrid algorithmic + LLM pipeline for sibling-clip metadata back-fill and conflict detection, with batched updates that respect hard SLA windows — cut **SLA breaches by 25%**."
-          - "Unified two fragmented broadcast scheduling sources into a single queryable API; reconciliation logic catches shows split across source APIs that the prior manual-import workflow dropped."
-          - "Owned both the cross-service instrumentation refactor and the collector pipeline for the **Datadog → OpenTelemetry** migration, giving the team vendor-neutral structured observability."
+          - "Owned the **Datadog → OpenTelemetry** migration end to end: cross-service instrumentation and the collector pipeline."
 
       - company: "VideoVerse"
         location: Remote
@@ -30,21 +40,17 @@ cv:
         start_date: "2024-11"
         end_date: "2026-01"
         highlights:
-          - "Built an internal LLM evaluation harness from scratch — eval datasets, metric definitions, and **Langfuse** integration — and used it to drive ground-truth analysis that lifted output accuracy **from 68% to 92%**."
+          - "Built an LLM eval harness from scratch (datasets, metrics, **Langfuse**), driving ground-truth analysis that lifted accuracy **from 68% to 92%**."
           - "Tuned and applied **DSPy MIPRO/COPRO** and **GEPA** prompt optimizers per service for thumbnail selection and metadata generation, raising task-level accuracy **from 30% to 87%**."
-          - "Built a **FastAPI AI Gateway** fronting 5 backend AI services with service-to-service token auth and retry/backoff baked into both FastAPI middleware and the **HTTPX** transport — **zero dropped jobs** across 50k+ clips and 300+ streams monthly."
-          - "Engineered a **DSPy + Gemini** clip-ratings pipeline running on **500k+ clips/month**, with rate-limit-aware scheduling so peak-load batches still complete before SLA breach."
-          - "Established Langfuse and OTEL alerting workflows to enforce SLA compliance across the AI services."
-          - "Co-led migration of AWS infrastructure to **Terraform**, extending the existing module structure and adding **OTEL** wiring plus a **Cloudflare Tunnel** for secure local access to internal services."
-      - company: "VideoVerse"
+          - "Built a **FastAPI AI Gateway** for 5 AI services with token auth and **HTTPX** retry/backoff: **zero dropped jobs** across 50k+ clips/month."
+          - "Engineered a **DSPy + Gemini** clip-ratings pipeline on **500k+ clips/month** with rate-limit-aware scheduling to meet SLAs."
+      - company: "VideoVerse (joined via acquisition of LetsDive.io)"
         location: Remote
         position: "Software Engineer Intern"
         start_date: "2024-06"
         end_date: "2024-11"
         highlights:
-          - "Originally interned at **LetsDive.io** as a Django backend engineer; continued the role at VideoVerse **following its acquisition of LetsDive.io**."
-          - "Designed an ETL feed from **PostgreSQL and MongoDB** into **BigQuery** with **sub-100ms** end-to-end latency, since live frontend and backend services consume from BigQuery in the request path."
-          - "Rewrote the legacy thumbnail service storage layer from **SQLite to PostgreSQL** with a from-scratch schema (no back-compat), and built the face-embedding ingestion and deployment that drives selection accuracy."
+          - "Built an ETL feed from **PostgreSQL/MongoDB** into **BigQuery** with **sub-100ms** latency, and rewrote the thumbnail service storage from **SQLite to PostgreSQL** with face-embedding ingestion."
     projects:
       - name: Battlefield Portal Library | [bfportal.gg](https://bfportal.gg/) | [https://gh.bfportal.gg](https://github.com/battlefield-portal-community/bfportal.gg/)
         start_date: "2022-01"
@@ -55,14 +61,14 @@ cv:
         start_date: "2022-05"
         end_date: "present"
         highlights:
-          - "Open-source Stats API behind **Envoy** routing into a **Kubernetes** cluster, serving **2M+ daily requests**; extended the existing Envoy logic and authored the Kubernetes autoscaling policies for upstream services."
+          - "Open-source Stats API behind **Envoy** routing into a **Kubernetes** cluster, serving **2M+ daily requests**. Extended the existing Envoy logic and authored the Kubernetes autoscaling policies for upstream services."
     skills:
       - label: "AI / ML"
-        details: "DSPy, MIPRO/COPRO, GEPA, Langfuse, Google Gemini, VertexAI, Prompt Engineering, LLM Evaluation & Optimization"
+        details: "DSPy, LiteLLM, MIPRO/COPRO, GEPA, LLM-as-judge, Langfuse, MLflow, Google Gemini, VertexAI, LLM Evaluation & Optimization"
       - label: "Backend"
-        details: "Python, Go, TypeScript, FastAPI, Django, PostgreSQL, MongoDB, Redis, BigQuery"
+        details: "Python, TypeScript, Go, FastAPI, Node.js/Express, Next.js, Django, PostgreSQL, MongoDB, Redis, BullMQ, BigQuery, PostHog"
       - label: "Infrastructure"
-        details: "AWS (SNS, ECS), Terraform, Docker, Kubernetes, OpenTelemetry, Grafana, Envoy, Cloudflare, GitHub Actions"
+        details: "AWS (ECS Fargate, SNS, S3), Terraform, Docker, Kubernetes, OpenTelemetry, Grafana, Envoy, Cloudflare, GitHub Actions"
     education:
       - institution: "MIET"
         location: Meerut, Uttar Pradesh
