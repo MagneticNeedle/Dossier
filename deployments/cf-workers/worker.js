@@ -17,8 +17,6 @@ const RESUME_PDFS_MOBILE = {
   tech: "/vibhakar-solanki-sde2-resume-tech-mobile.pdf",
   impact: "/vibhakar-solanki-sde2-resume-impact-mobile.pdf",
 };
-// Phone browsers put "Mobi" in the UA; tablets don't, so they keep the letter page.
-const PHONE_UA = /Mobi/i;
 const viewerFor = (pdf) =>
   `/pdfjs/web/viewer?file=${encodeURIComponent(pdf)}#zoom=auto`;
 const RESUME_URL = "https://vibhakar.dev";
@@ -96,7 +94,10 @@ export default {
   async fetch(request) {
     const pathname = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
     const variantByPath = { "/": "tech", "/tech": "tech", "/impact": "impact" };
-    const variant = variantByPath[pathname];
+    // Opt-in phone layout under /mobile; the letter page stays the default.
+    const isMobile = pathname.endsWith("/mobile");
+    const basePath = isMobile ? pathname.slice(0, -"/mobile".length) || "/" : pathname;
+    const variant = variantByPath[basePath];
     if (!variant) {
       return new Response("Not found", { status: 404 });
     }
@@ -121,7 +122,7 @@ export default {
       });
     }
 
-    const pdfs = PHONE_UA.test(ua) ? RESUME_PDFS_MOBILE : RESUME_PDFS;
+    const pdfs = isMobile ? RESUME_PDFS_MOBILE : RESUME_PDFS;
     const resumeViewer = viewerFor(pdfs[variant]);
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -167,7 +168,6 @@ export default {
     return new Response(html, {
       headers: {
         "content-type": "text/html;charset=UTF-8",
-        vary: "User-Agent",
       },
     });
   },
