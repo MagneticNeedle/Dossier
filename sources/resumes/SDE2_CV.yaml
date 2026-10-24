@@ -17,11 +17,11 @@ cv:
         start_date: "2026-07"
         end_date: "present"
         highlights:
-          - "Own the AI stack end to end for **bb.bio**, a creator portfolio platform. Built the AI services from scratch and shipped **AI onboarding** that turns a creator's social media into 3 ready-to-publish portfolio drafts for **~$0.013 per user**."
-          - "Built an eval and **DSPy GEPA** optimization loop on 52 real-user cases, lifting held-out quality **from 0.52 to 0.74** on the cheaper Flash model; cut input tokens **66% per user** (projected cost **$142 to $53/month**)."
-          - "Built the social-scrape pipeline that imports a creator's Instagram/YouTube posts into their vault and feeds AI drafts, with idempotent retries and self-healing jobs; caught a cost-tracking bug that under-reported scraping spend **~10x**."
-          - "Designed and launched the bb.bio **waitlist gate** across 4 sign-in methods with bot protection, rate limiting, and an admin approval console; redesigned onboarding **from 8 screens to 3**."
-          - "Built creator analytics end to end: a **PostHog** visitor pipeline (fixing tracking that left **100% of signups** unattributed), the Intelligence dashboard (**64 PRs in 4 weeks**), and live analytics APIs answering in **6-17 ms at 3x production volume**."
+          - "Own the AI stack end to end for **bb.bio**, a creator portfolio platform; built and shipped **AI onboarding** that turns a creator's social media into 3 portfolio drafts in **~3.6s** for **under $0.01 each**, with **zero failed LLM calls** in production."
+          - "Built an eval and **DSPy GEPA** optimization loop on 52 real-user cases, lifting held-out quality **from 0.52 to 0.74** on the cheaper Flash model and cutting input tokens **66% per user**."
+          - "Built the pipeline that imports creators' Instagram/YouTube posts into their portfolios and feeds AI drafts; caught a cost-tracking bug that under-reported scraping spend **~10x**."
+          - "Launched the bb.bio **waitlist gate** across 4 sign-in methods with an admin approval console, pre-generating AI portfolios for **98 waitlist creators**."
+          - "Built creator analytics end to end: fixed visitor tracking that left **100% of signups** unattributed, shipped a creator-facing audience dashboard, and live analytics APIs answering in **6-17 ms at 3x production volume**."
           - "Set the \"evals before features\" release gate, wrote architecture decision records, and mentored a new engineer."
 
       - company: "VideoVerse"
