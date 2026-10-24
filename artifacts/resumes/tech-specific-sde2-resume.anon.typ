@@ -6,7 +6,7 @@
   name: "Software Engineer",
   title: "Software Engineer - Resume",
   footer: context { [#emph[Software Engineer -- #str(here().page())\/#str(counter(page).final().first())]] },
-  top-note: [ #emph[Last updated in May 2026] ],
+  top-note: [ #emph[Last updated in Oct 2026] ],
   locale-catalog-language: "en",
   text-direction: ltr,
   page-size: "us-letter",
@@ -80,8 +80,8 @@
   entries-highlights-space-between-bullet-and-text: 0.5em,
   date: datetime(
     year: 2026,
-    month: 5,
-    day: 29,
+    month: 10,
+    day: 24,
   ),
 )
 
@@ -101,6 +101,35 @@
 
 #regular-entry(
   [
+    #strong[Founding Engineer]
+
+    #emph[Bread Butter (bb.bio)]
+
+  ],
+  [
+    #emph[Remote]
+
+    #emph[July 2026 – present]
+
+  ],
+  main-column-second-row: [
+    - Own the AI stack end to end. Built #strong[ai-core] from scratch, the #strong[Python] monorepo behind bb.bio's AI features (#strong[DSPy, LiteLLM, FastAPI]), running on #strong[AWS ECS Fargate] with CI\/CD on #strong[GitHub Actions].
+
+    - Built AI onboarding on #strong[Gemini (Vertex AI)], turning a creator's social media into 3 ready-to-publish portfolio drafts at #strong[3.6s p50] for #strong[under \$0.01 per creator], with #strong[zero failed LLM calls] across 1,000+ production generations.
+
+    - Built an eval and #strong[GEPA] prompt-optimization loop with #strong[LLM-as-judge] on 52 real-user cases, lifting held-out quality #strong[from 0.52 to 0.74] and cutting input tokens #strong[66\%], with prompts, traces, and cost in #strong[Langfuse].
+
+    - Built the pipeline that imports creators' Instagram\/YouTube posts into their portfolios and feeds AI drafts (#strong[Node\/TypeScript, BullMQ, Apify, S3]); caught a cost-tracking bug that under-reported scraping spend #strong[\~10x].
+
+    - Designed and launched the bb.bio waitlist gate across 4 sign-in methods with bot protection, rate limiting, and an admin approval console (#strong[Postgres, Redis, Cloudflare Turnstile]).
+
+    - Built creator analytics across the stack (#strong[PostHog, Postgres, Next.js, d3]): fixed visitor tracking that left #strong[100\% of signups] unattributed, and shipped an audience dashboard backed by live APIs answering in #strong[6-17 ms at 3x production volume].
+
+  ],
+)
+
+#regular-entry(
+  [
     #strong[SDE 2]
 
     #emph[VideoVerse]
@@ -109,21 +138,15 @@
   [
     #emph[Remote]
 
-    #emph[Jan 2026 – present]
+    #emph[Jan 2026 – June 2026]
 
   ],
   main-column-second-row: [
     - Designed and built #strong[SmartThumbnails] from scratch in #strong[Python\/FastAPI] — reverse-engineered selection heuristics from client-published thumbnails into a layered pipeline: #strong[PySceneDetect] scene segmentation, Laplacian sharpness filtering, and #strong[DSPy]-structured Gemini for final selection. Reached #strong[99.2\% client acceptance] across the first 4,500 clips, replacing manual curation.
 
-    - Built an #strong[SNS-driven] clip enrichment pipeline issuing #strong[DSPy]-structured Gemini calls, so every clip is searchable and tagged at ingest.
-
-    - Extended the export pipeline with multi-language, EPG, and AI tagging by routing #strong[SNS events] through the internal AI Gateway, letting broadcast clients localize content without manual work.
-
     - Engineered a hybrid algorithmic + LLM pipeline for sibling-clip metadata back-fill and conflict detection, with batched updates that respect hard SLA windows — cut #strong[SLA breaches by 25\%].
 
-    - Unified two fragmented broadcast scheduling sources into a single queryable API; reconciliation logic catches shows split across source APIs that the prior manual-import workflow dropped.
-
-    - Owned both the cross-service instrumentation refactor and the collector pipeline for the #strong[Datadog → OpenTelemetry] migration, giving the team vendor-neutral structured observability.
+    - Owned the #strong[Datadog → OpenTelemetry] migration end to end: cross-service instrumentation and the collector pipeline.
 
   ],
 )
@@ -142,17 +165,13 @@
 
   ],
   main-column-second-row: [
-    - Built an internal LLM evaluation harness from scratch — eval datasets, metric definitions, and #strong[Langfuse] integration — and used it to drive ground-truth analysis that lifted output accuracy #strong[from 68\% to 92\%].
+    - Built an LLM eval harness from scratch (datasets, metrics, #strong[Langfuse]), driving ground-truth analysis that lifted accuracy #strong[from 68\% to 92\%].
 
     - Tuned and applied #strong[DSPy MIPRO\/COPRO] and #strong[GEPA] prompt optimizers per service for thumbnail selection and metadata generation, raising task-level accuracy #strong[from 30\% to 87\%].
 
-    - Built a #strong[FastAPI AI Gateway] fronting 5 backend AI services with service-to-service token auth and retry\/backoff baked into both FastAPI middleware and the #strong[HTTPX] transport — #strong[zero dropped jobs] across 50k+ clips and 300+ streams monthly.
+    - Built a #strong[FastAPI AI Gateway] for 5 AI services with token auth and #strong[HTTPX] retry\/backoff: #strong[zero dropped jobs] across 50k+ clips\/month.
 
-    - Engineered a #strong[DSPy + Gemini] clip-ratings pipeline running on #strong[500k+ clips\/month], with rate-limit-aware scheduling so peak-load batches still complete before SLA breach.
-
-    - Established Langfuse and OTEL alerting workflows to enforce SLA compliance across the AI services.
-
-    - Co-led migration of AWS infrastructure to #strong[Terraform], extending the existing module structure and adding #strong[OTEL] wiring plus a #strong[Cloudflare Tunnel] for secure local access to internal services.
+    - Engineered a #strong[DSPy + Gemini] clip-ratings pipeline on #strong[500k+ clips\/month] with rate-limit-aware scheduling to meet SLAs.
 
   ],
 )
@@ -161,7 +180,7 @@
   [
     #strong[Software Engineer Intern]
 
-    #emph[VideoVerse]
+    #emph[VideoVerse (joined via acquisition of LetsDive.io)]
 
   ],
   [
@@ -171,11 +190,7 @@
 
   ],
   main-column-second-row: [
-    - Originally interned at #strong[LetsDive.io] as a Django backend engineer; continued the role at VideoVerse #strong[following its acquisition of LetsDive.io].
-
-    - Designed an ETL feed from #strong[PostgreSQL and MongoDB] into #strong[BigQuery] with #strong[sub-100ms] end-to-end latency, since live frontend and backend services consume from BigQuery in the request path.
-
-    - Rewrote the legacy thumbnail service storage layer from #strong[SQLite to PostgreSQL] with a from-scratch schema (no back-compat), and built the face-embedding ingestion and deployment that drives selection accuracy.
+    - Built an ETL feed from #strong[PostgreSQL\/MongoDB] into #strong[BigQuery] with #strong[sub-100ms] latency, and rewrote the thumbnail service storage from #strong[SQLite to PostgreSQL] with face-embedding ingestion.
 
   ],
 )
@@ -207,18 +222,18 @@
 
   ],
   main-column-second-row: [
-    - Open-source Stats API behind #strong[Envoy] routing into a #strong[Kubernetes] cluster, serving #strong[2M+ daily requests]; extended the existing Envoy logic and authored the Kubernetes autoscaling policies for upstream services.
+    - Open-source Stats API behind #strong[Envoy] routing into a #strong[Kubernetes] cluster, serving #strong[2M+ daily requests]. Extended the existing Envoy logic and authored the Kubernetes autoscaling policies for upstream services.
 
   ],
 )
 
 == Skills
 
-#strong[AI \/ ML:] DSPy, MIPRO\/COPRO, GEPA, Langfuse, Google Gemini, VertexAI, Prompt Engineering, LLM Evaluation & Optimization
+#strong[AI \/ ML:] DSPy, LiteLLM, MIPRO\/COPRO, GEPA, LLM-as-judge, Langfuse, MLflow, Google Gemini, VertexAI, LLM Evaluation & Optimization
 
-#strong[Backend:] Python, Go, TypeScript, FastAPI, Django, PostgreSQL, MongoDB, Redis, BigQuery
+#strong[Backend:] Python, TypeScript, Go, FastAPI, Node.js\/Express, Next.js, Django, PostgreSQL, MongoDB, Redis, BullMQ, BigQuery, PostHog
 
-#strong[Infrastructure:] AWS (SNS, ECS), Terraform, Docker, Kubernetes, OpenTelemetry, Grafana, Envoy, Cloudflare, GitHub Actions
+#strong[Infrastructure:] AWS (ECS Fargate, SNS, S3), Terraform, Docker, Kubernetes, OpenTelemetry, Grafana, Envoy, Cloudflare, GitHub Actions
 
 == Education
 

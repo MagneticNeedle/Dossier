@@ -113,15 +113,15 @@
 
   ],
   main-column-second-row: [
-    - Own the AI stack end to end for #strong[bb.bio], a creator portfolio platform. Built the AI services from scratch and shipped #strong[AI onboarding] that turns a creator's social media into 3 ready-to-publish portfolio drafts for #strong[\~\$0.013 per user].
+    - Own the AI stack end to end for #strong[bb.bio], a creator portfolio platform; built and shipped #strong[AI onboarding] that turns a creator's social media into 3 portfolio drafts in #strong[\~3.6s] for #strong[under \$0.01 each], with #strong[zero failed LLM calls] in production.
 
-    - Built an eval and #strong[DSPy GEPA] optimization loop on 52 real-user cases, lifting held-out quality #strong[from 0.52 to 0.74] on the cheaper Flash model; cut input tokens #strong[66\% per user] (projected cost #strong[\$142 to \$53\/month]).
+    - Built an eval and #strong[DSPy GEPA] optimization loop on 52 real-user cases, lifting held-out quality #strong[from 0.52 to 0.74] on the cheaper Flash model and cutting input tokens #strong[66\% per user].
 
-    - Built the social-scrape pipeline that imports a creator's Instagram\/YouTube posts into their vault and feeds AI drafts, with idempotent retries and self-healing jobs; caught a cost-tracking bug that under-reported scraping spend #strong[\~10x].
+    - Built the pipeline that imports creators' Instagram\/YouTube posts into their portfolios and feeds AI drafts; caught a cost-tracking bug that under-reported scraping spend #strong[\~10x].
 
-    - Designed and launched the bb.bio #strong[waitlist gate] across 4 sign-in methods with bot protection, rate limiting, and an admin approval console; redesigned onboarding #strong[from 8 screens to 3].
+    - Launched the bb.bio #strong[waitlist gate] across 4 sign-in methods with an admin approval console, pre-generating AI portfolios for #strong[98 waitlist creators].
 
-    - Built creator analytics end to end: a #strong[PostHog] visitor pipeline (fixing tracking that left #strong[100\% of signups] unattributed), the Intelligence dashboard (#strong[64 PRs in 4 weeks]), and live analytics APIs answering in #strong[6-17 ms at 3x production volume].
+    - Built creator analytics end to end: fixed visitor tracking that left #strong[100\% of signups] unattributed, shipped a creator-facing audience dashboard, and live analytics APIs answering in #strong[6-17 ms at 3x production volume].
 
     - Set the \"evals before features\" release gate, wrote architecture decision records, and mentored a new engineer.
 

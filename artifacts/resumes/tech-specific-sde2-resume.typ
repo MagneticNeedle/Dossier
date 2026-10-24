@@ -113,17 +113,17 @@
 
   ],
   main-column-second-row: [
-    - Own the AI stack end to end. Built #strong[ai-core] from scratch as a #strong[Python\/uv] monorepo (#strong[DSPy\/LiteLLM] model factory, eval harness, #strong[FastAPI] base), deployed to #strong[AWS ECS Fargate] with #strong[GitHub Actions OIDC] image promotion.
+    - Own the AI stack end to end. Built #strong[ai-core] from scratch, the #strong[Python] monorepo behind bb.bio's AI features (#strong[DSPy, LiteLLM, FastAPI]), running on #strong[AWS ECS Fargate] with CI\/CD on #strong[GitHub Actions].
 
-    - Built the onboarding AI service on #strong[Gemini (Vertex AI)]: a selection call plus 3 concurrent writers turn scraped social media into 3 profile drafts as Postgres-backed async jobs, at #strong[\~\$0.013 per user] after cutting input tokens #strong[66\%].
+    - Built AI onboarding on #strong[Gemini (Vertex AI)], turning a creator's social media into 3 ready-to-publish portfolio drafts at #strong[3.6s p50] for #strong[under \$0.01 per creator], with #strong[zero failed LLM calls] across 1,000+ production generations.
 
-    - Built an eval harness (F1 terms + human-calibrated #strong[LLM-as-judge]) on 52 production ground-truth cases and ran #strong[GEPA] optimization, lifting held-out score #strong[from 0.52 to 0.74], with prompts, traces, and cost tracked in #strong[Langfuse].
+    - Built an eval and #strong[GEPA] prompt-optimization loop with #strong[LLM-as-judge] on 52 real-user cases, lifting held-out quality #strong[from 0.52 to 0.74] and cutting input tokens #strong[66\%], with prompts, traces, and cost in #strong[Langfuse].
 
-    - Built the social-scrape to AI-drafts pipeline in #strong[Node\/TypeScript] on #strong[BullMQ\/Redis, Apify, S3], shipped dark behind feature flags with idempotent retries and a self-heal path for silently dead generations.
+    - Built the pipeline that imports creators' Instagram\/YouTube posts into their portfolios and feeds AI drafts (#strong[Node\/TypeScript, BullMQ, Apify, S3]); caught a cost-tracking bug that under-reported scraping spend #strong[\~10x].
 
-    - Designed the bb.bio waitlist gate across 4 sign-in methods using #strong[Postgres advisory locks, Cloudflare Turnstile], a #strong[Redis] rate limiter, RBAC + audit-logged admin console, and #strong[Customer.io\/WhatsApp] notifications; cut onboarding #strong[from 8 screens to 3] in #strong[Next.js].
+    - Designed and launched the bb.bio waitlist gate across 4 sign-in methods with bot protection, rate limiting, and an admin approval console (#strong[Postgres, Redis, Cloudflare Turnstile]).
 
-    - Built creator analytics across the stack: #strong[PostHog] HogQL + Redis backend, live endpoints over a partitioned Postgres event table with keyset pagination (#strong[6-17 ms at 3x prod volume]), and a #strong[Next.js\/TanStack Query\/d3-geo] dashboard pinned to a SHA-verified JSON contract.
+    - Built creator analytics across the stack (#strong[PostHog, Postgres, Next.js, d3]): fixed visitor tracking that left #strong[100\% of signups] unattributed, and shipped an audience dashboard backed by live APIs answering in #strong[6-17 ms at 3x production volume].
 
   ],
 )
