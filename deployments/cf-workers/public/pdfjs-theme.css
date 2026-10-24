@@ -1,6 +1,48 @@
-/* Hides every viewer control except zoom, print and download. Loaded after
- * viewer.css from pdfjs/web/viewer.html; paired with pdfjs-config.js, which
- * disables the features themselves. */
+/* Look and layout overrides for the pdf.js viewer. Loaded after viewer.css
+ * from pdfjs/web/viewer.html; paired with pdfjs-config.js, which disables the
+ * features whose controls are hidden here. */
+
+/* ---- Theme ---------------------------------------------------------------
+ * pdf.js's own variables, so the stock rules pick these up. Values are
+ * light-dark(<light>, <dark>) and follow the visitor's OS colour scheme. */
+
+:root {
+  --toolbar-height: 40px;
+  --icon-size: 18px;
+  --toolbar-icon-opacity: 0.85;
+
+  --main-color: light-dark(rgb(21 20 26), rgb(251 251 254));
+  --body-bg-color: light-dark(rgb(240 240 244), rgb(28 27 34));
+  --toolbar-bg-color: light-dark(rgb(249 249 251), rgb(43 42 51));
+  --toolbar-border-color: light-dark(rgb(207 207 216), rgb(21 20 26));
+  --toolbar-icon-bg-color: var(--main-color);
+  --toolbar-icon-hover-bg-color: var(--main-color);
+  --button-hover-color: light-dark(rgb(224 224 230), rgb(64 63 76));
+  --dropdown-btn-bg-color: transparent;
+  --dropdown-btn-border: 1px solid light-dark(rgb(143 143 157), rgb(128 127 140));
+  --separator-color: light-dark(rgb(207 207 216), rgb(82 82 94));
+}
+
+/* ---- Controls ------------------------------------------------------------ */
+
+.toolbarButton {
+  border-radius: 6px;
+}
+
+/* Pill-shaped zoom dropdown. */
+.dropdownToolbarButton {
+  border-radius: 999px;
+  overflow: hidden;
+
+  > select {
+    height: 30px;
+    font-size: 14px;
+    padding-inline-start: 14px;
+  }
+}
+
+/* ---- Hidden controls -----------------------------------------------------
+ * Everything except zoom, print and download. */
 
 #viewsManagerToggleButton,
 #viewFindButton,
