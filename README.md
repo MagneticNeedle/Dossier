@@ -80,7 +80,7 @@ The pipeline lives in [`dossier.py`](dossier.py). Run everything with `uv run do
 |-----------------|--------------|
 | `render`        | Renders both resume variants (tech + impact) to PDF + PNG + Markdown via RenderCV, into `artifacts/resumes/`. |
 | `publish-pdf`   | Copies both rendered resume PDFs into `deployments/cf-workers/public/` for the Worker to serve. |
-| `publish-md`    | Copies both rendered resume Markdown files into `deployments/cf-workers/public/`, with links to the other variant and the PDF, for agents. |
+| `publish-md`    | Copies both rendered resume Markdown files and `sources/contexts/projects.md` into `deployments/cf-workers/public/`, with links to the other variant, the PDF and the project deep-dives, for agents. |
 | `render-anon`   | Writes `SDE2_CV.anon.generated.yaml` with header + socials redacted, then renders it. |
 | `og-image`      | Builds a 1200×630 `og-image.png` from the RenderCV PNG output. |
 | `deploy-worker` | Deploys the Cloudflare Worker (publishes `public/` assets to `resume.vibhakar.{dev,in}`). |
@@ -108,6 +108,7 @@ dossier/
 │   │   └── public/
 │   │       ├── vibhakar-solanki-sde2-resume.pdf  # Published by `publish-pdf`
 │   │       ├── vibhakar-solanki-sde2-resume-tech.md  # Published by `publish-md`
+│   │       ├── projects.md               # Project deep-dives, published by `publish-md`
 │   │       ├── llms.txt                  # Agent index of the resume links
 │   │       ├── og-image.png              # Built by `og-image`
 │   │       └── pdfjs/                    # Vendored pdf.js viewer
