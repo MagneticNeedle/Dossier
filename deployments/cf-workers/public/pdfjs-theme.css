@@ -98,7 +98,7 @@
 }
 
 /* ---- Phone layout --------------------------------------------------------
- * For the phone render under /mobile (pdfjs-config.js sets .phoneLayout).
+ * For the phone render served to phones (pdfjs-config.js sets .phoneLayout).
  * The toolbar becomes a floating pill at the bottom, in thumb reach: zoom
  * out/in and a labelled Download. Print is dropped. */
 
