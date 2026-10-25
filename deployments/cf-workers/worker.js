@@ -24,6 +24,9 @@ const RESUME_PDFS_MOBILE = {
 };
 // Phone browsers put "Mobi" in the UA; tablets don't, so they keep the letter page.
 const PHONE_UA = /Mobi/i;
+// RFC 8288 Link header pointing agents at the site summary and this page's Markdown.
+const linkHeaderFor = (variant) =>
+  `</llms.txt>; rel="describedby"; type="text/plain", <${RESUME_MDS[variant]}>; rel="alternate"; type="text/markdown"`;
 const viewerFor = (pdf) =>
   `/pdfjs/web/viewer?file=${encodeURIComponent(pdf)}#zoom=auto`;
 const RESUME_URL = "https://vibhakar.dev";
@@ -132,6 +135,7 @@ export default {
           "cache-control":
             mdResp.headers.get("cache-control") || "public, max-age=3600",
           vary: "User-Agent, Accept",
+          link: linkHeaderFor(variant),
         },
       });
     }
@@ -184,6 +188,7 @@ export default {
       headers: {
         "content-type": "text/html;charset=UTF-8",
         vary: "User-Agent, Accept",
+        link: linkHeaderFor(variant),
       },
     });
   },
