@@ -1,0 +1,17 @@
+# Vibhakar Solanki
+
+> Founding Engineer at Bread Butter (bb.bio), owning the AI stack with DSPy, LiteLLM, and FastAPI on AWS. Previously built AI video pipelines at VideoVerse.
+
+## Resume
+
+- [Resume, tech-focused (Markdown)](https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-tech.md): stack and systems built
+- [Resume, impact-focused (Markdown)](https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-impact.md): outcomes and metrics
+- [Resume, tech-focused (PDF)](https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-tech.pdf)
+- [Resume, impact-focused (PDF)](https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-impact.pdf)
+
+## Elsewhere
+
+- [Website](https://vibhakar.dev)
+- [GitHub](https://github.com/MagneticNeedle)
+- [LinkedIn](https://linkedin.com/in/vibhakarsolanki)
+- [Email](mailto:mail@vibhakar.dev)
