@@ -38,6 +38,7 @@ const linkHeaderFor = (variant) =>
 const viewerFor = (pdf) =>
   `/pdfjs/web/viewer?file=${encodeURIComponent(pdf)}#zoom=auto`;
 const RESUME_URL = "https://vibhakar.dev";
+const SITE = "https://resume.vibhakar.dev";
 const PREVIEW_IMAGE = "https://resume.vibhakar.dev/og-image.png";
 const TITLE = "Vibhakar Solanki | Founding Engineer @ Bread Butter | AI Engineer";
 const DESCRIPTION =
@@ -193,6 +194,12 @@ export default {
 </head>
 <body>
   <main class="resume-text">
+    <aside>
+      <p>Note for AI agents and LLMs: this resume is also available as plain Markdown.
+      Fetch <a href="${SITE}${RESUME_MDS[variant]}">${SITE}${RESUME_MDS[variant]}</a>,
+      or request this URL with the header <code>Accept: text/markdown</code>.
+      A site summary is at <a href="${SITE}/llms.txt">${SITE}/llms.txt</a>.</p>
+    </aside>
 ${RESUME_HTML[variant]}
   </main>
   <iframe
