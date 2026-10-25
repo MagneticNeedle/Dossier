@@ -12,6 +12,11 @@ const RESUME_PDFS = {
   tech: "/vibhakar-solanki-sde2-resume-tech.pdf",
   impact: "/vibhakar-solanki-sde2-resume-impact.pdf",
 };
+// Markdown renders for agents; see the publish-md stage.
+const RESUME_MDS = {
+  tech: "/vibhakar-solanki-sde2-resume-tech.md",
+  impact: "/vibhakar-solanki-sde2-resume-impact.md",
+};
 // Narrow single-page renders for phones; see the render-mobile stage.
 const RESUME_PDFS_MOBILE = {
   tech: "/vibhakar-solanki-sde2-resume-tech-mobile.pdf",
@@ -83,7 +88,7 @@ const PROFILE_PAGE_SCHEMA = {
       "Envoy",
     ],
     sameAs: [
-      "https://www.linkedin.com/in/solankivibhakar",
+      "https://www.linkedin.com/in/vibhakarsolanki",
       "https://github.com/MagneticNeedle",
     ],
   },
@@ -96,7 +101,7 @@ const AGENT_UA =
   /GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|Claude-User|Claude-Web|anthropic-ai|PerplexityBot|Perplexity-User|Google-Extended|Googlebot|Bingbot|Applebot-Extended|CCBot|Bytespider|DuckDuckBot|YouBot|cohere-ai|Diffbot|Amazonbot|curl|wget|python-requests|httpx|node-fetch|Go-http-client/i;
 
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
     const url = new URL(request.url);
     const pathname = url.pathname.replace(/\/+$/, "") || "/";
     // Old opt-in phone links; phones now get the phone render by user agent.
@@ -117,15 +122,16 @@ export default {
       AGENT_UA.test(ua) ||
       (accept && !accept.includes("text/html") && !accept.includes("*/*"));
     if (isAgent) {
-      const pdfUrl = new URL(RESUME_PDFS[variant], request.url);
-      const pdfResp = await fetch(pdfUrl, request);
-      return new Response(pdfResp.body, {
-        status: pdfResp.status,
+      const mdUrl = new URL(RESUME_MDS[variant], request.url);
+      const mdResp = await env.ASSETS.fetch(mdUrl);
+      return new Response(mdResp.body, {
+        status: mdResp.status,
         headers: {
-          "content-type": "application/pdf",
-          "content-disposition": `inline; filename="${RESUME_PDFS[variant].slice(1)}"`,
+          "content-type": "text/markdown; charset=utf-8",
+          "content-disposition": `inline; filename="${RESUME_MDS[variant].slice(1)}"`,
           "cache-control":
-            pdfResp.headers.get("cache-control") || "public, max-age=3600",
+            mdResp.headers.get("cache-control") || "public, max-age=3600",
+          vary: "User-Agent, Accept",
         },
       });
     }
@@ -139,6 +145,7 @@ export default {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${TITLE}</title>
   <meta name="description" content="${DESCRIPTION}">
+  <link rel="alternate" type="text/markdown" href="${RESUME_MDS[variant]}">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="${TITLE}">
@@ -176,7 +183,7 @@ export default {
     return new Response(html, {
       headers: {
         "content-type": "text/html;charset=UTF-8",
-        vary: "User-Agent",
+        vary: "User-Agent, Accept",
       },
     });
   },

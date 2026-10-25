@@ -214,7 +214,7 @@ settings:
     markdown_path: OUTPUT_FOLDER/tech-specific-sde2-resume.md
     html_path: OUTPUT_FOLDER/tech-specific-sde2-resume.html
     png_path: OUTPUT_FOLDER/tech-specific-sde2-resume.png
-    dont_generate_markdown: true
+    dont_generate_markdown: false
     dont_generate_html: true
     dont_generate_typst: false
     dont_generate_pdf: false
