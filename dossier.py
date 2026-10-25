@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import sys
 from collections.abc import Callable
+from datetime import date
 from pathlib import Path, PurePosixPath
 
 from ruamel.yaml import YAML
@@ -36,6 +37,7 @@ PUBLISHED_MD_TECH = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech.md"
 PUBLISHED_MD_IMPACT = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact.md"
 PROJECTS_CONTEXT = REPO_ROOT / "sources" / "contexts" / "projects.md"
 PUBLISHED_MD_PROJECTS = PUBLIC_DIR / "projects.md"
+PUBLISHED_SITEMAP = PUBLIC_DIR / "sitemap.xml"
 PUBLIC_SITE = "https://resume.vibhakar.dev"
 
 RENDER_PATH_KEYS = ("typst_path", "pdf_path", "markdown_path", "html_path", "png_path")
@@ -230,6 +232,22 @@ def _publish_md() -> None:
         preamble + PROJECTS_CONTEXT.read_text(encoding="utf-8"), encoding="utf-8"
     )
 
+
+@stage("publish-sitemap")
+def _publish_sitemap() -> None:
+    """Write sitemap.xml for the canonical resume pages, stamped with today's date."""
+    # /tech serves the same page as /, so only / is listed.
+    lastmod = date.today().isoformat()
+    urls = "".join(
+        f"  <url>\n    <loc>{PUBLIC_SITE}{path}</loc>\n    <lastmod>{lastmod}</lastmod>\n  </url>\n"
+        for path in ("/", "/impact")
+    )
+    PUBLISHED_SITEMAP.write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{urls}</urlset>\n",
+        encoding="utf-8",
+    )
 
 @stage("render-anon")
 def _render_anon() -> None:
