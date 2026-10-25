@@ -162,6 +162,7 @@ def _render_mobile() -> None:
         # Emit Typst only; the page size is set below before compiling.
         render_command["dont_generate_pdf"] = True
         render_command["dont_generate_png"] = True
+        render_command["dont_generate_markdown"] = True
         generated = yaml_path.with_name(f"{yaml_path.stem}.mobile.generated.yaml")
         with generated.open("w") as f:
             yaml.dump(data, f)
@@ -211,6 +212,8 @@ def _render_anon() -> None:
         if entry["network"] in ANON_SOCIAL_OVERRIDES:
             entry["username"] = ANON_SOCIAL_OVERRIDES[entry["network"]]
     _suffix_render_paths(data["settings"]["render_command"], "anon")
+    # Markdown is only published for the named variants.
+    data["settings"]["render_command"]["dont_generate_markdown"] = True
     with ANON_YAML.open("w") as f:
         yaml.dump(data, f)
     run(["uv", "run", "rendercv", "render", ANON_YAML.name], cwd=RESUMES_DIR)
