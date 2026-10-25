@@ -1,4 +1,4 @@
-> Impact-focused version. Tech-focused: https://resume.vibhakar.dev/tech · PDF: https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-impact.pdf
+> Impact-focused version. Tech-focused: https://resume.vibhakar.dev/tech · PDF: https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-impact.pdf · Project deep-dives: https://resume.vibhakar.dev/projects.md
 
 # Vibhakar Solanki's CV
 

@@ -34,6 +34,8 @@ PUBLISHED_PDF_TECH_MOBILE = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech-mobi
 PUBLISHED_PDF_IMPACT_MOBILE = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact-mobile.pdf"
 PUBLISHED_MD_TECH = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech.md"
 PUBLISHED_MD_IMPACT = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact.md"
+PROJECTS_CONTEXT = REPO_ROOT / "sources" / "contexts" / "projects.md"
+PUBLISHED_MD_PROJECTS = PUBLIC_DIR / "projects.md"
 PUBLIC_SITE = "https://resume.vibhakar.dev"
 
 RENDER_PATH_KEYS = ("typst_path", "pdf_path", "markdown_path", "html_path", "png_path")
@@ -207,7 +209,7 @@ def _publish_pdf() -> None:
 
 @stage("publish-md")
 def _publish_md() -> None:
-    """Copy both rendered resume Markdown files into deployments/cf-workers/public for agents."""
+    """Copy both rendered resume Markdown files and the project deep-dives into deployments/cf-workers/public for agents."""
     variants = (
         (RESUME_YAML_TECH, PUBLISHED_MD_TECH, PUBLISHED_PDF_TECH, "Tech", "Impact", "/impact"),
         (RESUME_YAML_IMPACT, PUBLISHED_MD_IMPACT, PUBLISHED_PDF_IMPACT, "Impact", "Tech", "/tech"),
@@ -218,9 +220,15 @@ def _publish_md() -> None:
         # Point agents at the other variant and the PDF, since they only get this page.
         preamble = (
             f"> {focus}-focused version. {other_focus}-focused: {PUBLIC_SITE}{other_path}"
-            f" · PDF: {PUBLIC_SITE}/{published_pdf.name}\n\n"
+            f" · PDF: {PUBLIC_SITE}/{published_pdf.name}"
+            f" · Project deep-dives: {PUBLIC_SITE}/{PUBLISHED_MD_PROJECTS.name}\n\n"
         )
         published_md.write_text(preamble + md_path.read_text(encoding="utf-8"), encoding="utf-8")
+
+    preamble = f"> Project deep-dives by Vibhakar Solanki. Resume: {PUBLIC_SITE}/\n\n"
+    PUBLISHED_MD_PROJECTS.write_text(
+        preamble + PROJECTS_CONTEXT.read_text(encoding="utf-8"), encoding="utf-8"
+    )
 
 
 @stage("render-anon")
