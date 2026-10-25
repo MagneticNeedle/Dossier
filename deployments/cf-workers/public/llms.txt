@@ -9,6 +9,10 @@
 - [Resume, tech-focused (PDF)](https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-tech.pdf)
 - [Resume, impact-focused (PDF)](https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-impact.pdf)
 
+## Projects
+
+- [Project deep-dives (Markdown)](https://resume.vibhakar.dev/projects.md): bfportal.gg and gametools.network, why they exist and how they were built
+
 ## Elsewhere
 
 - [Website](https://vibhakar.dev)
