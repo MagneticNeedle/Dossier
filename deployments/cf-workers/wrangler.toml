@@ -10,3 +10,4 @@ routes = [
 
 [assets]
 directory = "./public"
+binding = "ASSETS"
