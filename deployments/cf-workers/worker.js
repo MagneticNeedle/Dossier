@@ -97,7 +97,13 @@ const AGENT_UA =
 
 export default {
   async fetch(request) {
-    const pathname = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
+    const url = new URL(request.url);
+    const pathname = url.pathname.replace(/\/+$/, "") || "/";
+    // Old opt-in phone links; phones now get the phone render by user agent.
+    if (pathname.endsWith("/mobile")) {
+      const target = pathname.slice(0, -"/mobile".length) || "/";
+      return Response.redirect(new URL(target, url).href, 301);
+    }
     const variantByPath = { "/": "tech", "/tech": "tech", "/impact": "impact" };
     const variant = variantByPath[pathname];
     if (!variant) {
