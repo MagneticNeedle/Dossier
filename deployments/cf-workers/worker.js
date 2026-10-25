@@ -145,6 +145,7 @@ export default {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${TITLE}</title>
   <meta name="description" content="${DESCRIPTION}">
+  <link rel="alternate" type="text/markdown" href="${RESUME_MDS[variant]}">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="${TITLE}">
