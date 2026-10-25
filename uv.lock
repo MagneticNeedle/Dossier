@@ -55,11 +55,15 @@ name = "dossier"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "markdown" },
     { name = "rendercv", extra = ["full"] },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "rendercv", extras = ["full"], specifier = ">=2.3" }]
+requires-dist = [
+    { name = "markdown", specifier = ">=3.10" },
+    { name = "rendercv", extras = ["full"], specifier = ">=2.3" },
+]
 
 [[package]]
 name = "email-validator"

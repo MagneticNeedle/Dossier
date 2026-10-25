@@ -1,0 +1,96 @@
+<blockquote>
+<p>Impact-focused version. Tech-focused: https://resume.vibhakar.dev/tech · PDF: https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-impact.pdf · Project deep-dives: https://resume.vibhakar.dev/projects.md</p>
+</blockquote>
+<h1>Vibhakar Solanki's CV</h1>
+<ul>
+<li>Phone: +91 81264 90848</li>
+<li>Email: <a href="mailto:mail@vibhakar.dev">mail@vibhakar.dev</a></li>
+<li>Website: <a href="https://vibhakar.dev/">vibhakar.dev</a></li>
+<li>GitHub: <a href="https://github.com/MagneticNeedle">MagneticNeedle</a></li>
+<li>LinkedIn: <a href="https://linkedin.com/in/vibhakarsolanki">vibhakarsolanki</a></li>
+</ul>
+<h1>Experience</h1>
+<h2><strong>Founding Engineer</strong></h2>
+<p><em>Remote</em></p>
+<p><em>July 2026 – present</em></p>
+<p><em>Bread Butter (bb.bio)</em></p>
+<ul>
+<li>
+<p>Own the AI stack end to end for <strong>bb.bio</strong>, a creator portfolio platform; built and shipped <strong>AI onboarding</strong> that turns a creator's social media into 3 portfolio drafts in <strong>~3.6s</strong> for <strong>under $0.01 each</strong>, with <strong>zero failed LLM calls</strong> in production.</p>
+</li>
+<li>
+<p>Built an eval and <strong>DSPy GEPA</strong> optimization loop on 52 real-user cases, lifting held-out quality <strong>from 0.52 to 0.74</strong> on the cheaper Flash model and cutting input tokens <strong>66% per user</strong>.</p>
+</li>
+<li>
+<p>Built the pipeline that imports creators' Instagram/YouTube posts into their portfolios and feeds AI drafts; caught a cost-tracking bug that under-reported scraping spend <strong>~10x</strong>.</p>
+</li>
+<li>
+<p>Launched the bb.bio <strong>waitlist gate</strong> across 4 sign-in methods with an admin approval console, pre-generating AI portfolios for <strong>98 waitlist creators</strong>.</p>
+</li>
+<li>
+<p>Built creator analytics end to end: fixed visitor tracking that left <strong>100% of signups</strong> unattributed, shipped a creator-facing audience dashboard, and live analytics APIs answering in <strong>6-17 ms at 3x production volume</strong>.</p>
+</li>
+<li>
+<p>Set the "evals before features" release gate, wrote architecture decision records, and mentored a new engineer.</p>
+</li>
+</ul>
+<h2><strong>SDE 2</strong></h2>
+<p><em>Remote</em></p>
+<p><em>Jan 2026 – June 2026</em></p>
+<p><em>VideoVerse</em></p>
+<ul>
+<li>
+<p>Built SmartThumbnails from scratch — an AI-powered thumbnail selection service that processed <strong>4,500+ clips in its first month with a 99.2% client acceptance rate</strong>, effectively eliminating manual thumbnail curation from broadcast workflows.</p>
+</li>
+<li>
+<p>Added multi-language, EPG metadata, and AI tagging support to the export pipeline, <strong>processing 11,000+ clips monthly</strong> and letting broadcast clients localize content without manual work.</p>
+</li>
+<li>
+<p>Automated conflict detection and metadata back-fill across sibling clips, reducing manual editorial effort and <strong>SLA breaches by 25%</strong>.</p>
+</li>
+</ul>
+<h2><strong>SDE 1</strong></h2>
+<p><em>Remote</em></p>
+<p><em>Nov 2024 – Jan 2026</em></p>
+<p><em>VideoVerse</em></p>
+<ul>
+<li>
+<p>Built an internal LLM evaluation pipeline using Langfuse and DSPy Evaluate, improving model output accuracy <strong>from 68% to 92%</strong>.</p>
+</li>
+<li>
+<p>Applied automated prompt optimization using DSPy's <strong>MIPRO/COPRO</strong> optimizers and <strong>GEPA</strong>, lifting task-level accuracy <strong>from 30% to 87%</strong>.</p>
+</li>
+<li>
+<p>Built a centralized <strong>AI Gateway</strong> (auth, tracking, auto-retriggers) for 5 AI services, processing <strong>50k+ clips and 300+ streams monthly</strong>.</p>
+</li>
+<li>
+<p>Engineered an LLM-powered video clip ratings pipeline using DSPy, handling over <strong>500k clips per month</strong></p>
+</li>
+</ul>
+<h2><strong>Software Engineer Intern</strong></h2>
+<p><em>Remote</em></p>
+<p><em>June 2024 – Nov 2024</em></p>
+<p><em>VideoVerse</em></p>
+<ul>
+<li>Interned at <strong>LetsDive.io</strong> (acquired by VideoVerse) as a Django backend engineer; led the <strong>Python 3.9 to 3.11</strong> migration and built an ETL pipeline with <strong>sub-100ms latency</strong>.</li>
+</ul>
+<h1>Projects</h1>
+<h2><strong>Battlefield Portal Library | <a href="https://bfportal.gg/">bfportal.gg</a> | <a href="https://github.com/battlefield-portal-community/bfportal.gg/">https://gh.bfportal.gg</a></strong></h2>
+<p><em>Jan 2022 – present</em></p>
+<ul>
+<li>Built a Django-based CMS serving <strong>17,000+ users</strong>, with a full frontend built on Jinja templates — currently migrating to <strong>HTMX</strong> for faster, dynamic interactions without a JavaScript framework; Dockerised with GitHub Actions deploys.</li>
+</ul>
+<h2><strong>Gametools Network | <a href="https://gametools.network/">gametools.network</a> | <a href="https://github.com/community-network">github.com/community-network</a></strong></h2>
+<p><em>May 2022 – present</em></p>
+<ul>
+<li>Developed and maintain an open-source Stats API serving <strong>3 million players</strong>, handling over <strong>2 million daily requests</strong> via Envoy proxy and Cloudflare caching.</li>
+</ul>
+<h1>Skills</h1>
+<p><strong>AI / ML:</strong> DSPy, LiteLLM, MIPRO/COPRO, GEPA, Langfuse, MLflow, Google Gemini, VertexAI, LLM Evaluation &amp; Optimization</p>
+<p><strong>Backend:</strong> Python, TypeScript, Go, FastAPI, Node.js/Express, Next.js, Django, PostgreSQL, MongoDB, Redis, BullMQ, PostHog</p>
+<p><strong>Infrastructure:</strong> AWS, Terraform, Docker, OpenTelemetry, Grafana, Nginx, GitHub Actions, Envoy</p>
+<h1>Education</h1>
+<h2><strong>MIET</strong></h2>
+<p><em>Meerut, Uttar Pradesh</em></p>
+<p><em>Jan 2020 – Jan 2024</em></p>
+<p><em>B.Tech</em> <em>in</em> <em>Computer Science Engineering, Minor in Data Science</em></p>

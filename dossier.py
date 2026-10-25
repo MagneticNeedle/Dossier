@@ -18,6 +18,7 @@ from collections.abc import Callable
 from datetime import date
 from pathlib import Path, PurePosixPath
 
+import markdown
 from ruamel.yaml import YAML
 
 REPO_ROOT = Path(__file__).resolve().parent
@@ -35,6 +36,9 @@ PUBLISHED_PDF_TECH_MOBILE = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech-mobi
 PUBLISHED_PDF_IMPACT_MOBILE = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact-mobile.pdf"
 PUBLISHED_MD_TECH = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-tech.md"
 PUBLISHED_MD_IMPACT = PUBLIC_DIR / "vibhakar-solanki-sde2-resume-impact.md"
+# HTML renders of the Markdown, bundled into the worker (not served on their own).
+INLINE_HTML_TECH = CF_WORKER_DIR / "resume-tech.html"
+INLINE_HTML_IMPACT = CF_WORKER_DIR / "resume-impact.html"
 PROJECTS_CONTEXT = REPO_ROOT / "sources" / "contexts" / "projects.md"
 PUBLISHED_MD_PROJECTS = PUBLIC_DIR / "projects.md"
 PUBLISHED_SITEMAP = PUBLIC_DIR / "sitemap.xml"
@@ -211,12 +215,12 @@ def _publish_pdf() -> None:
 
 @stage("publish-md")
 def _publish_md() -> None:
-    """Copy both rendered resume Markdown files and the project deep-dives into deployments/cf-workers/public for agents."""
+    """Copy both rendered resume Markdown files and the project deep-dives into deployments/cf-workers/public for agents, plus HTML renders the worker inlines."""
     variants = (
-        (RESUME_YAML_TECH, PUBLISHED_MD_TECH, PUBLISHED_PDF_TECH, "Tech", "Impact", "/impact"),
-        (RESUME_YAML_IMPACT, PUBLISHED_MD_IMPACT, PUBLISHED_PDF_IMPACT, "Impact", "Tech", "/tech"),
+        (RESUME_YAML_TECH, PUBLISHED_MD_TECH, INLINE_HTML_TECH, PUBLISHED_PDF_TECH, "Tech", "Impact", "/impact"),
+        (RESUME_YAML_IMPACT, PUBLISHED_MD_IMPACT, INLINE_HTML_IMPACT, PUBLISHED_PDF_IMPACT, "Impact", "Tech", "/tech"),
     )
-    for yaml_path, published_md, published_pdf, focus, other_focus, other_path in variants:
+    for yaml_path, published_md, inline_html, published_pdf, focus, other_focus, other_path in variants:
         _, data = _load_resume_yaml(yaml_path)
         md_path = _resolve_render_path(data["settings"]["render_command"], "markdown_path")
         # Point agents at the other variant and the PDF, since they only get this page.
@@ -225,7 +229,10 @@ def _publish_md() -> None:
             f" · PDF: {PUBLIC_SITE}/{published_pdf.name}"
             f" · Project deep-dives: {PUBLIC_SITE}/{PUBLISHED_MD_PROJECTS.name}\n\n"
         )
-        published_md.write_text(preamble + md_path.read_text(encoding="utf-8"), encoding="utf-8")
+        published = preamble + md_path.read_text(encoding="utf-8")
+        published_md.write_text(published, encoding="utf-8")
+        # Fetchers that get the HTML page (browser UAs) don't follow the PDF iframe.
+        inline_html.write_text(markdown.markdown(published) + "\n", encoding="utf-8")
 
     preamble = f"> Project deep-dives by Vibhakar Solanki. Resume: {PUBLIC_SITE}/\n\n"
     PUBLISHED_MD_PROJECTS.write_text(

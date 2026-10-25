@@ -1,0 +1,96 @@
+<blockquote>
+<p>Tech-focused version. Impact-focused: https://resume.vibhakar.dev/impact · PDF: https://resume.vibhakar.dev/vibhakar-solanki-sde2-resume-tech.pdf · Project deep-dives: https://resume.vibhakar.dev/projects.md</p>
+</blockquote>
+<h1>Vibhakar Solanki's CV</h1>
+<ul>
+<li>Phone: +91 81264 90848</li>
+<li>Email: <a href="mailto:mail@vibhakar.dev">mail@vibhakar.dev</a></li>
+<li>Website: <a href="https://vibhakar.dev/">vibhakar.dev</a></li>
+<li>GitHub: <a href="https://github.com/MagneticNeedle">MagneticNeedle</a></li>
+<li>LinkedIn: <a href="https://linkedin.com/in/vibhakarsolanki">vibhakarsolanki</a></li>
+</ul>
+<h1>Experience</h1>
+<h2><strong>Founding Engineer</strong></h2>
+<p><em>Remote</em></p>
+<p><em>July 2026 – present</em></p>
+<p><em>Bread Butter (bb.bio)</em></p>
+<ul>
+<li>
+<p>Own the AI stack end to end. Built <strong>ai-core</strong> from scratch, the <strong>Python</strong> monorepo behind bb.bio's AI features (<strong>DSPy, LiteLLM, FastAPI</strong>), running on <strong>AWS ECS Fargate</strong> with CI/CD on <strong>GitHub Actions</strong>.</p>
+</li>
+<li>
+<p>Built AI onboarding on <strong>Gemini (Vertex AI)</strong>, turning a creator's social media into 3 ready-to-publish portfolio drafts at <strong>3.6s p50</strong> for <strong>under $0.01 per creator</strong>, with <strong>zero failed LLM calls</strong> across 1,000+ production generations.</p>
+</li>
+<li>
+<p>Built an eval and <strong>GEPA</strong> prompt-optimization loop with <strong>LLM-as-judge</strong> on 52 real-user cases, lifting held-out quality <strong>from 0.52 to 0.74</strong> and cutting input tokens <strong>66%</strong>, with prompts, traces, and cost in <strong>Langfuse</strong>.</p>
+</li>
+<li>
+<p>Built the pipeline that imports creators' Instagram/YouTube posts into their portfolios and feeds AI drafts (<strong>Node/TypeScript, BullMQ, Apify, S3</strong>); caught a cost-tracking bug that under-reported scraping spend <strong>~10x</strong>.</p>
+</li>
+<li>
+<p>Designed and launched the bb.bio waitlist gate across 4 sign-in methods with bot protection, rate limiting, and an admin approval console (<strong>Postgres, Redis, Cloudflare Turnstile</strong>).</p>
+</li>
+<li>
+<p>Built creator analytics across the stack (<strong>PostHog, Postgres, Next.js, d3</strong>): fixed visitor tracking that left <strong>100% of signups</strong> unattributed, and shipped an audience dashboard backed by live APIs answering in <strong>6-17 ms at 3x production volume</strong>.</p>
+</li>
+</ul>
+<h2><strong>SDE 2</strong></h2>
+<p><em>Remote</em></p>
+<p><em>Jan 2026 – June 2026</em></p>
+<p><em>VideoVerse</em></p>
+<ul>
+<li>
+<p>Designed and built <strong>SmartThumbnails</strong> from scratch in <strong>Python/FastAPI</strong> — reverse-engineered selection heuristics from client-published thumbnails into a layered pipeline: <strong>PySceneDetect</strong> scene segmentation, Laplacian sharpness filtering, and <strong>DSPy</strong>-structured Gemini for final selection. Reached <strong>99.2% client acceptance</strong> across the first 4,500 clips, replacing manual curation.</p>
+</li>
+<li>
+<p>Engineered a hybrid algorithmic + LLM pipeline for sibling-clip metadata back-fill and conflict detection, with batched updates that respect hard SLA windows — cut <strong>SLA breaches by 25%</strong>.</p>
+</li>
+<li>
+<p>Owned the <strong>Datadog → OpenTelemetry</strong> migration end to end: cross-service instrumentation and the collector pipeline.</p>
+</li>
+</ul>
+<h2><strong>SDE 1</strong></h2>
+<p><em>Remote</em></p>
+<p><em>Nov 2024 – Jan 2026</em></p>
+<p><em>VideoVerse</em></p>
+<ul>
+<li>
+<p>Built an LLM eval harness from scratch (datasets, metrics, <strong>Langfuse</strong>), driving ground-truth analysis that lifted accuracy <strong>from 68% to 92%</strong>.</p>
+</li>
+<li>
+<p>Tuned and applied <strong>DSPy MIPRO/COPRO</strong> and <strong>GEPA</strong> prompt optimizers per service for thumbnail selection and metadata generation, raising task-level accuracy <strong>from 30% to 87%</strong>.</p>
+</li>
+<li>
+<p>Built a <strong>FastAPI AI Gateway</strong> for 5 AI services with token auth and <strong>HTTPX</strong> retry/backoff: <strong>zero dropped jobs</strong> across 50k+ clips/month.</p>
+</li>
+<li>
+<p>Engineered a <strong>DSPy + Gemini</strong> clip-ratings pipeline on <strong>500k+ clips/month</strong> with rate-limit-aware scheduling to meet SLAs.</p>
+</li>
+</ul>
+<h2><strong>Software Engineer Intern</strong></h2>
+<p><em>Remote</em></p>
+<p><em>June 2024 – Nov 2024</em></p>
+<p><em>VideoVerse (joined via acquisition of LetsDive.io)</em></p>
+<ul>
+<li>Built an ETL feed from <strong>PostgreSQL/MongoDB</strong> into <strong>BigQuery</strong> with <strong>sub-100ms</strong> latency, and rewrote the thumbnail service storage from <strong>SQLite to PostgreSQL</strong> with face-embedding ingestion.</li>
+</ul>
+<h1>Projects</h1>
+<h2><strong>Battlefield Portal Library | <a href="https://bfportal.gg/">bfportal.gg</a> | <a href="https://github.com/battlefield-portal-community/bfportal.gg/">https://gh.bfportal.gg</a></strong></h2>
+<p><em>Jan 2022 – present</em></p>
+<ul>
+<li><strong>Django/Jinja</strong> CMS, currently migrating templates to <strong>HTMX</strong> for dynamic interactions without a JavaScript framework; <strong>Cloudflare</strong> edge caching, Docker containerization, and GitHub Actions CI/CD.</li>
+</ul>
+<h2><strong>Gametools Network | <a href="https://gametools.network/">gametools.network</a> | <a href="https://github.com/community-network">github.com/community-network</a></strong></h2>
+<p><em>May 2022 – present</em></p>
+<ul>
+<li>Open-source Stats API behind <strong>Envoy</strong> routing into a <strong>Kubernetes</strong> cluster, serving <strong>2M+ daily requests</strong>. Extended the existing Envoy logic and authored the Kubernetes autoscaling policies for upstream services.</li>
+</ul>
+<h1>Skills</h1>
+<p><strong>AI / ML:</strong> DSPy, LiteLLM, MIPRO/COPRO, GEPA, LLM-as-judge, Langfuse, MLflow, Google Gemini, VertexAI, LLM Evaluation &amp; Optimization</p>
+<p><strong>Backend:</strong> Python, TypeScript, Go, FastAPI, Node.js/Express, Next.js, Django, PostgreSQL, MongoDB, Redis, BullMQ, BigQuery, PostHog</p>
+<p><strong>Infrastructure:</strong> AWS (ECS Fargate, SNS, S3), Terraform, Docker, Kubernetes, OpenTelemetry, Grafana, Envoy, Cloudflare, GitHub Actions</p>
+<h1>Education</h1>
+<h2><strong>MIET</strong></h2>
+<p><em>Meerut, Uttar Pradesh</em></p>
+<p><em>Jan 2020 – Jan 2024</em></p>
+<p><em>B.Tech</em> <em>in</em> <em>Computer Science Engineering, Minor in Data Science</em></p>

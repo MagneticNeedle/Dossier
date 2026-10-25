@@ -8,6 +8,9 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import resumeTechHtml from "./resume-tech.html";
+import resumeImpactHtml from "./resume-impact.html";
+
 const RESUME_PDFS = {
   tech: "/vibhakar-solanki-sde2-resume-tech.pdf",
   impact: "/vibhakar-solanki-sde2-resume-impact.pdf",
@@ -16,6 +19,11 @@ const RESUME_PDFS = {
 const RESUME_MDS = {
   tech: "/vibhakar-solanki-sde2-resume-tech.md",
   impact: "/vibhakar-solanki-sde2-resume-impact.md",
+};
+// HTML renders of the Markdown, inlined for fetchers that don't follow the PDF iframe.
+const RESUME_HTML = {
+  tech: resumeTechHtml,
+  impact: resumeImpactHtml,
 };
 // Narrow single-page renders for phones; see the render-mobile stage.
 const RESUME_PDFS_MOBILE = {
@@ -172,9 +180,21 @@ export default {
       overflow: hidden;
       margin: 0;
     }
+    /* Visually hidden, but in the DOM for text extractors and screen readers. */
+    .resume-text {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
+  <main class="resume-text">
+${RESUME_HTML[variant]}
+  </main>
   <iframe
     src="${resumeViewer}"
     height="100%"
