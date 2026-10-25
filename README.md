@@ -24,12 +24,13 @@ flowchart LR
     R([render]):::stage
     RA([render-anon]):::stage
     PP([publish-pdf]):::stage
+    PM([publish-md]):::stage
     OG([og-image]):::stage
     DW([deploy-worker]):::stage
 
     ANON[SDE2_CV.anon.<br/>generated.yaml]:::source
-    PDFS[artifacts/resumes/<br/>PDF + PNG + Typst]:::artifact
-    PUB[deployments/cf-workers/<br/>public/*.pdf]:::artifact
+    PDFS[artifacts/resumes/<br/>PDF + PNG + Typst + MD]:::artifact
+    PUB[deployments/cf-workers/<br/>public/*.pdf + *.md + llms.txt]:::artifact
     OGIMG[public/og-image.png]:::artifact
 
     CF{{Cloudflare Worker<br/>worker.js + pdf.js}}:::deploy
@@ -40,6 +41,7 @@ flowchart LR
     IMPACT --> RA --> ANON --> PDFS
     R --> PDFS
     PDFS --> PP --> PUB
+    PDFS --> PM --> PUB
     PDFS --> OG --> OGIMG
     PUB --> DW
     OGIMG --> DW
@@ -47,8 +49,8 @@ flowchart LR
 ```
 
 1. **Render** — `render` runs [RenderCV](https://github.com/sinaatalay/rendercv) on both YAML variants (tech + impact); `render-anon` produces a redacted variant for public feedback.
-2. **Stage assets** — `publish-pdf` copies the PDFs into the Worker's `public/` directory; `og-image` builds a 1200×630 social preview from the rendered PNG.
-3. **Deploy** — `deploy-worker` ships `public/` via `wrangler` to a Cloudflare Worker that serves the PDF directly (with SEO + OG tags) and a vendored [pdf.js](https://mozilla.github.io/pdf.js/) viewer for browsers.
+2. **Stage assets** — `publish-pdf` and `publish-md` copy the PDFs and Markdown into the Worker's `public/` directory; `og-image` builds a 1200×630 social preview from the rendered PNG.
+3. **Deploy** — `deploy-worker` ships `public/` via `wrangler` to a Cloudflare Worker that serves the PDF directly (with SEO + OG tags) and a vendored [pdf.js](https://mozilla.github.io/pdf.js/) viewer for browsers. AI agents and scripted clients (by user agent or `Accept` header) get the Markdown resume instead; `llms.txt` and a `rel="alternate"` link point agents with browser user agents to it.
 
 ---
 
@@ -76,8 +78,9 @@ The pipeline lives in [`dossier.py`](dossier.py). Run everything with `uv run do
 
 | Stage           | What it does |
 |-----------------|--------------|
-| `render`        | Renders both resume variants (tech + impact) to PDF + PNG via RenderCV, into `artifacts/resumes/`. |
+| `render`        | Renders both resume variants (tech + impact) to PDF + PNG + Markdown via RenderCV, into `artifacts/resumes/`. |
 | `publish-pdf`   | Copies both rendered resume PDFs into `deployments/cf-workers/public/` for the Worker to serve. |
+| `publish-md`    | Copies both rendered resume Markdown files into `deployments/cf-workers/public/`, with links to the other variant and the PDF, for agents. |
 | `render-anon`   | Writes `SDE2_CV.anon.generated.yaml` with header + socials redacted, then renders it. |
 | `og-image`      | Builds a 1200×630 `og-image.png` from the RenderCV PNG output. |
 | `deploy-worker` | Deploys the Cloudflare Worker (publishes `public/` assets to `resume.vibhakar.{dev,in}`). |
@@ -97,13 +100,15 @@ dossier/
 │       ├── SDE2_CV.anon.generated.yaml   # Written by `render-anon`
 │       └── fonts/
 ├── artifacts/
-│   └── resumes/                          # RenderCV output (PDF, PNG, Typst)
+│   └── resumes/                          # RenderCV output (PDF, PNG, Typst, Markdown)
 ├── deployments/
 │   ├── cf-workers/
 │   │   ├── worker.js                     # Cloudflare Worker (SEO, OG tags, viewer routing)
 │   │   ├── wrangler.toml
 │   │   └── public/
 │   │       ├── vibhakar-solanki-sde2-resume.pdf  # Published by `publish-pdf`
+│   │       ├── vibhakar-solanki-sde2-resume-tech.md  # Published by `publish-md`
+│   │       ├── llms.txt                  # Agent index of the resume links
 │   │       ├── og-image.png              # Built by `og-image`
 │   │       └── pdfjs/                    # Vendored pdf.js viewer
 │   └── scripts/
@@ -131,7 +136,7 @@ uv run dossier.py
 Run a subset of stages (e.g. re-render and publish after a YAML edit):
 
 ```bash
-uv run dossier.py render publish-pdf
+uv run dossier.py render publish-pdf publish-md
 ```
 
 List available stages:
