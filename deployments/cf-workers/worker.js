@@ -88,7 +88,7 @@ const PROFILE_PAGE_SCHEMA = {
       "Envoy",
     ],
     sameAs: [
-      "https://www.linkedin.com/in/solankivibhakar",
+      "https://www.linkedin.com/in/vibhakarsolanki",
       "https://github.com/MagneticNeedle",
     ],
   },
